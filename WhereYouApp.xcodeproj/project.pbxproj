@@ -29,6 +29,8 @@
 		63E534F018BD5D7200F14680 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E534D418BD5D7200F14680 /* CoreData.framework */; };
 		63E534F818BD5D7200F14680 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 63E534F618BD5D7200F14680 /* InfoPlist.strings */; };
 		63E534FA18BD5D7200F14680 /* WhereYouAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E534F918BD5D7200F14680 /* WhereYouAppTests.m */; };
+		63F68B2918C998B100D3A7D8 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F68B2718C998B000D3A7D8 /* AWSDynamoDB.framework */; };
+		63F68B2A18C998B100D3A7D8 /* AWSRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F68B2818C998B000D3A7D8 /* AWSRuntime.framework */; };
 		F917F4D418C29E6A008302EC /* WYAAddGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F917F4D318C29E6A008302EC /* WYAAddGroupsViewController.m */; };
 		F917F4D718C29FAB008302EC /* WYAGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F917F4D618C29FAB008302EC /* WYAGroupsViewController.m */; };
 		F917F4DA18C2A2B3008302EC /* WYAGroups.m in Sources */ = {isa = PBXBuildFile; fileRef = F917F4D918C2A2B3008302EC /* WYAGroups.m */; };
@@ -75,6 +77,8 @@
 		63E534F518BD5D7200F14680 /* WhereYouAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WhereYouAppTests-Info.plist"; sourceTree = "<group>"; };
 		63E534F718BD5D7200F14680 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		63E534F918BD5D7200F14680 /* WhereYouAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WhereYouAppTests.m; sourceTree = "<group>"; };
+		63F68B2718C998B000D3A7D8 /* AWSDynamoDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSDynamoDB.framework; path = "aws-ios-sdk-1.7.1/AWSDynamoDB.framework"; sourceTree = "<group>"; };
+		63F68B2818C998B000D3A7D8 /* AWSRuntime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSRuntime.framework; path = "aws-ios-sdk-1.7.1/AWSRuntime.framework"; sourceTree = "<group>"; };
 		F917F4D218C29E6A008302EC /* WYAAddGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYAAddGroupsViewController.h; path = ../WYAAddGroupsViewController.h; sourceTree = "<group>"; };
 		F917F4D318C29E6A008302EC /* WYAAddGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WYAAddGroupsViewController.m; path = ../WYAAddGroupsViewController.m; sourceTree = "<group>"; };
 		F917F4D518C29FAB008302EC /* WYAGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAGroupsViewController.h; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63F68B2918C998B100D3A7D8 /* AWSDynamoDB.framework in Frameworks */,
+				63F68B2A18C998B100D3A7D8 /* AWSRuntime.framework in Frameworks */,
 				639904B118BE64BA0074BB69 /* MapKit.framework in Frameworks */,
 				63E534D118BD5D7200F14680 /* CoreGraphics.framework in Frameworks */,
 				63E534D518BD5D7200F14680 /* CoreData.framework in Frameworks */,
@@ -132,6 +138,8 @@
 		63E534CD18BD5D7100F14680 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				63F68B2718C998B000D3A7D8 /* AWSDynamoDB.framework */,
+				63F68B2818C998B000D3A7D8 /* AWSRuntime.framework */,
 				639904B018BE64BA0074BB69 /* MapKit.framework */,
 				63E534CE18BD5D7100F14680 /* Foundation.framework */,
 				63E534D018BD5D7200F14680 /* CoreGraphics.framework */,
@@ -426,6 +434,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/JeanValjean24601/Dropbox/Poly/CS\\ 9033/WhereYouApp/aws-ios-sdk-1.7.1",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WhereYouApp/WhereYouApp-Prefix.pch";
 				INFOPLIST_FILE = "WhereYouApp/WhereYouApp-Info.plist";
@@ -439,6 +451,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/JeanValjean24601/Dropbox/Poly/CS\\ 9033/WhereYouApp/aws-ios-sdk-1.7.1",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WhereYouApp/WhereYouApp-Prefix.pch";
 				INFOPLIST_FILE = "WhereYouApp/WhereYouApp-Info.plist";

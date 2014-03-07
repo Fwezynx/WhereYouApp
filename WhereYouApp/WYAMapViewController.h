@@ -12,8 +12,6 @@
 
 @interface WYAMapViewController : UIViewController<MKMapViewDelegate>
 
-@property (strong, nonatomic) IBOutlet MKMapView *mapView;
-@property IBOutlet UIBarButtonItem *notifications;
-@property CLLocationManager *locationManager;
+-(IBAction)returnToUser:(id)sender;
 
 @end
