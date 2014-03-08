@@ -26,7 +26,7 @@
 {
     [super viewDidLoad];
     _mapView.showsUserLocation = YES;
-    [_notifications setEnabled:NO];
+    [_notifications setEnabled:YES];
     _locationManager = [[CLLocationManager alloc] init];
     [_locationManager startUpdatingLocation];
 
