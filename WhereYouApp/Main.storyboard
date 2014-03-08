@@ -268,10 +268,10 @@
             </objects>
             <point key="canvasLocation" x="1466" y="1095"/>
         </scene>
-        <!--View Controller - Friend Requests-->
+        <!--Friend Request View Controller - Friend Requests-->
         <scene sceneID="RXg-5s-UCx">
             <objects>
-                <viewController id="9Si-0A-dfo" sceneMemberID="viewController">
+                <viewController id="9Si-0A-dfo" customClass="WYAFriendRequestViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4lZ-rZ-UNs"/>
                         <viewControllerLayoutGuide type="bottom" id="C5i-MB-rDH"/>
@@ -393,10 +393,10 @@
             </objects>
             <point key="canvasLocation" x="2342" y="1101"/>
         </scene>
-        <!--View Controller - Group Requests-->
+        <!--Group Request View Controller - Group Requests-->
         <scene sceneID="pJa-Xm-YXz">
             <objects>
-                <viewController id="sj6-Mu-FFa" sceneMemberID="viewController">
+                <viewController id="sj6-Mu-FFa" customClass="WYAGroupRequestViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JBs-x3-eiq"/>
                         <viewControllerLayoutGuide type="bottom" id="U4o-hz-TzJ"/>
