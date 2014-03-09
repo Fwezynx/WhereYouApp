@@ -10,4 +10,6 @@
 
 @interface WYAFriendRequestViewController : UIViewController
 
+@property NSArray *friendRequests;
+
 @end
