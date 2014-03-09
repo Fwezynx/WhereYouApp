@@ -51,20 +51,20 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         button.frame = CGRectMake(x1, y, 150, 100);
         [button setTitle:@"Add" forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(addGroup) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(addFriend) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:button];
         
         
         UIButton *button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         button2.frame = CGRectMake(x2, y, 150, 100);
         [button2 setTitle:@"Ignore" forState:UIControlStateNormal];
-        [button2 addTarget:self action:@selector(ignoreGroup) forControlEvents:UIControlEventTouchUpInside];
+        [button2 addTarget:self action:@selector(ignoreFriend) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:button2];
         
         UIButton *button3 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         button3.frame = CGRectMake(x3, y, 150, 100);
         [button3 setTitle:@"Block" forState:UIControlStateNormal];
-        [button3 addTarget:self action:@selector(ignoreGroup) forControlEvents:UIControlEventTouchUpInside];
+        [button3 addTarget:self action:@selector(ignoreBlockFriend) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:button2];
         
         y= y + 20;
