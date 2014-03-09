@@ -172,10 +172,10 @@
             </objects>
             <point key="canvasLocation" x="705" y="92"/>
         </scene>
-        <!--Table View Controller - Notifications-->
+        <!--Notifications View Controller - Notifications-->
         <scene sceneID="13m-uW-urb">
             <objects>
-                <tableViewController id="P7Z-RS-3sb" sceneMemberID="viewController">
+                <tableViewController id="P7Z-RS-3sb" customClass="WYANotificationsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="DM5-Pp-fcP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -303,10 +303,11 @@
                                 <rect key="frame" x="171" y="80" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vz8-pO-m4i" id="JmL-zu-lmK">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZmQ-gs-GK2">
-                                            <rect key="frame" x="-15" y="0.0" width="30" height="0.0"/>
+                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
