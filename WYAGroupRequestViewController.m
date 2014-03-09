@@ -36,28 +36,29 @@
     
     for (NSString *group in _groupRequests) {
         
-        UILabel  * label = [[UILabel alloc] initWithFrame:CGRectMake(x, y, 110, 100)];
+        UILabel  * label = [[UILabel alloc] initWithFrame:CGRectMake(x, y, 110, 60)];
        
         label.backgroundColor = [UIColor clearColor];
         label.tag = count++;
-        label.textAlignment = UITextAlignmentLeft; // UITextAlignmentCenter, UITextAlignmentLeft
         label.textColor=[UIColor blackColor];
         label.text = group;
         [self.view addSubview:label];
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        button.frame = CGRectMake(x1, y, 150, 100);
+        button.frame = CGRectMake(x1, y, 60, 60);
         [button setTitle:@"Add" forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(addGroup) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:NSSelectorFromString(@"addGroup:") forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:button];
         
         
         UIButton *button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        button2.frame = CGRectMake(x2, y, 150, 100);
+        button2.frame = CGRectMake(x2, y, 60, 60);
         [button2 setTitle:@"Ignore" forState:UIControlStateNormal];
-        [button2 addTarget:self action:@selector(ignoreGroup) forControlEvents:UIControlEventTouchUpInside];
+      
+        [button2 addTarget:self action:NSSelectorFromString(@"ignoreGroup:") forControlEvents:UIControlEventTouchUpInside];
+      
+      //  [button2 addTarget:self action:@selector(ignoreGroup) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:button2];
-       
         y= y + 20;
 
        
@@ -65,10 +66,24 @@
         
     }
     
-
-    
     
 }
+
+-(IBAction)addGroup:(id) sender{
+    
+    NSLog(@"added");
+    
+}
+
+-(IBAction)ignoreGroup:(id) sender{
+    
+    NSLog(@"ignored");
+    
+}
+
+
+
+
 
 - (void)didReceiveMemoryWarning
 {

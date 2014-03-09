@@ -12,4 +12,7 @@
 
 @property NSArray *groupRequests;
 
+-(IBAction)ignoreGroup:(id) sender;
+-(IBAction)addGroup:(id) sender;
+
 @end

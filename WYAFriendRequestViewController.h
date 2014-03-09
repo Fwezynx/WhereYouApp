@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WYAFriendRequestViewController : UIViewController
+@interface WYAFriendRequestViewController : UIViewController{}
 
 @property NSArray *friendRequests;
-
+-(IBAction)addFriend:(id)sender;
+-(IBAction)ignoreFriend:(id)sender;
+-(IBAction)blockFriend:(id)sender;
 @end
