@@ -22,6 +22,9 @@
     return self;
 }
 
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -29,8 +32,12 @@
     [_notifications setEnabled:YES];
     _locationManager = [[CLLocationManager alloc] init];
     [_locationManager startUpdatingLocation];
+    
 
     NSMutableArray *userArray = [[NSMutableArray alloc] init];
+    
+    
+    
     
     //-----------------------------------------------------------------------
     

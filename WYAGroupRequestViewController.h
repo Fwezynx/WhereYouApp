@@ -10,4 +10,6 @@
 
 @interface WYAGroupRequestViewController : UIViewController
 
+@property NSArray *groupRequests;
+
 @end
