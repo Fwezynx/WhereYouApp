@@ -27,7 +27,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    _groupRequests =  [NSArray arrayWithObjects:@"Josh's Group",@"Ali's Group",nil];
+   // _groupRequests =  [NSArray arrayWithObjects:@"Josh's Group",@"Ali's Group",nil];
+    NSString *path = @"/Users/basaktaylan/Desktop/group.txt";
+    NSString* fileContents = [NSString stringWithContentsOfFile:path
+                              encoding:NSUTF8StringEncoding error:nil];
+    _groupRequests =[fileContents componentsSeparatedByCharactersInSet: [NSCharacterSet newlineCharacterSet]];
+    
     int count = 0;
     int y=50;
     int x = 20;
@@ -82,7 +87,7 @@
         
     
     NSString *path = @"/Users/basaktaylan/Desktop/group.txt";
-    NSString *string = (@"/r hi");
+    NSString *string = (@"\n hi");
     NSFileHandle *fh = [NSFileHandle fileHandleForWritingAtPath:path];
     [fh seekToEndOfFile];
     [fh writeData:[string dataUsingEncoding:NSUTF16LittleEndianStringEncoding]];
