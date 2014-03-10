@@ -10,7 +10,7 @@
 
 @interface WYAGroupRequestViewController : UIViewController
 
-@property NSArray *groupRequests;
+@property NSMutableArray *groupRequests;
 
 -(IBAction)ignoreGroup:(id) sender;
 -(IBAction)addGroup:(id) sender;

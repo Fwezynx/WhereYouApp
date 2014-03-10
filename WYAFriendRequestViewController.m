@@ -42,7 +42,7 @@
         UILabel  * label = [[UILabel alloc] initWithFrame:CGRectMake(x, y, 60, 64)];
         
         label.backgroundColor = [UIColor clearColor];
-        label.tag = count++;
+        label.tag = count;
         label.textColor=[UIColor blackColor];
         label.text = friend;
         [self.view addSubview:label];
@@ -92,12 +92,22 @@
     
 -(IBAction)ignoreFriend:(id) sender{
     
-    NSLog(@"ignored");
+  //  NSLog(@"ignored");
+    NSArray *viewsToRemove = [self.view subviews];
+    for (UIView *v in viewsToRemove) {
+        if([sender tag] == [v tag])
+            [v removeFromSuperview];
+    }
     
 }
 -(IBAction)blockFriend:(id) sender{
     
-    NSLog(@"blocked");
+  //  NSLog(@"blocked");
+    NSArray *viewsToRemove = [self.view subviews];
+    for (UIView *v in viewsToRemove) {
+        if([sender tag] == [v tag])
+            [v removeFromSuperview];
+    }
     
 }
     

@@ -39,27 +39,33 @@
         UILabel  * label = [[UILabel alloc] initWithFrame:CGRectMake(x, y, 110, 60)];
        
         label.backgroundColor = [UIColor clearColor];
-        label.tag = count++;
+        label.tag = count;
         label.textColor=[UIColor blackColor];
         label.text = group;
         [self.view addSubview:label];
-        
+       
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        button.frame = CGRectMake(x1, y, 60, 60);
+        button.frame = CGRectMake(x1, y, 64, 64);
+        button.tag = count;
         [button setTitle:@"Add" forState:UIControlStateNormal];
         [button addTarget:self action:NSSelectorFromString(@"addGroup:") forControlEvents:UIControlEventTouchUpInside];
+        //[button2 setBackgroundColor:[UIColor blueColor]];
         [self.view addSubview:button];
-        
+
         
         UIButton *button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        button2.frame = CGRectMake(x2, y, 60, 60);
+        button2.frame = CGRectMake(x2, y, 64, 64);
+        button2.tag = count;
         [button2 setTitle:@"Ignore" forState:UIControlStateNormal];
-      
         [button2 addTarget:self action:NSSelectorFromString(@"ignoreGroup:") forControlEvents:UIControlEventTouchUpInside];
+        //[button2 setBackgroundColor:[UIColor blueColor]];
+        [self.view addSubview:button2];
+
       
       //  [button2 addTarget:self action:@selector(ignoreGroup) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:button2];
         y= y + 20;
+        count++;
 
        
          //NSLog(@"you are %@", group);
@@ -77,8 +83,15 @@
 
 -(IBAction)ignoreGroup:(id) sender{
     
-    NSLog(@"ignored");
-    
+  //  NSLog(@"ignored");
+   // [sender removeFromSuperview];
+    NSArray *viewsToRemove = [self.view subviews];
+    for (UIView *v in viewsToRemove) {
+        if([sender tag] == [v tag])
+            [v removeFromSuperview];
+       
+    }
+      
 }
 
 
