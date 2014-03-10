@@ -79,6 +79,22 @@
     
     NSLog(@"added");
     
+        
+    
+    NSString *path = @"/Users/basaktaylan/Desktop/group.txt";
+    NSString *string = (@"/r hi");
+    NSFileHandle *fh = [NSFileHandle fileHandleForWritingAtPath:path];
+    [fh seekToEndOfFile];
+    [fh writeData:[string dataUsingEncoding:NSUTF16LittleEndianStringEncoding]];
+    [fh closeFile];
+    
+        NSArray *viewsToRemove = [self.view subviews];
+        for (UIView *v in viewsToRemove) {
+            if([sender tag] == [v tag])
+                [v removeFromSuperview];
+        
+        }
+    
 }
 
 -(IBAction)ignoreGroup:(id) sender{
