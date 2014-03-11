@@ -24,6 +24,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        _mapView.delegate = self;
     }
     return self;
 }

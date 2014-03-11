@@ -28,8 +28,6 @@
 		63E534F018BD5D7200F14680 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E534D418BD5D7200F14680 /* CoreData.framework */; };
 		63E534F818BD5D7200F14680 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 63E534F618BD5D7200F14680 /* InfoPlist.strings */; };
 		63E534FA18BD5D7200F14680 /* WhereYouAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E534F918BD5D7200F14680 /* WhereYouAppTests.m */; };
-		63F68B2918C998B100D3A7D8 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F68B2718C998B000D3A7D8 /* AWSDynamoDB.framework */; };
-		63F68B2A18C998B100D3A7D8 /* AWSRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F68B2818C998B000D3A7D8 /* AWSRuntime.framework */; };
 		63F68B3918C999CC00D3A7D8 /* WYAAddFriendName.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F68B3218C999CC00D3A7D8 /* WYAAddFriendName.m */; };
 		63F68B3A18C999CC00D3A7D8 /* WYAAddGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F68B3418C999CC00D3A7D8 /* WYAAddGroupsViewController.m */; };
 		63F68B3B18C999CC00D3A7D8 /* WYAFriendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F68B3618C999CC00D3A7D8 /* WYAFriendListViewController.m */; };
@@ -106,8 +104,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63F68B2918C998B100D3A7D8 /* AWSDynamoDB.framework in Frameworks */,
-				63F68B2A18C998B100D3A7D8 /* AWSRuntime.framework in Frameworks */,
 				639904B118BE64BA0074BB69 /* MapKit.framework in Frameworks */,
 				63E534D118BD5D7200F14680 /* CoreGraphics.framework in Frameworks */,
 				63E534D518BD5D7200F14680 /* CoreData.framework in Frameworks */,
