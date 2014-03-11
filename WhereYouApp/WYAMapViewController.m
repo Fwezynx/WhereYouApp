@@ -33,9 +33,9 @@
     // Show user location, update location, and center map on user.
     [super viewDidLoad];
     _mapView.showsUserLocation = YES;
-    _currentUser = [WYAUser getInstance];
+    _currentUser = [WYAUser sharedInstance];
     [_notifications setEnabled:YES];
-    _locationManager = [_currentUser getLocationManager];
+    _locationManager = _currentUser.locationManager;
     [self returnToUser:self];
     
     // Store users to place annotations.  Move to WYAUser?

@@ -10,42 +10,28 @@
 
 @implementation WYAUser
 
-static WYAUser *userInstance = nil;
-static NSString *userName = nil;
-static CLLocationManager *locationManager = nil;
-static NSMutableArray *friendList = nil;
-static NSMutableArray *groupsList = nil;
-
 // Return singleton.
-+ (WYAUser *) getInstance {
-    if (userInstance == nil) {
-        userInstance = [[WYAUser alloc] init];
-        locationManager = [[CLLocationManager alloc] init];
-        [locationManager startUpdatingLocation];
-        friendList = [[NSMutableArray alloc] init];
-        groupsList = [[NSMutableArray alloc] init];
++ (WYAUser *) sharedInstance {
+    static WYAUser *sharedInstance = nil;
+    // Initialize the object if it doesn't exist yet.
+    if (!sharedInstance) {
+        sharedInstance = [[super allocWithZone:NULL] init];
     }
-    return userInstance;
+    return sharedInstance;
 }
 
-- (void) setUsername:(NSString *)username {
-    userName = username;
++(id) allocWithZone:(struct _NSZone *)zone {
+    return [self sharedInstance];
 }
 
-- (NSString *) getUsername {
-    return userName;
-}
-
-- (CLLocationManager *) getLocationManager {
-    return locationManager;
-}
-
-- (NSMutableArray *) getFriendList {
-    return friendList;
-}
-
-- (NSMutableArray *) getGroupsList {
-    return groupsList;
+-(id) init {
+    self = [super init];
+    _username = [[NSString alloc] init];
+    _locationManager = [[CLLocationManager alloc] init];
+    [_locationManager startUpdatingLocation];
+    _friendList = [[NSMutableArray alloc] init];
+    _groupsList = [[NSMutableArray alloc] init];
+    return self;
 }
 
 @end

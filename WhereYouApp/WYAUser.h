@@ -11,11 +11,11 @@
 
 @interface WYAUser : NSObject
 
-+ (WYAUser *) getInstance;
-- (void) setUsername:(NSString *)username;
-- (NSString *) getUsername;
-- (CLLocationManager *) getLocationManager;
-- (NSMutableArray *) getFriendList;
-- (NSMutableArray *) getGroupsList;
++ (WYAUser *) sharedInstance;
+
+@property NSString *username;
+@property CLLocationManager *locationManager;
+@property NSMutableArray *friendList;
+@property NSMutableArray *groupsList;
 
 @end
