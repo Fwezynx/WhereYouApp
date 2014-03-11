@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "WYAUserAnnotation.h"
+#import "WYAUser.h"
 
 @interface WYAMapViewController : UIViewController<MKMapViewDelegate>
 
 -(IBAction)returnToUser:(id)sender;
+-(int)calculateDistance:(CLLocation *)userLocation;
 
 @end

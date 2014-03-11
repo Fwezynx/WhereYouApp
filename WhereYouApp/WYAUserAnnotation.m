@@ -12,14 +12,22 @@
 
 -(id) initWithUserName:(NSString *)user andCoordinate:(CLLocationCoordinate2D)coords andAltitude:(CLLocationDistance)alt {
     self = [super init];
+    [self setAltitude:alt];
+    [self setCoordinate:coords];
     _title = user;
     _subtitle = [NSString stringWithFormat:@"Longitude: %f, Latitude: %f, Altitude: %f", coords.longitude, coords.latitude, alt];
-    _coordinate = coords;
-    _altitude = alt;
     return self;
 }
 
--(void) moveUserToCoordinate:(CLLocationCoordinate2D)coords withAltitude:(CLLocationDistance)alt {
+-(id) initWithLocation:(CLLocationCoordinate2D)coordinates title:(NSString *)title andSubtitle:(NSString *)subtitle {
+    self = [super init];
+    [self setCoordinate:coordinates];
+    _title = title;
+    _subtitle = subtitle;
+    return self;
+}
+
+-(void) updateUserToCoordinates:(CLLocationCoordinate2D)coords withAltitude:(CLLocationDistance)alt {
     _coordinate = coords;
     _altitude = alt;
 }
