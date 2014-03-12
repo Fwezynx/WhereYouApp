@@ -23,6 +23,8 @@
 		6336ECE418CFEB0B009344CA /* WYANotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECDD18CFEB0B009344CA /* WYANotificationsViewController.m */; };
 		6336ECE718CFED1C009344CA /* WYAGroupRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECE618CFED1C009344CA /* WYAGroupRequestViewController.m */; };
 		6336ECEC18D11E6E009344CA /* street_view-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 6336ECEB18D11E6E009344CA /* street_view-26.png */; };
+		6336ECF518D123DF009344CA /* password2-64.png in Resources */ = {isa = PBXBuildFile; fileRef = 6336ECF318D123DF009344CA /* password2-64.png */; };
+		6336ECF618D123DF009344CA /* remove_user-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 6336ECF418D123DF009344CA /* remove_user-128.png */; };
 		6371B4C518CD673D009CE5ED /* WYAUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6371B4C418CD673D009CE5ED /* WYAUser.m */; };
 		63827DF518C2CC4F009F05BF /* WYAMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63827DF218C2CC4F009F05BF /* WYAMapViewController.m */; };
 		63827DF618C2CC4F009F05BF /* WYAUserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 63827DF418C2CC4F009F05BF /* WYAUserAnnotation.m */; };
@@ -88,6 +90,8 @@
 		6336ECE518CFED1C009344CA /* WYAGroupRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYAGroupRequestViewController.h; path = ../WYAGroupRequestViewController.h; sourceTree = "<group>"; };
 		6336ECE618CFED1C009344CA /* WYAGroupRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WYAGroupRequestViewController.m; path = ../WYAGroupRequestViewController.m; sourceTree = "<group>"; };
 		6336ECEB18D11E6E009344CA /* street_view-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "street_view-26.png"; sourceTree = "<group>"; };
+		6336ECF318D123DF009344CA /* password2-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password2-64.png"; sourceTree = "<group>"; };
+		6336ECF418D123DF009344CA /* remove_user-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remove_user-128.png"; sourceTree = "<group>"; };
 		6371B4C318CD673D009CE5ED /* WYAUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYAUser.h; path = ../WYAUser.h; sourceTree = "<group>"; };
 		6371B4C418CD673D009CE5ED /* WYAUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WYAUser.m; path = ../WYAUser.m; sourceTree = "<group>"; };
 		63827DF118C2CC4F009F05BF /* WYAMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYAMapViewController.h; path = ../WYAMapViewController.h; sourceTree = "<group>"; };
@@ -152,6 +156,8 @@
 		6336ECE818D11D09009344CA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6336ECF318D123DF009344CA /* password2-64.png */,
+				6336ECF418D123DF009344CA /* remove_user-128.png */,
 				6336ECEB18D11E6E009344CA /* street_view-26.png */,
 			);
 			path = Images;
@@ -394,6 +400,8 @@
 				63F68B3E18CCE11900D3A7D8 /* Login.storyboard in Resources */,
 				63122B4118C68A1A0084E969 /* Main.storyboard in Resources */,
 				63E534DB18BD5D7200F14680 /* InfoPlist.strings in Resources */,
+				6336ECF618D123DF009344CA /* remove_user-128.png in Resources */,
+				6336ECF518D123DF009344CA /* password2-64.png in Resources */,
 				6336ECEC18D11E6E009344CA /* street_view-26.png in Resources */,
 				63E534E618BD5D7200F14680 /* Images.xcassets in Resources */,
 			);
