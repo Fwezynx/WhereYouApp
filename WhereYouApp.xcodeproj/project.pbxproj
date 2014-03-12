@@ -16,7 +16,6 @@
 		6336ECC918CFDC4C009344CA /* WYAGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECC718CFDC4C009344CA /* WYAGroupsViewController.m */; };
 		6336ECCC18CFDC68009344CA /* WYAAddGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECCB18CFDC68009344CA /* WYAAddGroupsViewController.m */; };
 		6336ECCF18CFDC8F009344CA /* WYAHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECCE18CFDC8F009344CA /* WYAHash.m */; };
-		6336ECDF18CFEB0B009344CA /* AddFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECD318CFEB0B009344CA /* AddFriendsViewController.m */; };
 		6336ECE018CFEB0B009344CA /* WYAAddFriendName.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECD518CFEB0B009344CA /* WYAAddFriendName.m */; };
 		6336ECE118CFEB0B009344CA /* WYAFriendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECD718CFEB0B009344CA /* WYAFriendListViewController.m */; };
 		6336ECE218CFEB0B009344CA /* WYAFriendName.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECD918CFEB0B009344CA /* WYAFriendName.m */; };
@@ -75,8 +74,6 @@
 		6336ECCB18CFDC68009344CA /* WYAAddGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAAddGroupsViewController.m; sourceTree = "<group>"; };
 		6336ECCD18CFDC8F009344CA /* WYAHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAHash.h; sourceTree = "<group>"; };
 		6336ECCE18CFDC8F009344CA /* WYAHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAHash.m; sourceTree = "<group>"; };
-		6336ECD218CFEB0B009344CA /* AddFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsViewController.h; sourceTree = "<group>"; };
-		6336ECD318CFEB0B009344CA /* AddFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsViewController.m; sourceTree = "<group>"; };
 		6336ECD418CFEB0B009344CA /* WYAAddFriendName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAAddFriendName.h; sourceTree = "<group>"; };
 		6336ECD518CFEB0B009344CA /* WYAAddFriendName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAAddFriendName.m; sourceTree = "<group>"; };
 		6336ECD618CFEB0B009344CA /* WYAFriendListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAFriendListViewController.h; sourceTree = "<group>"; };
@@ -217,8 +214,6 @@
 				63E534E018BD5D7200F14680 /* WYAAppDelegate.m */,
 				6336ECE518CFED1C009344CA /* WYAGroupRequestViewController.h */,
 				6336ECE618CFED1C009344CA /* WYAGroupRequestViewController.m */,
-				6336ECD218CFEB0B009344CA /* AddFriendsViewController.h */,
-				6336ECD318CFEB0B009344CA /* AddFriendsViewController.m */,
 				6336ECD418CFEB0B009344CA /* WYAAddFriendName.h */,
 				6336ECD518CFEB0B009344CA /* WYAAddFriendName.m */,
 				6336ECD618CFEB0B009344CA /* WYAFriendListViewController.h */,
@@ -386,7 +381,6 @@
 				6371B4C518CD673D009CE5ED /* WYAUser.m in Sources */,
 				6336ECC018CFDBDE009344CA /* WYAAddBlockUserViewController.m in Sources */,
 				6336ECE218CFEB0B009344CA /* WYAFriendName.m in Sources */,
-				6336ECDF18CFEB0B009344CA /* AddFriendsViewController.m in Sources */,
 				6336ECC918CFDC4C009344CA /* WYAGroupsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
