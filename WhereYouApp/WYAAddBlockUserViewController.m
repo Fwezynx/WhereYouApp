@@ -1,41 +1,41 @@
 //
-//  WYAGroupsViewController.m
+//  WYAAddBlockUserViewController.m
 //  WhereYouApp
 //
-//  Created by Saloni Agarwal on 3/1/14.
+//  Created by Saloni Agarwal on 3/8/14.
 //  Copyright (c) 2014 Timothy Chu. All rights reserved.
 //
 
-#import "WYAGroupsViewController.h"
-#import "WYAGroups.h"
-#import "WYAAddGroupsViewController.h"
+#import "WYAAddBlockUserViewController.h"
+#import "WYABlockUsers.h"
+#import "WYABlockUserViewController.h"
 
-@interface WYAGroupsViewController ()
-
-@property NSMutableArray *groupNames;
-
+@interface WYAAddBlockUserViewController ()
+@property NSMutableArray *blockUsers;
 @end
 
-@implementation WYAGroupsViewController
+@implementation WYAAddBlockUserViewController
 
-- (void)loadInitialData
+-(void) loadInitialDatas
 {
-    WYAGroups *group1 = [[WYAGroups alloc] init];
-    group1.groupName = @"Hello";
-    [self.groupNames addObject:group1];
     
-    WYAGroups *group2 = [[WYAGroups alloc] init];
-    group2.groupName = @"Picnic";
-    [self.groupNames addObject:group2];
+        WYABlockUsers *user1 = [[WYABlockUsers alloc] init];
+        user1.blockUserName = @"John";
+        [self.blockUsers addObject:user1];
+        
+        WYABlockUsers *user2 = [[WYABlockUsers alloc] init];
+        user2.blockUserName = @"Rick";
+        [self.blockUsers addObject:user2];
+    
 }
 
-- (IBAction)unwindToGroups:(UIStoryboardSegue *)segue
+- (IBAction)pushToBlockTable:(UIStoryboardSegue *)segue
 {
-   WYAAddGroupsViewController *source = [segue sourceViewController];
-    WYAGroups *group = source.Group;
-    if (group != nil)
+    WYABlockUserViewController *source1 = [segue sourceViewController];
+    WYABlockUsers *users = source1.User;
+    if (users != nil)
     {
-        [self.groupNames addObject:group];
+        [self.blockUsers addObject:users];
         [self.tableView reloadData];
     }
 
@@ -54,8 +54,8 @@
 {
     [super viewDidLoad];
     
-    self.groupNames = [[NSMutableArray alloc] init];
-    [self loadInitialData];
+    self.blockUsers = [[NSMutableArray alloc] init];
+    [self loadInitialDatas];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
     // Uncomment the following line to preserve selection between presentations.
@@ -82,35 +82,31 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.groupNames count];
+    return [self.blockUsers count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ListPrototypeCell";
+    static NSString *CellIdentifier = @"ListPrototypeCellBlock";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    WYAGroups *groupName = [self.groupNames objectAtIndex:indexPath.row];
-    cell.textLabel.text = groupName.groupName;
+    WYABlockUsers *userName = [self.blockUsers objectAtIndex:indexPath.row];
+    cell.textLabel.text = userName.blockUserName;
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Remove the row from data model
-    [self.groupNames removeObjectAtIndex:indexPath.row];
+    [self.blockUsers removeObjectAtIndex:indexPath.row];
+    [self.tableView reloadData];
     
-    // Request table view to reload
-    [tableView reloadData];
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return @"Leave";
+    return @"Unblock";
 }
-
-
 
 
 /*

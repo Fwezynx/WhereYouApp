@@ -1,30 +1,32 @@
 //
-//  WYAAddGroupsViewController.m
+//  WYABlockUserViewController.m
 //  WhereYouApp
 //
-//  Created by Saloni Agarwal on 3/1/14.
+//  Created by Saloni Agarwal on 3/7/14.
 //  Copyright (c) 2014 Timothy Chu. All rights reserved.
 //
 
-#import "WYAAddGroupsViewController.h"
+#import "WYABlockUserViewController.h"
 
-@interface WYAAddGroupsViewController ()
+@interface WYABlockUserViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+@property (weak, nonatomic) IBOutlet UIButton *blockButton;
+
 @end
 
-@implementation WYAAddGroupsViewController
+@implementation WYABlockUserViewController
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if (sender != self.doneButton) return;
+    if (sender != self.blockButton) return;
     if (self.textField.text.length > 0)
     {
-        self.Group = [[WYAGroups alloc] init];
-        self.Group.groupName = self.textField.text;
+        self.User = [[WYABlockUsers alloc] init];
+        self.User.blockUserName = self.textField.text;
     }
 }
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,7 +49,8 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)dismissKeyboard:(id)sender
+
+- (IBAction)dismissKeyboardBlock:(id)sender
 {
     [sender resignFirstResponder];
 }
