@@ -85,11 +85,14 @@
 
     
 -(IBAction)addFriend:(id) sender{
-    
-    NSLog(@"added");
-    
+    //  NSLog(@"added");
+    NSArray *viewsToRemove = [self.view subviews];
+    for (UIView *v in viewsToRemove) {
+        if([sender tag] == [v tag])
+            [v removeFromSuperview];
+    }
 }
-    
+
 -(IBAction)ignoreFriend:(id) sender{
     
   //  NSLog(@"ignored");
