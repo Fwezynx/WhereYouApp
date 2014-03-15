@@ -17,5 +17,8 @@
 @property CLLocationManager *locationManager;
 @property NSMutableArray *friendList;
 @property NSMutableArray *groupsList;
+@property NSMutableArray *blockedFriendsList;
+@property NSMutableArray *friendRequestList;
+@property NSMutableArray *groupRequestList;
 
 @end

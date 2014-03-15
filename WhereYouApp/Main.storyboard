@@ -243,10 +243,10 @@
             </objects>
             <point key="canvasLocation" x="1490" y="-556"/>
         </scene>
-        <!--Add Friend Name - Add Friend-->
+        <!--Add Friend Name View Controller - Add Friend-->
         <scene sceneID="GWC-ez-CxG">
             <objects>
-                <viewController id="YSa-9O-BGX" customClass="WYAAddFriendName" sceneMemberID="viewController">
+                <viewController id="YSa-9O-BGX" customClass="WYAAddFriendNameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="axY-Ci-6oa"/>
                         <viewControllerLayoutGuide type="bottom" id="BBA-rW-qgg"/>

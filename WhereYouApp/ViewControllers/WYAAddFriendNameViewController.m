@@ -1,21 +1,21 @@
 //
-//  WYAAddFriendName.m
+//  WYAAddFriendNameViewController.m
 //  WhereYouApp
 //
-//  Created by Basak Taylan on 3/2/14.
+//  Created by Timothy Chu on 3/13/14.
 //  Copyright (c) 2014 Timothy Chu. All rights reserved.
 //
 
-#import "WYAAddFriendName.h"
-#import "WYAFriendName.h"
+#import "WYAAddFriendNameViewController.h"
 
-@interface WYAAddFriendName ()
+@interface WYAAddFriendNameViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 
 @end
 
-@implementation WYAAddFriendName
+@implementation WYAAddFriendNameViewController
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

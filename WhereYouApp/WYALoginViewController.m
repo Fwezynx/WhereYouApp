@@ -42,7 +42,7 @@
             return NO;
         }
         // Check login credentials.
-        if ([self successfulLoginForUser:[WYAHash sha256:[_userField.text lowercaseString]] withPassword:[WYAHash sha256:_passwordField.text]]) {
+        if ([self successfulLoginForUser:[_userField.text lowercaseString] withPassword:[WYAHash sha256:_passwordField.text]]) {
             _user = [WYAUser sharedInstance];
             [_user setUsername:_userField.text];
             return YES;

@@ -1,15 +1,15 @@
 //
-//  WYAAddFriendName.h
+//  WYAAddFriendNameViewController.h
 //  WhereYouApp
 //
-//  Created by Basak Taylan on 3/2/14.
+//  Created by Timothy Chu on 3/13/14.
 //  Copyright (c) 2014 Timothy Chu. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "WYAFriendName.h"
 
-@interface WYAAddFriendName : UIViewController
+@interface WYAAddFriendNameViewController : UIViewController
 
 @property WYAFriendName *friendName;
 

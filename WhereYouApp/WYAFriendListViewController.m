@@ -8,7 +8,7 @@
 
 #import "WYAFriendListViewController.h"
 #import "WYAFriendName.h"
-#import "WYAAddFriendName.h"
+#import "WYAAddFriendNameViewController.h"
 
 @interface WYAFriendListViewController ()
 
@@ -22,7 +22,7 @@
 {
     
     
-    WYAAddFriendName *source = [segue sourceViewController];
+    WYAAddFriendNameViewController *source = [segue sourceViewController];
     WYAFriendName *name = source.friendName;
     if (name != nil) {
         [self.friendNames addObject:name];

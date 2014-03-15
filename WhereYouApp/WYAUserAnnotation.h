@@ -15,11 +15,12 @@
 @property (nonatomic, readonly, copy) NSString *subtitle;
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 @property CLLocationDistance altitude;
+@property NSDate *updateTime;
 
 - (id) initWithUserName:(NSString *)user andCoordinate:(CLLocationCoordinate2D)coords andAltitude:(CLLocationDistance)alt;
 
 - (id) initWithLocation:(CLLocationCoordinate2D)coordinates title:(NSString *)title andSubtitle:(NSString *)subtitle;
 
-- (void) updateUserToCoordinates:(CLLocationCoordinate2D)coords withAltitude:(CLLocationDistance)alt;
+- (void) updateUser;
 
 @end

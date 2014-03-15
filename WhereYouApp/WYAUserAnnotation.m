@@ -27,9 +27,9 @@
     return self;
 }
 
--(void) updateUserToCoordinates:(CLLocationCoordinate2D)coords withAltitude:(CLLocationDistance)alt {
-    _coordinate = coords;
-    _altitude = alt;
+// Update user latitude, longitude, altitude, and updateTime.
+-(void) updateUser {
+
 }
 
 @end

@@ -20,17 +20,20 @@
     return sharedInstance;
 }
 
-+(id) allocWithZone:(struct _NSZone *)zone {
++ (id) allocWithZone:(struct _NSZone *)zone {
     return [self sharedInstance];
 }
 
--(id) init {
+- (id) init {
     self = [super init];
     _username = [[NSString alloc] init];
     _locationManager = [[CLLocationManager alloc] init];
     [_locationManager startUpdatingLocation];
     _friendList = [[NSMutableArray alloc] init];
     _groupsList = [[NSMutableArray alloc] init];
+    _blockedFriendsList = [[NSMutableArray alloc] init];
+    _groupRequestList = [[NSMutableArray alloc] init];
+    _friendRequestList = [[NSMutableArray alloc] init];
     return self;
 }
 
