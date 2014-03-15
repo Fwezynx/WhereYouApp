@@ -184,14 +184,14 @@
 				6336ECC718CFDC4C009344CA /* WYAGroupsViewController.m */,
 				6336ECE518CFED1C009344CA /* WYAGroupRequestViewController.h */,
 				6336ECE618CFED1C009344CA /* WYAGroupRequestViewController.m */,
-				6336ECF718D283DA009344CA /* WYAAddFriendNameViewController.h */,
-				6336ECF818D283DA009344CA /* WYAAddFriendNameViewController.m */,
-				63268D1718D3FF15007015D4 /* WYAFriendListViewController.h */,
 				6336ECD718CFEB0B009344CA /* WYAFriendListViewController.m */,
 				6336ECDA18CFEB0B009344CA /* WYAFriendRequestViewController.h */,
 				6336ECDB18CFEB0B009344CA /* WYAFriendRequestViewController.m */,
 				6336ECDC18CFEB0B009344CA /* WYANotificationsViewController.h */,
 				6336ECDD18CFEB0B009344CA /* WYANotificationsViewController.m */,
+				6336ECF718D283DA009344CA /* WYAAddFriendNameViewController.h */,
+				6336ECF818D283DA009344CA /* WYAAddFriendNameViewController.m */,
+				63268D1718D3FF15007015D4 /* WYAFriendListViewController.h */,
 			);
 			name = "View Controllers";
 			path = ViewControllers;
