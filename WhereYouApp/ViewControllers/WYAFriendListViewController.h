@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WYAAddFriendNameViewController.h"
+#import "WYAUserAnnotation.h"
+#import "WYAUser.h"
 
 @interface WYAFriendListViewController : UITableViewController
 

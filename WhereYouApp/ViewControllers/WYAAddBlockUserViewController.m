@@ -7,8 +7,6 @@
 //
 
 #import "WYAAddBlockUserViewController.h"
-#import "WYABlockUsers.h"
-#import "WYABlockUserViewController.h"
 
 @interface WYAAddBlockUserViewController ()
 @property NSMutableArray *blockUsers;

@@ -19,11 +19,9 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if (sender != self.doneButton) return;
-    if (self.textField.text.length > 0) {
-        self.friendName = [[WYAFriendName alloc] init];
-        self.friendName.friendName = self.textField.text;
-        self.friendName.completed = NO;
+    if (sender != _doneButton) return;
+    if (_textField.text.length > 0) {
+        _friendName = _textField.text;
     }
 }
 
@@ -32,7 +30,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }

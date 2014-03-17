@@ -11,17 +11,14 @@
 @implementation WYAUser
 
 // Return singleton.
-+ (WYAUser *) sharedInstance {
++(instancetype)sharedInstance
+{
     static WYAUser *sharedInstance = nil;
-    // Initialize the object if it doesn't exist yet.
-    if (!sharedInstance) {
-        sharedInstance = [[super allocWithZone:NULL] init];
-    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[WYAUser alloc] init];
+    });
     return sharedInstance;
-}
-
-+ (id) allocWithZone:(struct _NSZone *)zone {
-    return [self sharedInstance];
 }
 
 - (id) init {

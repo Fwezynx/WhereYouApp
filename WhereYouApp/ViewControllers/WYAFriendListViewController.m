@@ -7,12 +7,10 @@
 //
 
 #import "WYAFriendListViewController.h"
-#import "WYAFriendName.h"
-#import "WYAAddFriendNameViewController.h"
 
 @interface WYAFriendListViewController ()
 
-@property NSMutableArray *friendNames;
+@property WYAUser *currentUser;
 
 @end
 
@@ -20,37 +18,34 @@
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
-    
-    
     WYAAddFriendNameViewController *source = [segue sourceViewController];
-    WYAFriendName *name = source.friendName;
-    if (name != nil) {
-        [self.friendNames addObject:name];
+#warning Implementation with database required.  User should be pending from here
+    if (source.friendName != nil) {
+        WYAUserAnnotation *friend = [[WYAUserAnnotation alloc] initWithUserName:source.friendName andCoordinate:_currentUser.locationManager.location.coordinate andAltitude:_currentUser.locationManager.location.altitude];
+        friend.status = 2;
+        [_currentUser.friendList addObject:friend];
         [self.tableView reloadData];
     }
     
 }
 
-
+#warning function to be deleted.
 - (void)loadInitialData {
-    
-    WYAFriendName *name1 = [[WYAFriendName alloc] init];
-    name1.friendName = @"Saloni";
-    [self.friendNames addObject:name1];
-    WYAFriendName *name2 = [[WYAFriendName alloc] init];
-    name2.friendName = @"Tim";
-    [self.friendNames addObject:name2];
-    WYAFriendName *name3 = [[WYAFriendName alloc] init];
-    name3.friendName = @"Basak";
-    [self.friendNames addObject:name3];
-    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+    WYAUserAnnotation *friend = [[WYAUserAnnotation alloc] initWithUserName:@"Saloni" andCoordinate:_currentUser.locationManager.location.coordinate andAltitude:_currentUser.locationManager.location.altitude];
+    [_currentUser.friendList addObject:friend];
+    friend = [[WYAUserAnnotation alloc] initWithUserName:@"Tim" andCoordinate:_currentUser.locationManager.location.coordinate andAltitude:_currentUser.locationManager.location.altitude];
+    [_currentUser.friendList addObject:friend];
+    friend = [[WYAUserAnnotation alloc] initWithUserName:@"Basak" andCoordinate:_currentUser.locationManager.location.coordinate andAltitude:_currentUser.locationManager.location.altitude];
+    [_currentUser.friendList addObject:friend];
+    });
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -58,107 +53,48 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.friendNames = [[NSMutableArray alloc] init];
+    _currentUser = [WYAUser sharedInstance];
     [self loadInitialData];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [self.friendNames count];
+    return [_currentUser.friendList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog([NSString stringWithFormat:@"1 %f",[_currentUser.friendList count]]);
     static NSString *CellIdentifier = @"ListPrototypeCell";
     UITableViewCell *cell = [tableView
                              dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    WYAFriendName *friends = [self.friendNames objectAtIndex:indexPath.row];
-    cell.textLabel.text = friends.friendName;
+    WYAUserAnnotation *friend = [_currentUser.friendList objectAtIndex:indexPath.row];
+    [cell.textLabel setText:friend.title];
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+#warning remove user from database required
     // Remove the row from data model
-    [_friendNames removeObjectAtIndex:indexPath.row];
+    [_currentUser.friendList removeObjectAtIndex:indexPath.row];
     
     // Request table view to reload
     [tableView reloadData];
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end

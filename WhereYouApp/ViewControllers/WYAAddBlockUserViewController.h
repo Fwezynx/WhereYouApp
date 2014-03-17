@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WYABlockUsers.h"
+#import "WYABlockUserViewController.h"
 
 @interface WYAAddBlockUserViewController : UITableViewController
 

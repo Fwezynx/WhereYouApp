@@ -7,8 +7,6 @@
 //
 
 #import "WYAGroupsViewController.h"
-#import "WYAGroups.h"
-#import "WYAAddGroupsViewController.h"
 
 @interface WYAGroupsViewController ()
 
