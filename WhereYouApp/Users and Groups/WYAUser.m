@@ -25,7 +25,9 @@
     self = [super init];
     _username = [[NSString alloc] init];
     _locationManager = [[CLLocationManager alloc] init];
+    [_locationManager setDelegate:self];
     [_locationManager startUpdatingLocation];
+    [_locationManager startUpdatingHeading];
     _friendList = [[NSMutableArray alloc] init];
     _groupsList = [[NSMutableArray alloc] init];
     _blockedFriendsList = [[NSMutableArray alloc] init];

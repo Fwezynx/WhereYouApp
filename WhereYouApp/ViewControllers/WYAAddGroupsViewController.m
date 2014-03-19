@@ -18,11 +18,11 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if (sender != self.doneButton) return;
-    if (self.textField.text.length > 0)
-    {
-        self.Group = [[WYAGroups alloc] init];
-        self.Group.groupName = self.textField.text;
+    if (sender == _doneButton) {
+        if (self.textField.text.length > 0)
+        {
+            _group = _textField.text;
+        }
     }
 }
 

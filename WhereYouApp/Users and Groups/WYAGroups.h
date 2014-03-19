@@ -11,7 +11,8 @@
 @interface WYAGroups : NSObject
 
 @property NSString *groupName;
-@property BOOL completed;
-@property (readonly) NSDate *creationDate;
+@property NSMutableArray *groupMembers;
+//@property BOOL completed;
+//@property (readonly) NSDate *creationDate;
 
 @end

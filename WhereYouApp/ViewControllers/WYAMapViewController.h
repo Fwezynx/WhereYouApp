@@ -13,7 +13,8 @@
 
 @interface WYAMapViewController : UIViewController<MKMapViewDelegate>
 
--(IBAction)returnToUser:(id)sender;
--(int)calculateDistance:(CLLocation *)userLocation;
+- (IBAction)returnToUser:(id)sender;
+- (IBAction)didPressSignout:(id)sender;
+- (int)calculateDistance:(CLLocation *)userLocation;
 
 @end

@@ -10,34 +10,11 @@
 
 @interface WYAGroupsViewController ()
 
-@property NSMutableArray *groupNames;
+@property WYAUser *currentUser;
 
 @end
 
 @implementation WYAGroupsViewController
-
-- (void)loadInitialData
-{
-    WYAGroups *group1 = [[WYAGroups alloc] init];
-    group1.groupName = @"Hello";
-    [self.groupNames addObject:group1];
-    
-    WYAGroups *group2 = [[WYAGroups alloc] init];
-    group2.groupName = @"Picnic";
-    [self.groupNames addObject:group2];
-}
-
-- (IBAction)unwindToGroups:(UIStoryboardSegue *)segue
-{
-   WYAAddGroupsViewController *source = [segue sourceViewController];
-    WYAGroups *group = source.Group;
-    if (group != nil)
-    {
-        [self.groupNames addObject:group];
-        [self.tableView reloadData];
-    }
-
-}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -48,19 +25,23 @@
     return self;
 }
 
+- (IBAction)unwindToGroups:(UIStoryboardSegue *)segue
+{
+    WYAAddGroupsViewController *source = [segue sourceViewController];
+#warning Implementation with database required.  User needs to be added to group
+    if (source.group != nil) {
+        WYAGroups *newGroup = [[WYAGroups alloc] init];
+        [newGroup setGroupName:source.group];
+        [_currentUser.groupsList addObject:newGroup];
+        [self.tableView reloadData];
+    }
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.groupNames = [[NSMutableArray alloc] init];
-    [self loadInitialData];
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    _currentUser = [WYAUser sharedInstance];
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,7 +61,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.groupNames count];
+    return [_currentUser.groupsList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,7 +69,7 @@
     static NSString *CellIdentifier = @"ListPrototypeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    WYAGroups *groupName = [self.groupNames objectAtIndex:indexPath.row];
+    WYAGroups *groupName = [_currentUser.groupsList objectAtIndex:indexPath.row];
     cell.textLabel.text = groupName.groupName;
     
     return cell;
@@ -97,7 +78,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Remove the row from data model
-    [self.groupNames removeObjectAtIndex:indexPath.row];
+    [_currentUser.groupsList removeObjectAtIndex:indexPath.row];
     
     // Request table view to reload
     [tableView reloadData];
@@ -107,59 +88,5 @@
 {
     return @"Leave";
 }
-
-
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end

@@ -34,8 +34,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	_passwordField.secureTextEntry = YES;
-    _confirmPasswordField.secureTextEntry = YES;
+    [_passwordField setSecureTextEntry:YES];
+    [_confirmPasswordField setSecureTextEntry:YES];
+    [_userField setDelegate:self];
+    [_emailField setDelegate:self];
+    [_passwordField setDelegate:self];
+    [_confirmPasswordField setDelegate:self];
+    [_questionField setDelegate:self];
+    [_answerField setDelegate:self];
+    [_userField setReturnKeyType:UIReturnKeyDone];
+    [_emailField setReturnKeyType:UIReturnKeyDone];
+    [_passwordField setReturnKeyType:UIReturnKeyDone];
+    [_confirmPasswordField setReturnKeyType:UIReturnKeyDone];
+    [_questionField setReturnKeyType:UIReturnKeyDone];
+    [_answerField setReturnKeyType:UIReturnKeyDone];
+    [_userField setTag:1];
+    [_emailField setTag:2];
+    [_passwordField setTag:3];
+    [_confirmPasswordField setTag:4];
+    [_questionField setTag:5];
+    [_answerField setTag:6];
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,6 +131,18 @@
 - (BOOL) successfulRegistrationForUser:(NSString *)username withPassword:(NSString *)password withEmail:(NSString *)email withSecurityQuestion:(NSString *)question andSecurityAnswer:(NSString *)answer {
 #warning Incomplete implementation
     return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    NSInteger nextTag = textField.tag + 1;
+    UIResponder *nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        [nextResponder becomeFirstResponder];
+    }
+    else {
+        [textField resignFirstResponder];
+    }
+    return NO;
 }
 
 @end

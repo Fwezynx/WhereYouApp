@@ -10,6 +10,8 @@
 
 @interface WYAGroupRequestViewController ()
 
+@property WYAUser *currentUser;
+
 @end
 
 @implementation WYAGroupRequestViewController
@@ -26,27 +28,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-   // _groupRequests =  [NSArray arrayWithObjects:@"Josh's Group",@"Ali's Group",nil];
-    NSString *path = @"/Users/basaktaylan/Desktop/group.txt";
-    NSString* fileContents = [NSString stringWithContentsOfFile:path
-                              encoding:NSUTF8StringEncoding error:nil];
-    _groupRequests =[fileContents componentsSeparatedByCharactersInSet: [NSCharacterSet newlineCharacterSet]];
-    
+	_currentUser = [WYAUser sharedInstance];
     int count = 0;
     int y=50;
     int x = 20;
     int x1=110;
     int x2 = 180;
     
-    for (NSString *group in _groupRequests) {
+    for (WYAGroups *group in _currentUser.groupRequestList) {
         
         UILabel  * label = [[UILabel alloc] initWithFrame:CGRectMake(x, y, 110, 60)];
        
         label.backgroundColor = [UIColor clearColor];
         label.tag = count;
         label.textColor=[UIColor blackColor];
-        label.text = group;
+        label.text = group.groupName;
         [self.view addSubview:label];
        
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -80,39 +76,22 @@
     
 }
 
--(IBAction)addGroup:(id) sender{
-    
-    NSLog(@"added");
-    
-        
-    
-    NSString *path = @"/Users/basaktaylan/Desktop/group.txt";
-    NSString *string = (@"\n hi");
-    NSFileHandle *fh = [NSFileHandle fileHandleForWritingAtPath:path];
-    [fh seekToEndOfFile];
-    [fh writeData:[string dataUsingEncoding:NSUTF16LittleEndianStringEncoding]];
-    [fh closeFile];
-    
-        NSArray *viewsToRemove = [self.view subviews];
-        for (UIView *v in viewsToRemove) {
-            if([sender tag] == [v tag])
-                [v removeFromSuperview];
-        
-        }
-    
-}
-
--(IBAction)ignoreGroup:(id) sender{
-    
-  //  NSLog(@"ignored");
-   // [sender removeFromSuperview];
+-(IBAction)addGroup:(id) sender {
     NSArray *viewsToRemove = [self.view subviews];
     for (UIView *v in viewsToRemove) {
-        if([sender tag] == [v tag])
+        if([sender tag] == [v tag]) {
             [v removeFromSuperview];
-       
+        }
     }
-      
+}
+
+-(IBAction)ignoreGroup:(id) sender {
+    NSArray *viewsToRemove = [self.view subviews];
+    for (UIView *v in viewsToRemove) {
+        if([sender tag] == [v tag]) {
+            [v removeFromSuperview];
+        }
+    }
 }
 
 

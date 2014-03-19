@@ -22,8 +22,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
     return self;
 }
 
@@ -43,7 +41,6 @@
         }
         // Check login credentials.
         if ([self successfulLoginForUser:[_userField.text lowercaseString] withPassword:[WYAHash sha256:_passwordField.text]]) {
-            _user = [WYAUser sharedInstance];
             [_user setUsername:_userField.text];
             return YES;
         }
@@ -74,7 +71,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	_passwordField.secureTextEntry = YES;
+    _user = [WYAUser sharedInstance];
+    [_passwordField setSecureTextEntry:YES];
+    [_userField setDelegate:self];
+    [_passwordField setDelegate:self];
+    [_userField setReturnKeyType:UIReturnKeyDone];
+    [_passwordField setReturnKeyType:UIReturnKeyDone];
+    [_userField setTag:1];
+    [_passwordField setTag:2];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    NSInteger nextTag = textField.tag + 1;
+    UIResponder *nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        [nextResponder becomeFirstResponder];
+    }
+    else {
+        [textField resignFirstResponder];
+    }
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning

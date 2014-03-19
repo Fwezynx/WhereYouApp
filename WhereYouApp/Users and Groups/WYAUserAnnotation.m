@@ -10,7 +10,7 @@
 
 @implementation WYAUserAnnotation
 
--(id) initWithUserName:(NSString *)user andCoordinate:(CLLocationCoordinate2D)coords andAltitude:(CLLocationDistance)alt {
+- (id) initWithUserName:(NSString *)user andCoordinate:(CLLocationCoordinate2D)coords andAltitude:(CLLocationDistance)alt {
     self = [super init];
     [self setAltitude:alt];
     [self setCoordinate:coords];
@@ -19,16 +19,8 @@
     return self;
 }
 
--(id) initWithLocation:(CLLocationCoordinate2D)coordinates title:(NSString *)title andSubtitle:(NSString *)subtitle {
-    self = [super init];
-    [self setCoordinate:coordinates];
-    _title = title;
-    _subtitle = subtitle;
-    return self;
-}
-
 // Update user latitude, longitude, altitude, and updateTime.
--(void) updateUser {
+- (void) updateUser {
 
 }
 

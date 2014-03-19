@@ -12,7 +12,7 @@
 #import "WYAUser.h"
 #import "WYAMapViewController.h"
 
-@interface WYALoginViewController : UIViewController
+@interface WYALoginViewController : UIViewController<UITextFieldDelegate>
 
 - (BOOL) successfulLoginForUser:(NSString *)username withPassword:(NSString *)password;
 - (IBAction)unwindToLogin:(UIStoryboardSegue *)segue;

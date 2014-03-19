@@ -10,6 +10,8 @@
 
 @interface WYAFriendRequestViewController ()
 
+@property WYAUser *currentUser;
+
 @end
 
 @implementation WYAFriendRequestViewController
@@ -25,11 +27,11 @@
 
 - (void)viewDidLoad
 {
+    _currentUser = [WYAUser sharedInstance];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
     // Do any additional setup after loading the view.
-    _friendRequests =  [NSArray arrayWithObjects:@"Basak",@"Yuri",@"George", nil];
     int count = 0;
     int y=50;
     int x = 20;
@@ -37,14 +39,14 @@
     int x2 = 180;
     int x3 = 250;
     
-    for (NSString *friend in _friendRequests) {
+    for (WYAUserAnnotation *friend in _currentUser.friendRequestList) {
         
         UILabel  * label = [[UILabel alloc] initWithFrame:CGRectMake(x, y, 60, 64)];
         
         label.backgroundColor = [UIColor clearColor];
         label.tag = count;
         label.textColor=[UIColor blackColor];
-        label.text = friend;
+        label.text = friend.title;
         [self.view addSubview:label];
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -83,35 +85,36 @@
 }
     
 
-    
--(IBAction)addFriend:(id) sender{
+#warning need to implement with databases.
+-(IBAction)addFriend:(id) sender {
     //  NSLog(@"added");
     NSArray *viewsToRemove = [self.view subviews];
     for (UIView *v in viewsToRemove) {
-        if([sender tag] == [v tag])
+        if([sender tag] == [v tag]) {
             [v removeFromSuperview];
+        }
     }
 }
 
--(IBAction)ignoreFriend:(id) sender{
+-(IBAction)ignoreFriend:(id) sender {
     
   //  NSLog(@"ignored");
     NSArray *viewsToRemove = [self.view subviews];
     for (UIView *v in viewsToRemove) {
-        if([sender tag] == [v tag])
+        if([sender tag] == [v tag]) {
             [v removeFromSuperview];
+        }
     }
-    
 }
--(IBAction)blockFriend:(id) sender{
+-(IBAction)blockFriend:(id) sender {
     
   //  NSLog(@"blocked");
     NSArray *viewsToRemove = [self.view subviews];
     for (UIView *v in viewsToRemove) {
-        if([sender tag] == [v tag])
+        if([sender tag] == [v tag]) {
             [v removeFromSuperview];
+        }
     }
-    
 }
     
 

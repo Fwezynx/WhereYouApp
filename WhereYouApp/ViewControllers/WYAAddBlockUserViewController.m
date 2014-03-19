@@ -9,36 +9,24 @@
 #import "WYAAddBlockUserViewController.h"
 
 @interface WYAAddBlockUserViewController ()
-@property NSMutableArray *blockUsers;
+
+@property WYAUser *currentUser;
+
 @end
 
 @implementation WYAAddBlockUserViewController
 
+#warning method needs to be removed.
 -(void) loadInitialDatas
 {
+    CLLocationDistance alt = _currentUser.locationManager.location.altitude;
+    CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(_currentUser.locationManager.location.coordinate.latitude, _currentUser.locationManager.location.coordinate.longitude);
     
-        WYABlockUsers *user1 = [[WYABlockUsers alloc] init];
-        user1.blockUserName = @"John";
-        [self.blockUsers addObject:user1];
-        
-        WYABlockUsers *user2 = [[WYABlockUsers alloc] init];
-        user2.blockUserName = @"Rick";
-        [self.blockUsers addObject:user2];
-    
+    WYAUserAnnotation *user = [[WYAUserAnnotation alloc] initWithUserName:@"John" andCoordinate:coords andAltitude:alt];
+    [_currentUser.blockedFriendsList addObject:user];
+    user = [[WYAUserAnnotation alloc] initWithUserName:@"Rick" andCoordinate:coords andAltitude:alt];
+    [_currentUser.blockedFriendsList addObject:user];
 }
-
-- (IBAction)pushToBlockTable:(UIStoryboardSegue *)segue
-{
-    WYABlockUserViewController *source1 = [segue sourceViewController];
-    WYABlockUsers *users = source1.User;
-    if (users != nil)
-    {
-        [self.blockUsers addObject:users];
-        [self.tableView reloadData];
-    }
-
-}
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -51,16 +39,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.blockUsers = [[NSMutableArray alloc] init];
+    _currentUser = [WYAUser sharedInstance];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
     [self loadInitialDatas];
+    });
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,7 +64,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.blockUsers count];
+    return [_currentUser.blockedFriendsList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,15 +72,15 @@
     static NSString *CellIdentifier = @"ListPrototypeCellBlock";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    WYABlockUsers *userName = [self.blockUsers objectAtIndex:indexPath.row];
-    cell.textLabel.text = userName.blockUserName;
+    WYAUserAnnotation *userName = [_currentUser.blockedFriendsList objectAtIndex:indexPath.row];
+    [cell.textLabel setText:userName.title];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.blockUsers removeObjectAtIndex:indexPath.row];
+    [_currentUser.blockedFriendsList removeObjectAtIndex:indexPath.row];
     [self.tableView reloadData];
     
 }
@@ -105,57 +89,5 @@
 {
     return @"Unblock";
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end

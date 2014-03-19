@@ -10,6 +10,10 @@
 
 @interface WYAPasswordViewController ()
 
+@property IBOutlet UITextField *oldPasswordField;
+@property IBOutlet UITextField *passwordField;
+@property IBOutlet UITextField *confirmPasswordField;
+
 @end
 
 @implementation WYAPasswordViewController
@@ -26,7 +30,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [_oldPasswordField setSecureTextEntry:YES];
+    [_passwordField setSecureTextEntry:YES];
+    [_confirmPasswordField setSecureTextEntry:YES];
+    [_oldPasswordField setDelegate:self];
+    [_passwordField setDelegate:self];
+    [_confirmPasswordField setDelegate:self];
+    [_oldPasswordField setReturnKeyType:UIReturnKeyDone];
+    [_passwordField setReturnKeyType:UIReturnKeyDone];
+    [_confirmPasswordField setReturnKeyType:UIReturnKeyDone];
+	[_oldPasswordField setTag:1];
+    [_passwordField setTag:2];
+    [_confirmPasswordField setTag:3];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,19 +50,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)dismissKeyboardCurrent:(id)sender
-{
-    [sender resignFirstResponder];
-}
-
-- (IBAction)dismissKeyboardNew:(id)sender
-{
-    [sender resignFirstResponder];
-}
-
-- (IBAction)dissmissKeyboardRetype:(id)sender
-{
-    [sender resignFirstResponder];
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    NSInteger nextTag = textField.tag + 1;
+    UIResponder *nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        [nextResponder becomeFirstResponder];
+    }
+    else {
+        [textField resignFirstResponder];
+    }
+    return NO;
 }
 
 

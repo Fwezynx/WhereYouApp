@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@interface WYAUser : NSObject
+@interface WYAUser : NSObject<CLLocationManagerDelegate>
 
 + (WYAUser *) sharedInstance;
 

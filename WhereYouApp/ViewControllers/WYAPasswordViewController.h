@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WYAPasswordViewController : UIViewController
+@interface WYAPasswordViewController : UIViewController<UITextFieldDelegate>
 
 @end

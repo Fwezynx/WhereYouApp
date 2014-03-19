@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WYAGroups.h"
 #import "WYAAddGroupsViewController.h"
+#import "WYAUser.h"
 
 @interface WYAGroupsViewController : UITableViewController
 

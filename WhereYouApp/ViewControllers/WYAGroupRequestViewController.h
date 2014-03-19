@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WYAUser.h"
+#import "WYAGroups.h"
 
 @interface WYAGroupRequestViewController : UIViewController
-
-@property NSMutableArray *groupRequests;
 
 -(IBAction)ignoreGroup:(id) sender;
 -(IBAction)addGroup:(id) sender;

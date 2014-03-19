@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WYAGroups.h"
 
 @interface WYAAddGroupsViewController : UIViewController
 
-@property WYAGroups *Group;
+@property NSString *group;
 
 @end

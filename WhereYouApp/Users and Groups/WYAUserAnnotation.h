@@ -20,8 +20,6 @@
 
 - (id) initWithUserName:(NSString *)user andCoordinate:(CLLocationCoordinate2D)coords andAltitude:(CLLocationDistance)alt;
 
-- (id) initWithLocation:(CLLocationCoordinate2D)coordinates title:(NSString *)title andSubtitle:(NSString *)subtitle;
-
 - (void) updateUser;
 
 @end
