@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WYAUser.h"
 
 @interface WYANotificationsViewController : UITableViewController
 

@@ -10,6 +10,10 @@
 
 @interface WYANotificationsViewController ()
 
+@property IBOutlet UILabel *friendRequests;
+@property IBOutlet UILabel *groupRequests;
+@property WYAUser *currentUser;
+
 @end
 
 @implementation WYANotificationsViewController
@@ -26,6 +30,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _currentUser = [WYAUser sharedInstance];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [_friendRequests setText:[NSString stringWithFormat:@"(%lu)",(unsigned long)[_currentUser.friendRequestList count]]];
+    [_groupRequests setText:[NSString stringWithFormat:@"(%lu)",(unsigned long)[_currentUser.groupRequestList count]]];
 }
 
 - (void)didReceiveMemoryWarning
