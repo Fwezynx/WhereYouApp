@@ -12,7 +12,7 @@
 @interface WYAUserAnnotation : NSObject <MKAnnotation>
 
 @property (nonatomic, readonly, copy) NSString *title;
-@property (nonatomic, readonly, copy) NSString *subtitle;
+@property NSString *subtitle;
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 @property CLLocationDistance altitude;
 @property NSDate *updateTime;

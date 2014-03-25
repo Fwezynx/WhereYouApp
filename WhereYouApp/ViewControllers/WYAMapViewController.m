@@ -109,7 +109,7 @@
     }
     WYAUserAnnotation *userAnnotation = (WYAUserAnnotation *)view.annotation;
     CLLocation *location = [[CLLocation alloc] initWithCoordinate:userAnnotation.coordinate altitude:userAnnotation.altitude horizontalAccuracy:_currentUser.locationManager.location.horizontalAccuracy verticalAccuracy:_currentUser.locationManager.location.verticalAccuracy timestamp:[NSDate date]];
-    [self calculateDistance:location];
+    [userAnnotation setSubtitle:[NSString stringWithFormat:@"%d feet",[self calculateDistance:location]]];
     
 }
 

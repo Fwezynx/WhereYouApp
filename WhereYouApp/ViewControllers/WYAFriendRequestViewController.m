@@ -87,7 +87,7 @@
 
 #warning need to implement with databases.
 -(IBAction)addFriend:(id) sender {
-    //  NSLog(@"added");
+
     NSArray *viewsToRemove = [self.view subviews];
     for (UIView *v in viewsToRemove) {
         if([sender tag] == [v tag]) {
@@ -98,7 +98,6 @@
 
 -(IBAction)ignoreFriend:(id) sender {
     
-  //  NSLog(@"ignored");
     NSArray *viewsToRemove = [self.view subviews];
     for (UIView *v in viewsToRemove) {
         if([sender tag] == [v tag]) {
@@ -108,7 +107,6 @@
 }
 -(IBAction)blockFriend:(id) sender {
     
-  //  NSLog(@"blocked");
     NSArray *viewsToRemove = [self.view subviews];
     for (UIView *v in viewsToRemove) {
         if([sender tag] == [v tag]) {
