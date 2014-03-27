@@ -11,6 +11,7 @@
 @interface WYAGroupMembersViewController ()
 
 @property WYAUser *currentUser;
+@property UIBarButtonItem *addButton;
 
 @end
 
@@ -29,6 +30,19 @@
 {
     [super viewDidLoad];
     _currentUser = [WYAUser sharedInstance];
+    [self.navigationItem setTitle:_group.groupName];
+    _addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:nil action:nil];
+    [self.navigationItem setRightBarButtonItem:_addButton];
+    [_addButton setTarget:self];
+    [_addButton setAction:NSSelectorFromString(@"selector:")];
+}
+
+- (IBAction) selector:(id)sender {
+    if (sender == _addButton) {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *newView = [mainStoryboard instantiateViewControllerWithIdentifier:@"InviteGroupMembers"];
+        [self.navigationController pushViewController:newView animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning

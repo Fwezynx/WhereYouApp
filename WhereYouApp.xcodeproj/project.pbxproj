@@ -27,6 +27,7 @@
 		63827DF618C2CC4F009F05BF /* WYAUserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 63827DF418C2CC4F009F05BF /* WYAUserAnnotation.m */; };
 		639904B118BE64BA0074BB69 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639904B018BE64BA0074BB69 /* MapKit.framework */; };
 		63BC803E18E0C6F1000509C9 /* WYAGroupMembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BC803D18E0C6F1000509C9 /* WYAGroupMembersViewController.m */; };
+		63BC804118E39353000509C9 /* WYAInviteUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BC804018E39353000509C9 /* WYAInviteUserTableViewController.m */; };
 		63E534CF18BD5D7100F14680 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E534CE18BD5D7100F14680 /* Foundation.framework */; };
 		63E534D118BD5D7200F14680 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E534D018BD5D7200F14680 /* CoreGraphics.framework */; };
 		63E534D318BD5D7200F14680 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E534D218BD5D7200F14680 /* UIKit.framework */; };
@@ -93,6 +94,8 @@
 		639904B018BE64BA0074BB69 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		63BC803C18E0C6F1000509C9 /* WYAGroupMembersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WYAGroupMembersViewController.h; path = WhereYouApp/ViewControllers/WYAGroupMembersViewController.h; sourceTree = SOURCE_ROOT; };
 		63BC803D18E0C6F1000509C9 /* WYAGroupMembersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WYAGroupMembersViewController.m; path = WhereYouApp/ViewControllers/WYAGroupMembersViewController.m; sourceTree = SOURCE_ROOT; };
+		63BC803F18E39353000509C9 /* WYAInviteUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAInviteUserTableViewController.h; sourceTree = "<group>"; };
+		63BC804018E39353000509C9 /* WYAInviteUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAInviteUserTableViewController.m; sourceTree = "<group>"; };
 		63E534CB18BD5D7100F14680 /* WhereYouApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhereYouApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E534CE18BD5D7100F14680 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		63E534D018BD5D7200F14680 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -178,6 +181,8 @@
 				6336ECC718CFDC4C009344CA /* WYAGroupsViewController.m */,
 				63BC803C18E0C6F1000509C9 /* WYAGroupMembersViewController.h */,
 				63BC803D18E0C6F1000509C9 /* WYAGroupMembersViewController.m */,
+				63BC803F18E39353000509C9 /* WYAInviteUserTableViewController.h */,
+				63BC804018E39353000509C9 /* WYAInviteUserTableViewController.m */,
 				6336ECCA18CFDC68009344CA /* WYAAddGroupsViewController.h */,
 				6336ECCB18CFDC68009344CA /* WYAAddGroupsViewController.m */,
 				6336ECDC18CFEB0B009344CA /* WYANotificationsViewController.h */,
@@ -427,6 +432,7 @@
 				6336ECC318CFDBDE009344CA /* WYAPasswordViewController.m in Sources */,
 				6336ECC818CFDC4C009344CA /* WYAGroups.m in Sources */,
 				6336ECE318CFEB0B009344CA /* WYAFriendRequestViewController.m in Sources */,
+				63BC804118E39353000509C9 /* WYAInviteUserTableViewController.m in Sources */,
 				63E534DD18BD5D7200F14680 /* main.m in Sources */,
 				6371B4C518CD673D009CE5ED /* WYAUser.m in Sources */,
 				6336ECC018CFDBDE009344CA /* WYAAddBlockUserViewController.m in Sources */,

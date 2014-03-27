@@ -11,6 +11,6 @@
 #import "WYAAddGroupsViewController.h"
 #import "WYAUser.h"
 
-@interface WYAGroupsViewController : UITableViewController
+@interface WYAGroupsViewController : UITableViewController<UITableViewDelegate>
 
 @end
