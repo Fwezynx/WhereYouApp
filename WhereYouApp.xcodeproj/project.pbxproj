@@ -25,6 +25,7 @@
 		633E5F2618E4DB81001CD7A4 /* AWSEC2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633E5F2318E4DB81001CD7A4 /* AWSEC2.framework */; };
 		633E5F2718E4DB81001CD7A4 /* AWSRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633E5F2418E4DB81001CD7A4 /* AWSRuntime.framework */; };
 		633E5F2818E4DB81001CD7A4 /* AWSSNS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633E5F2518E4DB81001CD7A4 /* AWSSNS.framework */; };
+		633E5F2B18EB1110001CD7A4 /* WYAUserAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E5F2A18EB1110001CD7A4 /* WYAUserAnnotationView.m */; };
 		6371B4C518CD673D009CE5ED /* WYAUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6371B4C418CD673D009CE5ED /* WYAUser.m */; };
 		63827DF518C2CC4F009F05BF /* WYAMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63827DF218C2CC4F009F05BF /* WYAMapViewController.m */; };
 		63827DF618C2CC4F009F05BF /* WYAUserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 63827DF418C2CC4F009F05BF /* WYAUserAnnotation.m */; };
@@ -89,6 +90,8 @@
 		633E5F2318E4DB81001CD7A4 /* AWSEC2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSEC2.framework; path = "aws-ios-sdk-1.7.1/AWSEC2.framework"; sourceTree = "<group>"; };
 		633E5F2418E4DB81001CD7A4 /* AWSRuntime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSRuntime.framework; path = "aws-ios-sdk-1.7.1/AWSRuntime.framework"; sourceTree = "<group>"; };
 		633E5F2518E4DB81001CD7A4 /* AWSSNS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSSNS.framework; path = "aws-ios-sdk-1.7.1/AWSSNS.framework"; sourceTree = "<group>"; };
+		633E5F2918EB1110001CD7A4 /* WYAUserAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAUserAnnotationView.h; sourceTree = "<group>"; };
+		633E5F2A18EB1110001CD7A4 /* WYAUserAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAUserAnnotationView.m; sourceTree = "<group>"; };
 		6371B4C318CD673D009CE5ED /* WYAUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAUser.h; sourceTree = "<group>"; };
 		6371B4C418CD673D009CE5ED /* WYAUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAUser.m; sourceTree = "<group>"; };
 		63827DF118C2CC4F009F05BF /* WYAMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAMapViewController.h; sourceTree = "<group>"; };
@@ -231,6 +234,8 @@
 			children = (
 				63827DF318C2CC4F009F05BF /* WYAUserAnnotation.h */,
 				63827DF418C2CC4F009F05BF /* WYAUserAnnotation.m */,
+				633E5F2918EB1110001CD7A4 /* WYAUserAnnotationView.h */,
+				633E5F2A18EB1110001CD7A4 /* WYAUserAnnotationView.m */,
 				6336ECC418CFDC4C009344CA /* WYAGroups.h */,
 				6336ECC518CFDC4C009344CA /* WYAGroups.m */,
 				6371B4C318CD673D009CE5ED /* WYAUser.h */,
@@ -439,6 +444,7 @@
 				6371B4C518CD673D009CE5ED /* WYAUser.m in Sources */,
 				6336ECC018CFDBDE009344CA /* WYAAddBlockUserViewController.m in Sources */,
 				6336ECF918D283DA009344CA /* WYAAddFriendNameViewController.m in Sources */,
+				633E5F2B18EB1110001CD7A4 /* WYAUserAnnotationView.m in Sources */,
 				6336ECC918CFDC4C009344CA /* WYAGroupsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

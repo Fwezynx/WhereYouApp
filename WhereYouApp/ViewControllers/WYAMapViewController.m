@@ -13,6 +13,13 @@
 @property IBOutlet UIBarButtonItem *notifications;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property WYAUser *currentUser;
+@property IBOutlet UILabel *currentLatitude;
+@property IBOutlet UILabel *currentLongitude;
+@property IBOutlet UILabel *latitude;
+@property IBOutlet UILabel *longitude;
+@property IBOutlet UILabel *height;
+@property IBOutlet UILabel *updateTime;
+@property IBOutlet UIView *userInfoView;
 
 @end
 
@@ -32,6 +39,13 @@
     [_mapView setShowsUserLocation:YES];
     _currentUser = [WYAUser sharedInstance];
     [self returnToUser:self];
+//    [_latitude setText:@""];
+//    [_longitude setText:@""];
+//    [_height setText:@""];
+//    [_updateTime setText:@""];
+    // Hide user details.
+    [_userInfoView setHidden:YES];
+    
     
 #warning TEMPORARY FOR EXAMPLES
     static dispatch_once_t onceToken;
@@ -70,6 +84,9 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
+    // Set current user details.
+    [_currentLatitude setText:[NSString stringWithFormat:@"Latitude:    %f",_currentUser.locationManager.location.coordinate.latitude]];
+    [_currentLongitude setText:[NSString stringWithFormat:@"Longitude: %f",_currentUser.locationManager.location.coordinate.longitude]];
     // Add any new annotations.
     [_mapView addAnnotations:_currentUser.friendList];
     // Enable or disable notifications.
@@ -82,7 +99,7 @@
 }
 
 // Center map around user and zoom.
-- (IBAction)returnToUser:(id)sender
+- (IBAction) returnToUser:(id)sender
 {
     double miles = 1;
     double scalingFactor = ABS((cos(2*M_PI*_currentUser.locationManager.location.coordinate.latitude/360)));
@@ -114,6 +131,38 @@
     WYAUserAnnotation *userAnnotation = (WYAUserAnnotation *)view.annotation;
     CLLocation *location = [[CLLocation alloc] initWithCoordinate:userAnnotation.coordinate altitude:userAnnotation.altitude horizontalAccuracy:_currentUser.locationManager.location.horizontalAccuracy verticalAccuracy:_currentUser.locationManager.location.verticalAccuracy timestamp:[NSDate date]];
     [userAnnotation setSubtitle:[NSString stringWithFormat:@"%d feet",[self calculateDistance:location]]];
+    // Display additional user information
+    [_userInfoView setHidden:NO];
+    [_latitude setText:[NSString stringWithFormat:@"Latitude:    %f",userAnnotation.coordinate.latitude]];
+    [_longitude setText:[NSString stringWithFormat:@"Longitude: %f",userAnnotation.coordinate.longitude]];
+    int heightDifference = userAnnotation.altitude - _currentUser.locationManager.location.altitude;
+    NSString *heightPlacement = @"above";
+    if (heightDifference < 0) {
+        heightDifference = - heightDifference;
+        heightPlacement = @"below";
+    }
+    [_height setText:[NSString stringWithFormat:@"%d feet %@",heightDifference, heightPlacement]];
+    int timeDifference = (int)[userAnnotation.updateTime timeIntervalSinceNow];
+    NSString *timeUnits = @"seconds";
+    if (timeDifference >= 60) {
+        timeDifference /= 60;
+        timeUnits = @"minutes";
+        if (timeDifference >= 60) {
+            timeDifference /= 60;
+            timeUnits = @"hours";
+            if (timeDifference >= 24) {
+                timeDifference /= 24;
+                timeUnits = @"days";
+            }
+        }
+    }
+    [_updateTime setText:[NSString stringWithFormat:@"%d %@ ago",timeDifference, timeUnits]];
+}
+
+-(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
+{
+    // Hide user details.
+    [_userInfoView setHidden:YES];
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
