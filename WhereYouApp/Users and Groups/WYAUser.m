@@ -21,7 +21,8 @@
     return sharedInstance;
 }
 
-- (id) init {
+- (id) init
+{
     self = [super init];
     _username = [[NSString alloc] init];
     _locationManager = [[CLLocationManager alloc] init];

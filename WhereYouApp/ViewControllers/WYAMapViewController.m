@@ -68,7 +68,8 @@
     });
 }
 
-- (void) viewDidAppear:(BOOL)animated {
+- (void) viewDidAppear:(BOOL)animated
+{
     // Add any new annotations.
     [_mapView addAnnotations:_currentUser.friendList];
     // Enable or disable notifications.
@@ -81,7 +82,8 @@
 }
 
 // Center map around user and zoom.
-- (IBAction)returnToUser:(id)sender {
+- (IBAction)returnToUser:(id)sender
+{
     double miles = 1;
     double scalingFactor = ABS((cos(2*M_PI*_currentUser.locationManager.location.coordinate.latitude/360)));
     MKCoordinateSpan span;
@@ -94,7 +96,8 @@
 }
 
 // Obtain distance in feet from current user to selected user
-- (int)calculateDistance:(CLLocation *)userLocation {
+- (int)calculateDistance:(CLLocation *)userLocation
+{
     double distance;
     distance = [_currentUser.locationManager.location distanceFromLocation:userLocation];
     // Convert distance from meters to feet.
@@ -102,7 +105,8 @@
     return (int)distance;
 }
 
--(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
     // Don't calculate distance for current user.
     if ([view.annotation isKindOfClass:[MKUserLocation class]]) {
         return;
@@ -110,10 +114,10 @@
     WYAUserAnnotation *userAnnotation = (WYAUserAnnotation *)view.annotation;
     CLLocation *location = [[CLLocation alloc] initWithCoordinate:userAnnotation.coordinate altitude:userAnnotation.altitude horizontalAccuracy:_currentUser.locationManager.location.horizontalAccuracy verticalAccuracy:_currentUser.locationManager.location.verticalAccuracy timestamp:[NSDate date]];
     [userAnnotation setSubtitle:[NSString stringWithFormat:@"%d feet",[self calculateDistance:location]]];
-    
 }
 
--(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
     // Don't use custom annotation view for current user.
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         return nil;
@@ -128,7 +132,8 @@
     return pinView;
 }
 
-- (IBAction)didPressSignout:(id)sender {
+- (IBAction)didPressSignout:(id)sender
+{
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
     UIViewController *newView = [mainStoryboard instantiateViewControllerWithIdentifier:@"login"];
     [self.navigationController setViewControllers:[[NSArray alloc] initWithObjects:newView, nil]];

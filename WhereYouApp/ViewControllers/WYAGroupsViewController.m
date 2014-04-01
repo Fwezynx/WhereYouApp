@@ -84,7 +84,8 @@
     [tableView reloadData];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *newView = [mainStoryboard instantiateViewControllerWithIdentifier:@"GroupMembers"];
     [self.navigationController pushViewController:newView animated:YES];

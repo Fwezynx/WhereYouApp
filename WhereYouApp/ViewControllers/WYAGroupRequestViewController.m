@@ -76,7 +76,8 @@
     
 }
 
--(IBAction)addGroup:(id) sender {
+-(IBAction)addGroup:(id) sender
+{
     NSArray *viewsToRemove = [self.view subviews];
     for (UIView *v in viewsToRemove) {
         if([sender tag] == [v tag]) {
@@ -85,7 +86,8 @@
     }
 }
 
--(IBAction)ignoreGroup:(id) sender {
+-(IBAction)ignoreGroup:(id) sender
+{
     NSArray *viewsToRemove = [self.view subviews];
     for (UIView *v in viewsToRemove) {
         if([sender tag] == [v tag]) {

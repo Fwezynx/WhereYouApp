@@ -37,7 +37,8 @@
     [_addButton setAction:NSSelectorFromString(@"selector:")];
 }
 
-- (IBAction) selector:(id)sender {
+- (IBAction) selector:(id)sender
+{
     if (sender == _addButton) {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *newView = [mainStoryboard instantiateViewControllerWithIdentifier:@"InviteGroupMembers"];

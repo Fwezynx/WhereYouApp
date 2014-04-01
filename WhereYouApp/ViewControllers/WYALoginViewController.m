@@ -25,7 +25,8 @@
     return self;
 }
 
-- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
     if (sender == _loginButton) {
         // Make sure userField is filled.
         if (_userField.text.length == 0) {
@@ -53,7 +54,8 @@
     return YES;
 }
 
-- (IBAction)didPressLogin:(id)sender {
+- (IBAction)didPressLogin:(id)sender
+{
     if ([self shouldPerformSegueWithIdentifier:@"mapView" sender:_loginButton]) {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *newView = [mainStoryboard instantiateViewControllerWithIdentifier:@"mapView"];
@@ -62,11 +64,15 @@
 }
 
 #warning Incomplete Implementation
-- (BOOL)successfulLoginForUser:(NSString *)username withPassword:(NSString *)password {
+- (BOOL)successfulLoginForUser:(NSString *)username withPassword:(NSString *)password
+{
     return YES;
 }
 
-- (IBAction)unwindToLogin:(UIStoryboardSegue *)segue {}
+#warning Incomplete Implementation
+- (IBAction)unwindToLogin:(UIStoryboardSegue *)segue
+{
+}
 
 - (void)viewDidLoad
 {
@@ -81,7 +87,8 @@
     [_passwordField setTag:2];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
     NSInteger nextTag = textField.tag + 1;
     UIResponder *nextResponder = [textField.superview viewWithTag:nextTag];
     if (nextResponder) {
