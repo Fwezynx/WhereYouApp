@@ -10,7 +10,7 @@
 #import "WYAUser.h"
 #import "WYAGroups.h"
 
-@interface WYAGroupMembersViewController : UIViewController
+@interface WYAGroupMembersViewController : UITableViewController
 
 @property WYAGroups *group;
 

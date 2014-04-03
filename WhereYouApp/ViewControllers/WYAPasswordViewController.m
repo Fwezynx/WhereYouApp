@@ -50,7 +50,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
     NSInteger nextTag = textField.tag + 1;
     UIResponder *nextResponder = [textField.superview viewWithTag:nextTag];
     if (nextResponder) {

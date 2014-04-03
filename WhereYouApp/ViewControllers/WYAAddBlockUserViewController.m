@@ -27,6 +27,7 @@
     user = [[WYAUserAnnotation alloc] initWithUserName:@"Rick" andCoordinate:coords andAltitude:alt];
     [_currentUser.blockedFriendsList addObject:user];
 }
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];

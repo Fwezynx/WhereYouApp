@@ -62,7 +62,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
     if (sender == _registerButton) {
         // Make sure userField is filled.
         if (_userField.text.length == 0) {
@@ -128,7 +129,8 @@
 }
 
 
-- (BOOL) successfulRegistrationForUser:(NSString *)username withPassword:(NSString *)password withEmail:(NSString *)email withSecurityQuestion:(NSString *)question andSecurityAnswer:(NSString *)answer {
+- (BOOL) successfulRegistrationForUser:(NSString *)username withPassword:(NSString *)password withEmail:(NSString *)email withSecurityQuestion:(NSString *)question andSecurityAnswer:(NSString *)answer
+{
 #warning Incomplete implementation
     return YES;
 }

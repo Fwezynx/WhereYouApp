@@ -11,7 +11,8 @@
 @implementation WYAHash
 
 // Class method to return SHA-256 hexdigest.
-+ (NSString *) sha256:(NSString *)message {
++ (NSString *) sha256:(NSString *)message
+{
     const char *s=[message cStringUsingEncoding:NSASCIIStringEncoding];
     NSData *keyData=[NSData dataWithBytes:s length:strlen(s)];
     
