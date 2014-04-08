@@ -22,7 +22,6 @@
 #warning Implementation with database required.  User should be pending from here
     if (source.friendName != nil) {
         WYAUserAnnotation *friend = [[WYAUserAnnotation alloc] initWithUserName:source.friendName andCoordinate:_currentUser.locationManager.location.coordinate andAltitude:_currentUser.locationManager.location.altitude];
-        [friend setStatus:2];
         [_currentUser.friendList addObject:friend];
         [_currentUser.friendRequestList addObject:friend];
         [self.tableView reloadData];

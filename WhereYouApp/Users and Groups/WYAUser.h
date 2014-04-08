@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import <AWSDynamoDB/AWSDynamoDB.h>
+#import "WYAGroups.h"
 
 #define ACCESS_KEY_ID @"AKIAIIU6MJGNDKQVNQAQ"
 #define SECRET_ACCESS_KEY @"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"

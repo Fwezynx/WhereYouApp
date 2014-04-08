@@ -54,30 +54,25 @@
     CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(_currentUser.locationManager.location.coordinate.latitude +  0.1/69.0, _currentUser.locationManager.location.coordinate.longitude);
 
     WYAUserAnnotation *user = [[WYAUserAnnotation alloc] initWithUserName:@"These Aren't The Droids You're Looking For" andCoordinate:coords andAltitude:alt];
-    [user setStatus:1];
     [_currentUser.friendList addObject:user];
     
     alt = _currentUser.locationManager.location.altitude - 10;
     coords = CLLocationCoordinate2DMake(_currentUser.locationManager.location.coordinate.latitude - 0.1/69.0, _currentUser.locationManager.location.coordinate.longitude - 0.1/69.0);
     user = [[WYAUserAnnotation alloc] initWithUserName:@"IT'S A TRAP!" andCoordinate:coords andAltitude:alt];
-    [user setStatus:1];
     [_currentUser.friendList addObject:user];
     
     alt = _currentUser.locationManager.location.altitude + 10;
     coords = CLLocationCoordinate2DMake(_currentUser.locationManager.location.coordinate.latitude + 0.2/69.0, _currentUser.locationManager.location.coordinate.longitude + 0.2/69.0);
     user = [[WYAUserAnnotation alloc] initWithUserName:@"The Cake Is A Lie" andCoordinate:coords andAltitude:alt];
-    [user setStatus:1];
     [_currentUser.friendList addObject:user];
     
     alt = _currentUser.locationManager.location.altitude;
     coords = CLLocationCoordinate2DMake(_currentUser.locationManager.location.coordinate.latitude - 0.3/69.0, _currentUser.locationManager.location.coordinate.longitude + 0.3/69.0);
     user = [[WYAUserAnnotation alloc] initWithUserName:@"They're Taking The Hobbits To Isengard!" andCoordinate:coords andAltitude:alt];
-    [user setStatus:1];
     [_currentUser.friendList addObject:user];
     alt = _currentUser.locationManager.location.altitude - 10;
     coords = CLLocationCoordinate2DMake(_currentUser.locationManager.location.coordinate.latitude + 0.25/69.0, _currentUser.locationManager.location.coordinate.longitude - 0.1/69.0);
     user = [[WYAUserAnnotation alloc] initWithUserName:@"Tell Me Where Is Gandalf, For I Much Desire To Speak With Him" andCoordinate:coords andAltitude:alt];
-    [user setStatus:1];
     [_currentUser.friendList addObject:user];
     });
 }
