@@ -16,7 +16,6 @@
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 @property CLLocationDistance altitude;
 @property NSDate *updateTime;
-@property int status;
 
 - (id) initWithUserName:(NSString *)user andCoordinate:(CLLocationCoordinate2D)coords andAltitude:(CLLocationDistance)alt;
 

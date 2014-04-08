@@ -106,19 +106,45 @@
     value = [getResponse.item objectForKey:@"password"];
     if ([password isEqualToString:value.s]) {
         value = [getResponse.item objectForKey:@"friends"];
-        _friendList = value.sS;
+        [_friendList addObjectsFromArray:value.sS];
         value = [getResponse.item objectForKey:@"friendRequests"];
-        _friendRequestList = value.sS;
+        [_friendRequestList addObjectsFromArray:value.sS];
         value = [getResponse.item objectForKey:@"invitedFriends"];
-        _invitedFriendsList = value.sS;
+        [_invitedFriendsList addObjectsFromArray:value.sS];
         value = [getResponse.item objectForKey:@"blockedUsers"];
-        _blockedFriendsList = value.sS;
+        [_blockedFriendsList addObjectsFromArray:value.sS];
         value = [getResponse.item objectForKey:@"blockedByUsers"];
-        _blockedByUsersList = value.sS;
+        [_blockedByUsersList addObjectsFromArray:value.sS];
+        // Get group names
+        NSMutableArray *groups = [[NSMutableArray alloc] init];
+        NSMutableArray *groupRequests = [[NSMutableArray alloc] init];
         value = [getResponse.item objectForKey:@"groups"];
-        _groupsList = value.nS;
+        groups = value.nS;
         value = [getResponse.item objectForKey:@"groupRequests"];
-        _groupRequestList = value.nS;
+        groupRequests = value.nS;
+        for (NSString *groupID in groups) {
+            item = [[NSMutableDictionary alloc] initWithObjectsAndKeys:groupID,@"groupID",nil];
+            getRequest = [[DynamoDBGetItemRequest alloc] initWithTableName:@"WhereYouAppGroups" andKey:item];
+            getResponse = [_dynamoDBClient getItem:getRequest];
+            value = [getResponse.item objectForKey:@"groupName"];
+            WYAGroups *group = [[WYAGroups alloc] init];
+            [group setGroupID:groupID];
+            [group setGroupName:value.s];
+            value = [getResponse.item objectForKey:@"groupMembers"];
+            [group setGroupMembers:value.sS];
+            [_groupsList addObject:group];
+        }
+        for (NSString *groupID in groupRequests) {
+            item = [[NSMutableDictionary alloc] initWithObjectsAndKeys:groupID,@"groupID",nil];
+            getRequest = [[DynamoDBGetItemRequest alloc] initWithTableName:@"WhereYouAppGroups" andKey:item];
+            getResponse = [_dynamoDBClient getItem:getRequest];
+            value = [getResponse.item objectForKey:@"groupName"];
+            WYAGroups *group = [[WYAGroups alloc] init];
+            [group setGroupID:groupID];
+            [group setGroupName:value.s];
+            [_groupRequestList addObject:group];
+        }
+        
         return YES;
     }
     return NO;

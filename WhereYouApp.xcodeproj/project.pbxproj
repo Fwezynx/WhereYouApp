@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		63122B4118C68A1A0084E969 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63122B4018C68A1A0084E969 /* Main.storyboard */; };
+		632E53A618F49A6F00F818A9 /* Thumbnail 58.png in Resources */ = {isa = PBXBuildFile; fileRef = 632E53A318F49A6F00F818A9 /* Thumbnail 58.png */; };
+		632E53A718F49A6F00F818A9 /* Thumbnail 80.png in Resources */ = {isa = PBXBuildFile; fileRef = 632E53A418F49A6F00F818A9 /* Thumbnail 80.png */; };
+		632E53A818F49A6F00F818A9 /* Thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 632E53A518F49A6F00F818A9 /* Thumbnail.png */; };
 		6336ECC018CFDBDE009344CA /* WYAAddBlockUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECB918CFDBDE009344CA /* WYAAddBlockUserViewController.m */; };
 		6336ECC318CFDBDE009344CA /* WYAPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECBF18CFDBDE009344CA /* WYAPasswordViewController.m */; };
 		6336ECC818CFDC4C009344CA /* WYAGroups.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECC518CFDC4C009344CA /* WYAGroups.m */; };
@@ -65,6 +68,9 @@
 /* Begin PBXFileReference section */
 		63122B4018C68A1A0084E969 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		63268D1718D3FF15007015D4 /* WYAFriendListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYAFriendListViewController.h; sourceTree = "<group>"; };
+		632E53A318F49A6F00F818A9 /* Thumbnail 58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Thumbnail 58.png"; sourceTree = "<group>"; };
+		632E53A418F49A6F00F818A9 /* Thumbnail 80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Thumbnail 80.png"; sourceTree = "<group>"; };
+		632E53A518F49A6F00F818A9 /* Thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Thumbnail.png; sourceTree = "<group>"; };
 		6336ECB818CFDBDE009344CA /* WYAAddBlockUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAAddBlockUserViewController.h; sourceTree = "<group>"; };
 		6336ECB918CFDBDE009344CA /* WYAAddBlockUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAAddBlockUserViewController.m; sourceTree = "<group>"; };
 		6336ECBE18CFDBDE009344CA /* WYAPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAPasswordViewController.h; sourceTree = "<group>"; };
@@ -164,6 +170,9 @@
 		6336ECE818D11D09009344CA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				632E53A318F49A6F00F818A9 /* Thumbnail 58.png */,
+				632E53A418F49A6F00F818A9 /* Thumbnail 80.png */,
+				632E53A518F49A6F00F818A9 /* Thumbnail.png */,
 				6336ECF318D123DF009344CA /* password2-64.png */,
 				6336ECF418D123DF009344CA /* remove_user-128.png */,
 				6336ECEB18D11E6E009344CA /* street_view-26.png */,
@@ -409,10 +418,13 @@
 			files = (
 				63F68B3E18CCE11900D3A7D8 /* Login.storyboard in Resources */,
 				63122B4118C68A1A0084E969 /* Main.storyboard in Resources */,
+				632E53A718F49A6F00F818A9 /* Thumbnail 80.png in Resources */,
 				63E534DB18BD5D7200F14680 /* InfoPlist.strings in Resources */,
 				6336ECF618D123DF009344CA /* remove_user-128.png in Resources */,
+				632E53A618F49A6F00F818A9 /* Thumbnail 58.png in Resources */,
 				6336ECF518D123DF009344CA /* password2-64.png in Resources */,
 				6336ECEC18D11E6E009344CA /* street_view-26.png in Resources */,
+				632E53A818F49A6F00F818A9 /* Thumbnail.png in Resources */,
 				63E534E618BD5D7200F14680 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
