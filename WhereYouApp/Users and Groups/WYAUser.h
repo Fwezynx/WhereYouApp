@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import <AWSDynamoDB/AWSDynamoDB.h>
+
+#define ACCESS_KEY_ID @"AKIAIIU6MJGNDKQVNQAQ"
+#define SECRET_ACCESS_KEY @"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"
 
 @interface WYAUser : NSObject<CLLocationManagerDelegate>
 
@@ -20,5 +24,12 @@
 @property NSMutableArray *blockedFriendsList;
 @property NSMutableArray *friendRequestList;
 @property NSMutableArray *groupRequestList;
+@property NSMutableArray *invitedFriendsList;
+@property NSMutableArray *blockedByUsersList;
+@property AmazonDynamoDBClient *dynamoDBClient;
+
+- (BOOL) userExists:(NSString *)username;
+- (BOOL) createUser:(NSString *)username withPassword:(NSString *)password email:(NSString *)email question:(NSString *)question answer:(NSString *)answer;
+- (BOOL) userLogin:(NSString *)username withPassword:(NSString *)password;
 
 @end

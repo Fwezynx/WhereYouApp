@@ -26,6 +26,8 @@
 		633E5F2718E4DB81001CD7A4 /* AWSRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633E5F2418E4DB81001CD7A4 /* AWSRuntime.framework */; };
 		633E5F2818E4DB81001CD7A4 /* AWSSNS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633E5F2518E4DB81001CD7A4 /* AWSSNS.framework */; };
 		633E5F2B18EB1110001CD7A4 /* WYAUserAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E5F2A18EB1110001CD7A4 /* WYAUserAnnotationView.m */; };
+		633E5F2D18EE324E001CD7A4 /* AWSCloudWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633E5F2C18EE324E001CD7A4 /* AWSCloudWatch.framework */; };
+		635BB80A18F373420009C42B /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635BB80918F373420009C42B /* AWSDynamoDB.framework */; };
 		6371B4C518CD673D009CE5ED /* WYAUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6371B4C418CD673D009CE5ED /* WYAUser.m */; };
 		63827DF518C2CC4F009F05BF /* WYAMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63827DF218C2CC4F009F05BF /* WYAMapViewController.m */; };
 		63827DF618C2CC4F009F05BF /* WYAUserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 63827DF418C2CC4F009F05BF /* WYAUserAnnotation.m */; };
@@ -92,6 +94,8 @@
 		633E5F2518E4DB81001CD7A4 /* AWSSNS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSSNS.framework; path = "aws-ios-sdk-1.7.1/AWSSNS.framework"; sourceTree = "<group>"; };
 		633E5F2918EB1110001CD7A4 /* WYAUserAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAUserAnnotationView.h; sourceTree = "<group>"; };
 		633E5F2A18EB1110001CD7A4 /* WYAUserAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAUserAnnotationView.m; sourceTree = "<group>"; };
+		633E5F2C18EE324E001CD7A4 /* AWSCloudWatch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCloudWatch.framework; path = "aws-ios-sdk-1.7.1/AWSCloudWatch.framework"; sourceTree = "<group>"; };
+		635BB80918F373420009C42B /* AWSDynamoDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSDynamoDB.framework; path = "aws-ios-sdk-1.7.1/AWSDynamoDB.framework"; sourceTree = "<group>"; };
 		6371B4C318CD673D009CE5ED /* WYAUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAUser.h; sourceTree = "<group>"; };
 		6371B4C418CD673D009CE5ED /* WYAUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAUser.m; sourceTree = "<group>"; };
 		63827DF118C2CC4F009F05BF /* WYAMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAMapViewController.h; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635BB80A18F373420009C42B /* AWSDynamoDB.framework in Frameworks */,
+				633E5F2D18EE324E001CD7A4 /* AWSCloudWatch.framework in Frameworks */,
 				633E5F2618E4DB81001CD7A4 /* AWSEC2.framework in Frameworks */,
 				633E5F2718E4DB81001CD7A4 /* AWSRuntime.framework in Frameworks */,
 				633E5F2818E4DB81001CD7A4 /* AWSSNS.framework in Frameworks */,
@@ -266,6 +272,8 @@
 		63E534CD18BD5D7100F14680 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				635BB80918F373420009C42B /* AWSDynamoDB.framework */,
+				633E5F2C18EE324E001CD7A4 /* AWSCloudWatch.framework */,
 				633E5F2318E4DB81001CD7A4 /* AWSEC2.framework */,
 				633E5F2418E4DB81001CD7A4 /* AWSRuntime.framework */,
 				633E5F2518E4DB81001CD7A4 /* AWSSNS.framework */,

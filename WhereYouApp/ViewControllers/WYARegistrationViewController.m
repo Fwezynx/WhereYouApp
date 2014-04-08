@@ -17,6 +17,7 @@
 @property IBOutlet UITextField *questionField;
 @property IBOutlet UITextField *answerField;
 @property IBOutlet UIBarButtonItem *registerButton;
+@property WYAUser *currentUser;
 
 @end
 
@@ -34,6 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _currentUser = [WYAUser sharedInstance];
     [_passwordField setSecureTextEntry:YES];
     [_confirmPasswordField setSecureTextEntry:YES];
     [_userField setDelegate:self];
@@ -114,24 +116,16 @@
             return NO;
         }
         // Check registration availability.
-        if ([self successfulRegistrationForUser:[WYAHash sha256:[_userField.text lowercaseString]] withPassword:[WYAHash sha256:_passwordField.text] withEmail:_emailField.text withSecurityQuestion:_questionField.text andSecurityAnswer:_answerField.text]) {
-            return YES;
-        }
-        else {
+        if ([_currentUser userExists:[_userField.text lowercaseString]]) {
             UIAlertView *userExistsAlert = [[UIAlertView alloc] initWithTitle:@"Username Already Exists" message:@"The username you selected is already in use.  Please try another name." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
             [userExistsAlert show];
             _passwordField.text = nil;
             _confirmPasswordField.text = nil;
             return NO;
         }
+        // Register user
+        return [_currentUser createUser:[_userField.text lowercaseString] withPassword:[WYAHash sha256:_passwordField.text] email:_emailField.text question:_questionField.text answer:[WYAHash sha256:[_answerField.text lowercaseString]]];
     }
-    return YES;
-}
-
-
-- (BOOL) successfulRegistrationForUser:(NSString *)username withPassword:(NSString *)password withEmail:(NSString *)email withSecurityQuestion:(NSString *)question andSecurityAnswer:(NSString *)answer
-{
-#warning Incomplete implementation
     return YES;
 }
 
