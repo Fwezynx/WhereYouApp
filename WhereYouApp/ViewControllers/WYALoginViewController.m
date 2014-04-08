@@ -41,7 +41,7 @@
             return NO;
         }
         // Check login credentials.
-        if ([self successfulLoginForUser:[_userField.text lowercaseString] withPassword:[WYAHash sha256:_passwordField.text]]) {
+        if ([_user userLogin:[_userField.text lowercaseString] withPassword:[WYAHash sha256:_passwordField.text]]) {
             [_user setUsername:_userField.text];
             return YES;
         }
@@ -61,12 +61,6 @@
         UIViewController *newView = [mainStoryboard instantiateViewControllerWithIdentifier:@"mapView"];
         [self.navigationController setViewControllers:[[NSArray alloc] initWithObjects:newView, nil]];
     }
-}
-
-#warning Incomplete Implementation
-- (BOOL)successfulLoginForUser:(NSString *)username withPassword:(NSString *)password
-{
-    return YES;
 }
 
 #warning Incomplete Implementation

@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "WYAHash.h"
+#import "WYAUser.h"
 
 @interface WYARegistrationViewController : UIViewController<UITextFieldDelegate>
-
-- (BOOL) successfulRegistrationForUser:(NSString *)username withPassword:(NSString *)password withEmail:(NSString *)email withSecurityQuestion:(NSString *)question andSecurityAnswer:(NSString *)answer;
 
 @end
