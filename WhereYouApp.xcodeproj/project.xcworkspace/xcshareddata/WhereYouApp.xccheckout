@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>8B162134-998A-43C1-B519-EE40DD3936EE</string>
+	<string>975BC7C3-5682-431F-8705-182497B28E78</string>
 	<key>IDESourceControlProjectName</key>
 	<string>WhereYouApp</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>7D243E9F-327B-4F42-8CB1-38BA4A034917</key>
-		<string>http://github.com/Fwezynx/WhereYouApp</string>
+		<key>6A2B758B-0B85-48C0-A625-F90957496541</key>
+		<string>https://github.com/Fwezynx/WhereYouApp.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>WhereYouApp.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>7D243E9F-327B-4F42-8CB1-38BA4A034917</key>
+		<key>6A2B758B-0B85-48C0-A625-F90957496541</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>http://github.com/Fwezynx/WhereYouApp</string>
+	<string>https://github.com/Fwezynx/WhereYouApp.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>7D243E9F-327B-4F42-8CB1-38BA4A034917</string>
+	<string>6A2B758B-0B85-48C0-A625-F90957496541</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>7D243E9F-327B-4F42-8CB1-38BA4A034917</string>
+			<string>6A2B758B-0B85-48C0-A625-F90957496541</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Basak</string>
+			<string>WhereYouApp</string>
 		</dict>
 	</array>
 </dict>
