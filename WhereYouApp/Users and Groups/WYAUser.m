@@ -42,7 +42,7 @@
 }
 
 - (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-#warning update location for user
+    [self updateLocation];
 }
 
 - (BOOL) userExists:(NSString *)username {
@@ -62,6 +62,37 @@
     return YES;
 }
 
+// Update user location in database.
+- (void) updateLocation {
+    NSMutableDictionary *item = [[NSMutableDictionary alloc] initWithObjectsAndKeys:nil];
+    
+    DynamoDBAttributeValue *value = [[DynamoDBAttributeValue alloc] initWithN:[NSString stringWithFormat:@"%f",_locationManager.location.coordinate.latitude]];
+    DynamoDBAttributeValueUpdate *updateValue = [[DynamoDBAttributeValueUpdate alloc] initWithValue:value andAction:@"PUT"];
+    NSString *key = @"latitude";
+    [item setValue:updateValue forKey:key];
+    
+    value = [[DynamoDBAttributeValue alloc] initWithN:[NSString stringWithFormat:@"%f",_locationManager.location.coordinate.longitude]];
+    updateValue = [[DynamoDBAttributeValueUpdate alloc] initWithValue:value andAction:@"PUT"];
+    key = @"longitude";
+    [item setValue:updateValue forKey:key];
+    
+    value = [[DynamoDBAttributeValue alloc] initWithN:[NSString stringWithFormat:@"%f",_locationManager.location.altitude]];
+    updateValue = [[DynamoDBAttributeValueUpdate alloc] initWithValue:value andAction:@"PUT"];
+    key = @"altitude";
+    [item setValue:updateValue forKey:key];
+    
+    value = [[DynamoDBAttributeValue alloc] initWithS:[NSString stringWithFormat:@"%@",[NSDate date]]];
+    updateValue = [[DynamoDBAttributeValueUpdate alloc] initWithValue:value andAction:@"PUT"];
+    key = @"lastUpdated";
+    [item setValue:updateValue forKey:key];
+    
+    // Construct request
+    value = [[DynamoDBAttributeValue alloc] initWithS: [_username lowercaseString]];
+    DynamoDBUpdateItemRequest *updateRequest = [[DynamoDBUpdateItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:[[NSMutableDictionary alloc] initWithObjectsAndKeys:value ,@"username",nil] andAttributeUpdates:item];
+    [_dynamoDBClient updateItem:updateRequest];
+}
+
+// Create a user
 - (BOOL) createUser:(NSString *)username withPassword:(NSString *)password email:(NSString *)email question:(NSString *)question answer:(NSString *)answer {
     // Create attributes for request
     NSMutableDictionary *item = [[NSMutableDictionary alloc] initWithObjectsAndKeys:nil];
@@ -88,10 +119,11 @@
     
     // Construct request
     DynamoDBPutItemRequest *putRequest = [[DynamoDBPutItemRequest alloc] initWithTableName:@"WhereYouApp" andItem:item];
-    DynamoDBPutItemResponse *putResponse = [_dynamoDBClient putItem:putRequest];
+    [_dynamoDBClient putItem:putRequest];
     return YES;
 }
 
+// Obtain user credentials for logging in.
 - (BOOL) userLogin:(NSString *)username withPassword:(NSString *)password {
     // Create attributes for request
     NSMutableDictionary *item = [[NSMutableDictionary alloc] initWithObjectsAndKeys:nil];
@@ -105,6 +137,7 @@
     DynamoDBGetItemResponse *getResponse = [_dynamoDBClient getItem:getRequest];
     value = [getResponse.item objectForKey:@"password"];
     if ([password isEqualToString:value.s]) {
+        _username = username;
         value = [getResponse.item objectForKey:@"friends"];
         [_friendList addObjectsFromArray:value.sS];
         value = [getResponse.item objectForKey:@"friendRequests"];
@@ -144,10 +177,99 @@
             [group setGroupName:value.s];
             [_groupRequestList addObject:group];
         }
-        
+        [self updateLocation];
         return YES;
     }
     return NO;
+}
+
+// Invite a user to become friends
+- (void) inviteFriend:(NSString *)friendName {
+    // Add friend to current user's invited list
+    NSMutableDictionary *item = [[NSMutableDictionary alloc] initWithObjectsAndKeys:nil];
+    DynamoDBAttributeValue *value = [[DynamoDBAttributeValue alloc] initWithSS:[[NSMutableArray alloc] initWithObjects:[friendName lowercaseString],nil]];
+    DynamoDBAttributeValueUpdate *updateValue = [[DynamoDBAttributeValueUpdate alloc] initWithValue:value andAction:@"ADD"];
+    NSString *key = @"invitedFriends";
+    [item setValue:updateValue forKey:key];
+    value = [[DynamoDBAttributeValue alloc] initWithS: [_username lowercaseString]];
+    DynamoDBUpdateItemRequest *updateRequest = [[DynamoDBUpdateItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:[[NSMutableDictionary alloc] initWithObjectsAndKeys:value ,@"username",nil] andAttributeUpdates:item];
+    [_dynamoDBClient updateItem:updateRequest];
+    // Add current user to friend's friendRequest list
+    [item removeAllObjects];
+    
+    value = [[DynamoDBAttributeValue alloc] initWithSS:[[NSMutableArray alloc] initWithObjects:[_username lowercaseString],nil]];
+    key = @"friendRequests";
+    updateValue = [[DynamoDBAttributeValueUpdate alloc] initWithValue:value andAction:@"ADD"];
+    [item setValue:updateValue forKey:key];
+    
+    value = [[DynamoDBAttributeValue alloc] initWithS:[friendName lowercaseString]];
+    updateRequest = [[DynamoDBUpdateItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:[[NSMutableDictionary alloc] initWithObjectsAndKeys:value ,@"username",nil] andAttributeUpdates:item];
+    [_dynamoDBClient updateItem:updateRequest];
+    // Add item to local copy of current user's invited friends list.
+    [_invitedFriendsList addObject:[friendName lowercaseString]];
+}
+
+// Remove a user from blocked list.
+- (void) unblockUser:(NSString *)friendName {
+    // Remove user from current user's blocked list
+    NSMutableDictionary *item = [[NSMutableDictionary alloc] initWithObjectsAndKeys:nil];
+    DynamoDBAttributeValue *value = [[DynamoDBAttributeValue alloc] initWithSS:[[NSMutableArray alloc] initWithObjects:[friendName lowercaseString],nil]];
+    DynamoDBAttributeValueUpdate *updateValue = [[DynamoDBAttributeValueUpdate alloc] initWithValue:value andAction:@"DELETE"];
+    NSString *key = @"blockedUsers";
+    [item setValue:updateValue forKey:key];
+    
+    value = [[DynamoDBAttributeValue alloc] initWithS: [_username lowercaseString]];
+    DynamoDBUpdateItemRequest *updateRequest = [[DynamoDBUpdateItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:[[NSMutableDictionary alloc] initWithObjectsAndKeys:value ,@"username",nil] andAttributeUpdates:item];
+    [_dynamoDBClient updateItem:updateRequest];
+    // Remove current user from user's blocked by list
+    [item removeAllObjects];
+    
+    value = [[DynamoDBAttributeValue alloc] initWithSS:[[NSMutableArray alloc] initWithObjects:[_username lowercaseString],nil]];
+    key = @"blockedByUsers";
+    updateValue = [[DynamoDBAttributeValueUpdate alloc] initWithValue:value andAction:@"DELETE"];
+    [item setValue:updateValue forKey:key];
+    
+    value = [[DynamoDBAttributeValue alloc] initWithS:[friendName lowercaseString]];
+    updateRequest = [[DynamoDBUpdateItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:[[NSMutableDictionary alloc] initWithObjectsAndKeys:value ,@"username",nil] andAttributeUpdates:item];
+    [_dynamoDBClient updateItem:updateRequest];
+    // Add item to local copy of current user's invited friends list.
+    [_blockedFriendsList removeObject:[friendName lowercaseString]];
+}
+
+// Accept an invitation to become friends
+- (void) acceptFriendRequest:(NSString *)friendName {
+    // Add friend to current user's friend list and remove from invited list.
+    NSMutableDictionary *item = [[NSMutableDictionary alloc] initWithObjectsAndKeys:nil];
+    DynamoDBAttributeValue *value = [[DynamoDBAttributeValue alloc] initWithSS:[[NSMutableArray alloc] initWithObjects:[friendName lowercaseString],nil]];
+    DynamoDBAttributeValueUpdate *updateValue = [[DynamoDBAttributeValueUpdate alloc] initWithValue:value andAction:@"ADD"];
+    NSString *key = @"friends";
+    [item setValue:updateValue forKey:key];
+    
+    updateValue = [[DynamoDBAttributeValueUpdate alloc] initWithValue:value andAction:@"DELETE"];
+    key = @"friendRequests";
+    [item setValue:updateValue forKey:key];
+    
+    value = [[DynamoDBAttributeValue alloc] initWithS: [_username lowercaseString]];
+    DynamoDBUpdateItemRequest *updateRequest = [[DynamoDBUpdateItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:[[NSMutableDictionary alloc] initWithObjectsAndKeys:value ,@"username",nil] andAttributeUpdates:item];
+    [_dynamoDBClient updateItem:updateRequest];
+    // Add current user to friend's friend list and remove from pending friends list.
+    [item removeAllObjects];
+    
+    value = [[DynamoDBAttributeValue alloc] initWithSS:[[NSMutableArray alloc] initWithObjects:[_username lowercaseString],nil]];
+    key = @"friends";
+    updateValue = [[DynamoDBAttributeValueUpdate alloc] initWithValue:value andAction:@"ADD"];
+    [item setValue:updateValue forKey:key];
+    
+    updateValue = [[DynamoDBAttributeValueUpdate alloc] initWithValue:value andAction:@"DELETE"];
+    key = @"invitedFriends";
+    [item setValue:updateValue forKey:key];
+    
+    value = [[DynamoDBAttributeValue alloc] initWithS:[friendName lowercaseString]];
+    updateRequest = [[DynamoDBUpdateItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:[[NSMutableDictionary alloc] initWithObjectsAndKeys:value ,@"username",nil] andAttributeUpdates:item];
+    [_dynamoDBClient updateItem:updateRequest];
+    // Add item to local copy of current user's invited friends list.
+    [_friendRequestList removeObject:[friendName lowercaseString]];
+    [_friendList addObject:[friendName lowercaseString]];
 }
 
 @end

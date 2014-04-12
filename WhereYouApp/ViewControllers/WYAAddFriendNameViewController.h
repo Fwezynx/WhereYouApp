@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WYAUser.h"
 
 @interface WYAAddFriendNameViewController : UIViewController
-
-@property NSString *friendName;
 
 @end

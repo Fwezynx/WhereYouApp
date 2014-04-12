@@ -18,14 +18,6 @@
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
-    WYAAddFriendNameViewController *source = [segue sourceViewController];
-#warning Implementation with database required.  User should be pending from here
-    if (source.friendName != nil) {
-        WYAUserAnnotation *friend = [[WYAUserAnnotation alloc] initWithUserName:source.friendName andCoordinate:_currentUser.locationManager.location.coordinate andAltitude:_currentUser.locationManager.location.altitude];
-        [_currentUser.friendList addObject:friend];
-        [_currentUser.friendRequestList addObject:friend];
-        [self.tableView reloadData];
-    }
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -38,6 +30,10 @@
 {
     [super viewDidLoad];
     _currentUser = [WYAUser sharedInstance];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
