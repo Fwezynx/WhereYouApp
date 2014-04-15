@@ -63,9 +63,16 @@
     }
 }
 
-#warning Incomplete Implementation
 - (IBAction)unwindToLogin:(UIStoryboardSegue *)segue
 {
+    [_user setUsername:nil];
+    [_user setFriendList:nil];
+    [_user setGroupsList:nil];
+    [_user setBlockedByUsersList:nil];
+    [_user setBlockedFriendsList:nil];
+    [_user setFriendRequestList:nil];
+    [_user setGroupRequestList:nil];
+    [_user setInvitedFriendsList:nil];
 }
 
 - (void)viewDidLoad

@@ -32,7 +32,7 @@
     if (source.group != nil) {
         WYAGroups *newGroup = [[WYAGroups alloc] init];
         [newGroup setGroupName:source.group];
-        [_currentUser.groupsList addObject:newGroup];
+        [_currentUser.groupsList setObject:newGroup forKey:newGroup.groupID];
         [self.tableView reloadData];
     }
 }
@@ -66,22 +66,21 @@
     // Return the number of rows in the section.
     return [_currentUser.groupsList count];
 }
-
+#warning Display groups
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ListPrototypeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    WYAGroups *groupName = [_currentUser.groupsList objectAtIndex:indexPath.row];
-    cell.textLabel.text = groupName.groupName;
-    
+//    WYAGroups *groupName = [_currentUser.groupsList objectAtIndex:indexPath.row];
+//    cell.textLabel.text = groupName.groupName;
     return cell;
 }
-
+#warning remove user from group
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Remove the row from data model
-    [_currentUser.groupsList removeObjectAtIndex:indexPath.row];
+//    [_currentUser.groupsList removeObjectAtIndex:indexPath.row];
     
     // Request table view to reload
     [tableView reloadData];

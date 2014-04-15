@@ -59,18 +59,18 @@
     static NSString *CellIdentifier = @"ListPrototypeCell";
     UITableViewCell *cell = [tableView
                              dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    WYAUserAnnotation *friend = [_currentUser.friendList objectAtIndex:indexPath.row];
-    [cell.textLabel setText:friend.title];
+    [cell.textLabel setText:[_currentUser.friendList objectAtIndex:indexPath.row]];
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-#warning remove user from database required
     // Remove the row from data model
-    [_currentUser.friendList removeObjectAtIndex:indexPath.row];
-    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *username = cell.textLabel.text;
+    [_currentUser removeUser:username];
+    [_currentUser.friendList removeObject:username];
     // Request table view to reload
     [tableView reloadData];
 }

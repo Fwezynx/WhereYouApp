@@ -20,10 +20,4 @@
     return self;
 }
 
-// Update user latitude, longitude, altitude, and updateTime.
-- (void) updateUser
-{
-
-}
-
 @end

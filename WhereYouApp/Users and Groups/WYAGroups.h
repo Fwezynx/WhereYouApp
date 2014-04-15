@@ -12,8 +12,9 @@
 
 @property NSString *groupName;
 @property NSString *groupID;
-@property NSMutableArray *groupMembers;
+@property NSMutableDictionary *groupMembers;
 @property NSMutableArray *invitedMembers;
+@property NSMutableArray *groupMemberNames;
 //@property BOOL completed;
 //@property (readonly) NSDate *creationDate;
 

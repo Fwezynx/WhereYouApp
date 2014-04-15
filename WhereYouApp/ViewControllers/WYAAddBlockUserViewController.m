@@ -16,18 +16,6 @@
 
 @implementation WYAAddBlockUserViewController
 
-#warning method needs to be removed.
--(void) loadInitialDatas
-{
-    CLLocationDistance alt = _currentUser.locationManager.location.altitude;
-    CLLocationCoordinate2D coords = CLLocationCoordinate2DMake(_currentUser.locationManager.location.coordinate.latitude, _currentUser.locationManager.location.coordinate.longitude);
-    
-    WYAUserAnnotation *user = [[WYAUserAnnotation alloc] initWithUserName:@"John" andCoordinate:coords andAltitude:alt];
-    [_currentUser.blockedFriendsList addObject:user];
-    user = [[WYAUserAnnotation alloc] initWithUserName:@"Rick" andCoordinate:coords andAltitude:alt];
-    [_currentUser.blockedFriendsList addObject:user];
-}
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -41,10 +29,6 @@
 {
     [super viewDidLoad];
     _currentUser = [WYAUser sharedInstance];
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-    [self loadInitialDatas];
-    });
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
@@ -73,15 +57,16 @@
     static NSString *CellIdentifier = @"ListPrototypeCellBlock";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    WYAUserAnnotation *userName = [_currentUser.blockedFriendsList objectAtIndex:indexPath.row];
-    [cell.textLabel setText:userName.title];
-    
+    [cell.textLabel setText:[_currentUser.blockedFriendsList objectAtIndex:indexPath.row]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_currentUser.blockedFriendsList removeObjectAtIndex:indexPath.row];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *username = cell.textLabel.text;
+    [_currentUser unblockUser:username];
+    [_currentUser.blockedFriendsList removeObject:username];
     [self.tableView reloadData];
     
 }
