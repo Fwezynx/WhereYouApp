@@ -27,8 +27,6 @@
     _username = [[NSString alloc] init];
     _locationManager = [[CLLocationManager alloc] init];
     [_locationManager setDelegate:self];
-    [_locationManager startUpdatingLocation];
-    [_locationManager startUpdatingHeading];
     _friendList = [[NSMutableArray alloc] init];
     _groupsList = [[NSMutableDictionary alloc] init];
     _blockedFriendsList = [[NSMutableArray alloc] init];
@@ -220,6 +218,8 @@
             [group setGroupName:value.s];
             [_groupRequestList addObject:group];
         }
+        [_locationManager startUpdatingLocation];
+        [_locationManager startUpdatingHeading];
         [self updateLocation];
         return YES;
     }
@@ -340,11 +340,27 @@
 - (void) createGroup:(NSString *)groupName {
     // Set groupID to be the current number of rows in the group
     NSString *groupID;
-    // Create attributes for request
     NSMutableDictionary *item = [[NSMutableDictionary alloc] initWithObjectsAndKeys:nil];
     
-    DynamoDBAttributeValue *value = [[DynamoDBAttributeValue alloc] initWithN:groupID];
-    NSString *key = @"groupID";
+    DynamoDBAttributeValue *value = [[DynamoDBAttributeValue alloc] initWithS:@"WhereYouAppGroups"];
+    NSString *key = @"TableName";
+    [item setValue:value forKey:key];
+    
+    DynamoDBGetItemRequest *getRequest = [[DynamoDBGetItemRequest alloc] initWithTableName:@"WhereYouAppTableCount" andKey:item];
+    DynamoDBGetItemResponse *getResponse = [_dynamoDBClient getItem:getRequest];
+    value = [getResponse.item objectForKey:@"count"];
+    if (value.n == nil) {
+        groupID = @"0";
+    }
+    else {
+        groupID = value.n;
+    }
+    
+    // Create attributes for request
+    [item removeAllObjects];
+    
+    value = [[DynamoDBAttributeValue alloc] initWithN:groupID];
+    key = @"groupID";
     [item setValue:value forKey:key];
     
     value = [[DynamoDBAttributeValue alloc] initWithS:groupName];
@@ -357,6 +373,17 @@
     // Construct request
     DynamoDBPutItemRequest *putRequest = [[DynamoDBPutItemRequest alloc] initWithTableName:@"WhereYouAppGroups" andItem:item];
     [_dynamoDBClient putItem:putRequest];
+    
+    // Increment the number of rows
+    [item removeAllObjects];
+    value = [[DynamoDBAttributeValue alloc] initWithN:@"1"];
+    DynamoDBAttributeValueUpdate *updateValue = [[DynamoDBAttributeValueUpdate alloc] initWithValue:value andAction:@"ADD"];
+    key = @"count";
+    [item setValue:updateValue forKey:key];
+    
+    value = [[DynamoDBAttributeValue alloc] initWithS: @"WhereYouAppGroups"];
+    DynamoDBUpdateItemRequest *updateRequest = [[DynamoDBUpdateItemRequest alloc] initWithTableName:@"WhereYouAppTableCount" andKey:[[NSMutableDictionary alloc] initWithObjectsAndKeys:value ,@"TableName",nil] andAttributeUpdates:item];
+    [_dynamoDBClient updateItem:updateRequest];
 }
 
 - (void) inviteUser:(NSString *)username toGroup:(NSString *)groupID {
