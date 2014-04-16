@@ -33,6 +33,12 @@
     }
     if (_textField.text.length > 0) {
         _friendName = _textField.text;
+        // Prevent user from adding self
+        if ([_currentUser.username isEqualToString:_friendName]) {
+            UIAlertView *blockedByUserAlert = [[UIAlertView alloc] initWithTitle:@"Can't Add Self" message:@"You cannot add yourself as a friend." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+            [blockedByUserAlert show];
+            return NO;
+        }
         // User is already your friend
         if ([_currentUser.blockedByUsersList containsObject:[_friendName lowercaseString]]) {
             UIAlertView *blockedByUserAlert = [[UIAlertView alloc] initWithTitle:@"Already Friends" message:@"You are already friends with this user." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];

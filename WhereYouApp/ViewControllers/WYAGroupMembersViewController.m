@@ -65,13 +65,12 @@
     // Return the number of rows in the section.
     return [_group.groupMembers count];
 }
-#warning display users
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ListPrototypeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
-    cell.textLabel.text = [_group.groupMemberNames objectAtIndex:indexPath.row];
+    NSMutableArray *groupMembers = [NSMutableArray arrayWithArray: [[_group.groupMembers allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
+    [cell.textLabel setText:[groupMembers objectAtIndex:indexPath.row]];
 
     return cell;
 }

@@ -31,6 +31,7 @@
     [super viewDidLoad];
     _currentUser = [WYAUser sharedInstance];
     [self.navigationItem setTitle:@"Invite Friends"];
+    _currentUser.groupsList;
 #warning SQL query for friends not already in group.
 }
 

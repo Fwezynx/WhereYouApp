@@ -12,7 +12,8 @@
 #import "WYAGroups.h"
 #import "WYAUserAnnotation.h"
 
-
+#define ACCESS_KEY_ID @"AKIAJMXIHSTRUQOJSTGA"
+#define SECRET_ACCESS_KEY @"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"
 
 @interface WYAUser : NSObject<CLLocationManagerDelegate>
 
@@ -37,7 +38,7 @@
 - (void) unblockUser:(NSString *)friendName;
 - (void) acceptFriendRequest:(NSString *)friendName;
 - (void) removeUser:(NSString *)username;
-- (void) createGroup:(NSString *)groupName;
+- (NSString *) createGroup:(NSString *)groupName;
 - (void) inviteUser:(NSString *)username toGroup:(NSString *)groupID;
 - (void) leaveGroup:(NSString *)groupID;
 - (void) acceptGroupInvite:(NSString *)groupID;

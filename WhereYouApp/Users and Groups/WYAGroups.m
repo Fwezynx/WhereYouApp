@@ -10,4 +10,11 @@
 
 @implementation WYAGroups
 
+- (id) init {
+    self = [super init];
+    _groupMembers = [[NSMutableDictionary alloc] init];
+    _invitedMembers = [[NSMutableArray alloc] init];
+    return self;
+}
+
 @end
