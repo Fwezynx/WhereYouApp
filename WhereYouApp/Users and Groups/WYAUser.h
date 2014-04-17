@@ -25,7 +25,7 @@
 @property NSMutableDictionary *groupsList;
 @property NSMutableArray *blockedFriendsList;
 @property NSMutableArray *friendRequestList;
-@property NSMutableArray *groupRequestList;
+@property NSMutableDictionary *groupRequestList;
 @property NSMutableArray *invitedFriendsList;
 @property NSMutableArray *blockedByUsersList;
 @property AmazonDynamoDBClient *dynamoDBClient;
@@ -42,5 +42,8 @@
 - (void) inviteUser:(NSString *)username toGroup:(NSString *)groupID;
 - (void) leaveGroup:(NSString *)groupID;
 - (void) acceptGroupInvite:(NSString *)groupID;
+- (void) ignoreGroupInvite:(NSString *)groupID;
+- (void) ignoreUser:(NSString *)username;
+- (void) blockUser:(NSString *)username;
 
 @end

@@ -28,7 +28,6 @@
 - (IBAction)unwindToGroups:(UIStoryboardSegue *)segue
 {
     WYAAddGroupsViewController *source = [segue sourceViewController];
-#warning Implementation with database required.  User needs to be added to group
     if (source.group != nil) {
         NSString *groupID = [_currentUser createGroup:source.group];
         WYAGroups *newGroup = [[WYAGroups alloc] init];
@@ -94,7 +93,7 @@
     NSString *groupID = [NSString stringWithFormat:@"%ld",(long)cell.tag];
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     WYAGroupMembersViewController *newView = [mainStoryboard instantiateViewControllerWithIdentifier:@"GroupMembers"];
-    newView.group = [_currentUser.groupsList objectForKey:groupID];
+    newView.groupID = groupID;
     [self.navigationController pushViewController:newView animated:YES];
 }
 

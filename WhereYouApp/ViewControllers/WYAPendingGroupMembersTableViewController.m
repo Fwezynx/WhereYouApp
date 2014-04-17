@@ -1,25 +1,26 @@
 //
-//  WYAGroupMembersViewController.m
+//  WYAPendingGroupMembersTableViewController.m
 //  WhereYouApp
 //
-//  Created by Timothy Chu on 3/24/14.
+//  Created by Timothy Chu on 4/16/14.
 //  Copyright (c) 2014 Timothy Chu. All rights reserved.
 //
 
-#import "WYAGroupMembersViewController.h"
+#import "WYAPendingGroupMembersTableViewController.h"
 
-@interface WYAGroupMembersViewController ()
+@interface WYAPendingGroupMembersTableViewController ()
 
 @property WYAUser *currentUser;
 @property UIBarButtonItem *addButton;
+@property UIBarButtonItem *removeButton;
 
 @end
 
-@implementation WYAGroupMembersViewController
+@implementation WYAPendingGroupMembersTableViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
@@ -36,16 +37,10 @@
     [self.navigationItem setRightBarButtonItem:_addButton];
     [_addButton setTarget:self];
     [_addButton setAction:NSSelectorFromString(@"selector:")];
-}
-
-- (IBAction) selector:(id)sender
-{
-    if (sender == _addButton) {
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        WYAInviteUserTableViewController *newView = [mainStoryboard instantiateViewControllerWithIdentifier:@"InviteGroupMembers"];
-        newView.groupID = _groupID;
-        [self.navigationController pushViewController:newView animated:YES];
-    }
+    _addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:nil action:nil];
+    [self.navigationItem setLeftBarButtonItem:_removeButton];
+    [_addButton setTarget:self];
+    [_addButton setAction:NSSelectorFromString(@"selector:")];
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,25 +53,36 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    WYAGroups *group = [_currentUser.groupsList objectForKey:_groupID];
-    return [group.groupMembers count];
+    WYAGroups *group = [_currentUser.groupRequestList objectForKey:_groupID];
+    return [group.invitedMembers count];
 }
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ListPrototypeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    WYAGroups *group = [_currentUser.groupsList objectForKey:_groupID];
-    NSMutableArray *groupMembers = [NSMutableArray arrayWithArray: [[group.groupMembers allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
-    [cell.textLabel setText:[groupMembers objectAtIndex:indexPath.row]];
-
+    WYAGroups *group = [_currentUser.groupRequestList objectForKey:_groupID];
+    [cell.textLabel setText:[group.invitedMembers objectAtIndex:indexPath.row]];
+    
     return cell;
+}
+
+- (IBAction) selector:(id)sender
+{
+    if (sender == _addButton) {
+        [_currentUser acceptGroupInvite:_groupID];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    if (sender == _removeButton) {
+        [_currentUser ignoreGroupInvite:_groupID];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end
