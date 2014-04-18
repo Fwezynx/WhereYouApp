@@ -16,5 +16,7 @@
 
 - (IBAction)unwindToLogin:(UIStoryboardSegue *)segue;
 - (IBAction)didPressLogin:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *userField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
 @end

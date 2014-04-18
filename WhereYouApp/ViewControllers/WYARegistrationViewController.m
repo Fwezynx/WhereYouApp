@@ -10,18 +10,20 @@
 
 @interface WYARegistrationViewController ()
 
-@property IBOutlet UITextField *userField;
-@property IBOutlet UITextField *emailField;
-@property IBOutlet UITextField *passwordField;
-@property IBOutlet UITextField *confirmPasswordField;
-@property IBOutlet UITextField *questionField;
-@property IBOutlet UITextField *answerField;
+
 @property IBOutlet UIBarButtonItem *registerButton;
 @property WYAUser *currentUser;
 
 @end
 
 @implementation WYARegistrationViewController
+
+@synthesize userField = _userField;
+@synthesize emailField = _emailField;
+@synthesize passwordField = _passwordField;
+@synthesize confirmPasswordField = _confirmPasswordField;
+@synthesize questionField = _questionField;
+@synthesize answerField = _answerField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -139,6 +141,16 @@
         [textField resignFirstResponder];
     }
     return NO;
+}
+
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [_userField resignFirstResponder];
+    [_passwordField resignFirstResponder];
+    [_emailField resignFirstResponder];
+    [_confirmPasswordField resignFirstResponder];
+    [_questionField resignFirstResponder];
+    [_answerField resignFirstResponder];
 }
 
 @end

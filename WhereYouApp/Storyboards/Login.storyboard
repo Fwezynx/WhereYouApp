@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LSJ-Pl-CM7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LSJ-Pl-CM7">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -22,8 +22,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2PT-aK-w2N">
-                                <rect key="frame" x="20" y="283" width="280" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2PT-aK-w2N">
+                                <rect key="frame" x="40" y="275" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -78,8 +78,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="loginButton" destination="4eH-1m-yTH" id="WaQ-2m-Kyh"/>
-                        <outlet property="passwordField" destination="2PT-aK-w2N" id="iXI-nY-hb3"/>
-                        <outlet property="userField" destination="Deq-7Z-JcZ" id="BeP-Uz-KkO"/>
+                        <outlet property="passwordField" destination="2PT-aK-w2N" id="ZpZ-Rr-njZ"/>
+                        <outlet property="userField" destination="Deq-7Z-JcZ" id="7OU-ge-oLT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dl1-gZ-Zh5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -181,13 +181,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="answerField" destination="4hA-sX-R6i" id="wjs-ph-6Mg"/>
-                        <outlet property="confirmPasswordField" destination="NDX-aT-sqD" id="OcP-lz-C0H"/>
-                        <outlet property="emailField" destination="zJO-Cy-StJ" id="smG-VQ-xZO"/>
-                        <outlet property="passwordField" destination="IYE-FW-ndA" id="FvX-Eg-klM"/>
-                        <outlet property="questionField" destination="K6n-gX-kZ5" id="sKT-9N-EbB"/>
+                        <outlet property="answerField" destination="4hA-sX-R6i" id="e4v-cx-iXm"/>
+                        <outlet property="confirmPasswordField" destination="NDX-aT-sqD" id="Den-79-r4f"/>
+                        <outlet property="emailField" destination="zJO-Cy-StJ" id="E09-xp-tIh"/>
+                        <outlet property="passwordField" destination="IYE-FW-ndA" id="jSs-0u-9lQ"/>
+                        <outlet property="questionField" destination="K6n-gX-kZ5" id="hxT-bV-iec"/>
                         <outlet property="registerButton" destination="V4w-92-WgD" id="bUT-3Z-W1w"/>
-                        <outlet property="userField" destination="H1M-8m-hi1" id="Gb7-Pq-dCe"/>
+                        <outlet property="userField" destination="H1M-8m-hi1" id="Eui-Jj-3IX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BeJ-Ol-Ws3" userLabel="First Responder" sceneMemberID="firstResponder"/>
