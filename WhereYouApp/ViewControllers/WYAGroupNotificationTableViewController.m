@@ -60,7 +60,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     NSMutableArray *groupsList = [NSMutableArray arrayWithArray: [[_currentUser.groupRequestList allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
-    WYAGroups *group = [groupsList objectAtIndex:indexPath.row];
+    WYAGroups *group = [_currentUser.groupRequestList objectForKey:[groupsList objectAtIndex:indexPath.row]];
     [cell.textLabel setText:group.groupName];
     [cell setTag:[group.groupID intValue]];
     

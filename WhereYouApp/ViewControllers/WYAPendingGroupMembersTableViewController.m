@@ -37,10 +37,10 @@
     [self.navigationItem setRightBarButtonItem:_addButton];
     [_addButton setTarget:self];
     [_addButton setAction:NSSelectorFromString(@"selector:")];
-    _addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:nil action:nil];
+    _removeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:nil action:nil];
     [self.navigationItem setLeftBarButtonItem:_removeButton];
-    [_addButton setTarget:self];
-    [_addButton setAction:NSSelectorFromString(@"selector:")];
+    [_removeButton setTarget:self];
+    [_removeButton setAction:NSSelectorFromString(@"selector:")];
 }
 
 - (void)didReceiveMemoryWarning

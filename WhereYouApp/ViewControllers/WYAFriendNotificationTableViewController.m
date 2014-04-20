@@ -73,15 +73,15 @@
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == [alertView firstOtherButtonIndex]) {
-        [_currentUser acceptFriendRequest:[alertView buttonTitleAtIndex:buttonIndex]];
+        [_currentUser acceptFriendRequest:[alertView title]];
         [self.tableView reloadData];
     }
     else if (buttonIndex == [alertView firstOtherButtonIndex] + 1) {
-        [_currentUser ignoreUser:[alertView buttonTitleAtIndex:buttonIndex]];
+        [_currentUser ignoreUser:[alertView title]];
         [self.tableView reloadData];
     }
     else if (buttonIndex == [alertView firstOtherButtonIndex] + 2) {
-        [_currentUser blockUser:[alertView buttonTitleAtIndex:buttonIndex]];
+        [_currentUser blockUser:[alertView title]];
         [self.tableView reloadData];
     }
 }

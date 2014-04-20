@@ -226,6 +226,7 @@
             [_groupRequestList setObject:group forKey:group.groupID];
         }
         [_locationManager startUpdatingLocation];
+        [_locationManager startMonitoringSignificantLocationChanges];
         [_locationManager startUpdatingHeading];
         [self updateLocation];
         return YES;
@@ -300,7 +301,7 @@
     [item setValue:updateValue forKey:key];
     
     value = [[DynamoDBAttributeValue alloc] initWithS: [_username lowercaseString]];
-    DynamoDBUpdateItemRequest *updateRequest = [[DynamoDBUpdateItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:[[NSMutableDictionary alloc] initWithObjectsAndKeys:value ,@"username",nil] andAttributeUpdates:item];
+    DynamoDBUpdateItemRequest *updateRequest = [[DynamoDBUpdateItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:[[NSMutableDictionary alloc] initWithObjectsAndKeys:value, @"username", nil] andAttributeUpdates:item];
     [_dynamoDBClient updateItem:updateRequest];
     // Add current user to friend's friend list and remove from pending friends list.
     [item removeAllObjects];
@@ -342,6 +343,7 @@
     value = [[DynamoDBAttributeValue alloc] initWithS: [username lowercaseString]];
     updateRequest = [[DynamoDBUpdateItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:[[NSMutableDictionary alloc] initWithObjectsAndKeys:value ,@"username",nil] andAttributeUpdates:item];
     [_dynamoDBClient updateItem:updateRequest];
+    [_friendList removeObject:@"username"];
 }
 
 - (NSString *) createGroup:(NSString *)groupName {
@@ -486,7 +488,7 @@
     NSMutableDictionary *item = [[NSMutableDictionary alloc] init];
     DynamoDBAttributeValue *value = [[DynamoDBAttributeValue alloc] initWithNS:[[NSMutableArray alloc] initWithObjects:groupID,nil]];
     DynamoDBAttributeValueUpdate *updateValue = [[DynamoDBAttributeValueUpdate alloc] initWithValue:value andAction:@"DELETE"];
-    NSString *key = @"groupsRequests";
+    NSString *key = @"groupRequests";
     [item setValue:updateValue forKey:key];
     
     value = [[DynamoDBAttributeValue alloc] initWithS: [_username lowercaseString]];

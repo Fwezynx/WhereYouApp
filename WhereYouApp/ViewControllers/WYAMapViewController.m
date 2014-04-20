@@ -40,6 +40,15 @@
     _currentUser = [WYAUser sharedInstance];
     [self returnToUser:self];
     [_userInfoView setHidden:YES];
+    [_currentUser.locationManager.location addObserver:self forKeyPath:@"location" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    if ([keyPath isEqualToString:@"location"]) {
+        [_currentLatitude setText:[NSString stringWithFormat:@"Latitude:    %f",_currentUser.locationManager.location.coordinate.latitude]];
+        [_currentLongitude setText:[NSString stringWithFormat:@"Longitude: %f",_currentUser.locationManager.location.coordinate.longitude]];
+    }
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -48,7 +57,10 @@
     [_currentLatitude setText:[NSString stringWithFormat:@"Latitude:    %f",_currentUser.locationManager.location.coordinate.latitude]];
     [_currentLongitude setText:[NSString stringWithFormat:@"Longitude: %f",_currentUser.locationManager.location.coordinate.longitude]];
     // Add any new annotations.
-    [_mapView addAnnotations:_currentUser.friendList];
+    NSArray *groups = [_currentUser.groupsList allValues];
+    for (WYAGroups *group in groups) {
+        [_mapView addAnnotations:[group.groupMembers allValues]];
+    }
     // Enable or disable notifications.
     if ([_currentUser.friendRequestList count] != 0 || [_currentUser.groupRequestList count] != 0) {
         [_notifications setEnabled:YES];
