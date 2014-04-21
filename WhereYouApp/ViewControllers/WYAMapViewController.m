@@ -40,7 +40,7 @@
     _currentUser = [WYAUser sharedInstance];
     [self returnToUser:self];
     [_userInfoView setHidden:YES];
-    [_currentUser.locationManager.location addObserver:self forKeyPath:@"location" options:NSKeyValueObservingOptionNew context:nil];
+    [_currentUser.locationManager.location addObserver:self forKeyPath:@"location" options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) context:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
