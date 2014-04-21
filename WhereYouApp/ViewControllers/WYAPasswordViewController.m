@@ -13,6 +13,8 @@
 @property IBOutlet UITextField *oldPasswordField;
 @property IBOutlet UITextField *passwordField;
 @property IBOutlet UITextField *confirmPasswordField;
+@property IBOutlet UIButton *changePasswordButton;
+@property WYAUser *currentUser;
 
 @end
 
@@ -42,6 +44,7 @@
 	[_oldPasswordField setTag:1];
     [_passwordField setTag:2];
     [_confirmPasswordField setTag:3];
+    _currentUser = [WYAUser sharedInstance];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,7 +66,25 @@
     return NO;
 }
 
-#warning implement password change
-
+- (IBAction)didPressPasswordresetButton:(id)sender {
+    if (sender == _changePasswordButton) {
+        if ([_oldPasswordField.text isEqualToString:_confirmPasswordField.text]) {
+            if([_currentUser changePassword:[WYAHash sha256:_oldPasswordField.text] toPassword:[WYAHash sha256:_passwordField.text]]) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else {
+                UIAlertView *invalidCredentialsAlert = [[UIAlertView alloc] initWithTitle:@"Incorrect Password" message:@"The password you entered was incorrect." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+                [invalidCredentialsAlert show];
+            }
+        }
+        else {
+            UIAlertView *invalidCredentialsAlert = [[UIAlertView alloc] initWithTitle:@"Passwords Don't Match" message:@"Your password confirmation does not match.  Try again" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+            [invalidCredentialsAlert show];
+        }
+    }
+    [_oldPasswordField setText:nil];
+    [_confirmPasswordField setText:nil];
+    [_passwordField setText:nil];
+}
 
 @end

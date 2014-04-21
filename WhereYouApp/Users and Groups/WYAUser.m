@@ -566,4 +566,29 @@
     [_blockedFriendsList addObject:[username lowercaseString]];
 }
 
+- (BOOL) changePassword:(NSString *)oldPassword toPassword:(NSString *)newPassword {
+    NSMutableDictionary *item = [[NSMutableDictionary alloc] init];
+    
+    DynamoDBAttributeValue *value = [[DynamoDBAttributeValue alloc] initWithS:[_username lowercaseString]];
+    NSString *key = @"username";
+    [item setValue:value forKey:key];
+    key = @"password";
+    
+    DynamoDBGetItemRequest *getRequest = [[DynamoDBGetItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:item];
+    [getRequest setAttributesToGet: [[NSMutableArray alloc] initWithObjects:@"username",nil]];
+    DynamoDBGetItemResponse *getResponse = [_dynamoDBClient getItem:getRequest];
+    value = [getResponse.item objectForKey:@"password"];
+    if ([value.s isEqualToString:oldPassword]) {
+        [item removeAllObjects];
+        value = [[DynamoDBAttributeValue alloc] initWithS:newPassword];
+        DynamoDBAttributeValueUpdate *updateValue = [[DynamoDBAttributeValueUpdate alloc] initWithValue:value andAction:@"PUT"];
+        [item setValue:updateValue forKey:key];
+        value = [[DynamoDBAttributeValue alloc] initWithS:[_username lowercaseString]];
+        DynamoDBUpdateItemRequest *updateRequest = [[DynamoDBUpdateItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:[[NSMutableDictionary alloc] initWithObjectsAndKeys:value ,@"username",nil] andAttributeUpdates:item];
+        [_dynamoDBClient updateItem:updateRequest];
+        return YES;
+    }
+    return NO;
+}
+
 @end

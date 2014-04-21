@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WYAUser.h"
+#import "WYAHash.h"
 
 @interface WYAPasswordViewController : UIViewController<UITextFieldDelegate>
 

@@ -45,5 +45,6 @@
 - (void) ignoreGroupInvite:(NSString *)groupID;
 - (void) ignoreUser:(NSString *)username;
 - (void) blockUser:(NSString *)username;
+- (BOOL) changePassword:(NSString *)oldPassword toPassword:(NSString *)newPassword;
 
 @end

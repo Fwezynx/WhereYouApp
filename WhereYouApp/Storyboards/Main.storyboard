@@ -564,6 +564,7 @@
                     <navigationItem key="navigationItem" title="Change Password" id="vTU-BK-P6T"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="changePasswordButton" destination="7TT-y3-8R0" id="pg2-2p-GIb"/>
                         <outlet property="confirmPasswordField" destination="RQl-6f-vre" id="ydq-lD-kur"/>
                         <outlet property="oldPasswordField" destination="6Np-uu-7Gg" id="vO2-p4-et8"/>
                         <outlet property="passwordField" destination="cPa-d1-dLx" id="0wZ-nQ-mhn"/>
