@@ -12,8 +12,8 @@
 #import "WYAGroups.h"
 #import "WYAUserAnnotation.h"
 
-#define ACCESS_KEY_ID @"AKIAJMXIHSTRUQOJSTGA"
-#define SECRET_ACCESS_KEY @"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"
+#define TOKEN_VENDING_MACHINE_URL @"whereyouapptvmenv.elasticbeanstalk.com"
+#define USE_SSL NO
 
 @interface WYAUser : NSObject<CLLocationManagerDelegate>
 
