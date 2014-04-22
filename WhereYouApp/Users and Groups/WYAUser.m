@@ -35,6 +35,9 @@
     _invitedFriendsList = [[NSMutableArray alloc] init];
     _blockedByUsersList = [[NSMutableArray alloc] init];
     _userAnnotations = [[NSMutableDictionary alloc] init];
+    AmazonSecurityTokenServiceClient *client = [[AmazonSecurityTokenServiceClient alloc] init];
+    SecurityTokenServiceAssumeRoleWithWebIdentityRequest *request = [[SecurityTokenServiceAssumeRoleWithWebIdentityRequest alloc] init];
+    SecurityTokenServiceAssumeRoleWithWebIdentityResponse *response = [[SecurityTokenServiceAssumeRoleWithWebIdentityResponse alloc] init];
     AmazonCredentials *credentials = [[AmazonCredentials alloc] initWithAccessKey:ACCESS_KEY_ID withSecretKey:SECRET_ACCESS_KEY];
     _dynamoDBClient = [[AmazonDynamoDBClient alloc] initWithCredentials:credentials];
     return self;
