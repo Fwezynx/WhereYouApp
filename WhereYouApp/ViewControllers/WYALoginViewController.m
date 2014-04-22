@@ -72,6 +72,7 @@
     [_user setFriendRequestList:[[NSMutableArray alloc] init]];
     [_user setGroupRequestList:[[NSMutableDictionary alloc] init]];
     [_user setInvitedFriendsList:[[NSMutableArray alloc] init]];
+    [_user setUserAnnotations:[[NSMutableDictionary alloc] init]];
     [_user.locationManager stopMonitoringSignificantLocationChanges];
     [_user.locationManager stopUpdatingHeading];
     [_user.locationManager stopUpdatingLocation];

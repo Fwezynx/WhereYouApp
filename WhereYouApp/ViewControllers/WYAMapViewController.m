@@ -57,10 +57,7 @@
     [_currentLatitude setText:[NSString stringWithFormat:@"Latitude:    %f",_currentUser.locationManager.location.coordinate.latitude]];
     [_currentLongitude setText:[NSString stringWithFormat:@"Longitude: %f",_currentUser.locationManager.location.coordinate.longitude]];
     // Add any new annotations.
-    NSArray *groups = [_currentUser.groupsList allValues];
-    for (WYAGroups *group in groups) {
-        [_mapView addAnnotations:[group.groupMembers allValues]];
-    }
+    [_mapView addAnnotations:[_currentUser.userAnnotations allValues]];
     // Enable or disable notifications.
     if ([_currentUser.friendRequestList count] != 0 || [_currentUser.groupRequestList count] != 0) {
         [_notifications setEnabled:YES];

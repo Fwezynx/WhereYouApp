@@ -12,7 +12,7 @@
 
 @property NSString *groupName;
 @property NSString *groupID;
-@property NSMutableDictionary *groupMembers;
+@property NSMutableArray *groupMembers;
 @property NSMutableArray *invitedMembers;
 
 @end

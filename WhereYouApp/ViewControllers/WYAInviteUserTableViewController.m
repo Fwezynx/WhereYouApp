@@ -33,7 +33,7 @@
     [self.navigationItem setTitle:@"Invite Friends"];
     WYAGroups *group = [_currentUser.groupsList objectForKey:_groupID];
     _users = [[NSMutableArray alloc] initWithArray:_currentUser.friendList];
-    [_users removeObjectsInArray:[group.groupMembers allKeys]];
+    [_users removeObjectsInArray:group.groupMembers];
 }
 
 - (void)didReceiveMemoryWarning

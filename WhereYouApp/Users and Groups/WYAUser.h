@@ -12,7 +12,8 @@
 #import "WYAGroups.h"
 #import "WYAUserAnnotation.h"
 
-
+#define ACCESS_KEY_ID @"AKIAJMXIHSTRUQOJSTGA"
+#define SECRET_ACCESS_KEY @"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"
 
 @interface WYAUser : NSObject<CLLocationManagerDelegate>
 
@@ -27,6 +28,7 @@
 @property NSMutableDictionary *groupRequestList;
 @property NSMutableArray *invitedFriendsList;
 @property NSMutableArray *blockedByUsersList;
+@property NSMutableDictionary *userAnnotations;
 @property AmazonDynamoDBClient *dynamoDBClient;
 
 - (BOOL) userExists:(NSString *)username;
@@ -45,5 +47,20 @@
 - (void) ignoreUser:(NSString *)username;
 - (void) blockUser:(NSString *)username;
 - (BOOL) changePassword:(NSString *)oldPassword toPassword:(NSString *)newPassword;
+
+/*
+ user updated location
+ user joined group
+ user left group
+ user made group request
+ user left group
+ user invited to group
+ user made friend request
+ user accepted friend request
+ user blocked friend request
+ user ignored friend request
+ user removed friend
+ user unblocked friend
+*/
 
 @end

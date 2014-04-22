@@ -73,8 +73,7 @@
     static NSString *CellIdentifier = @"ListPrototypeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     WYAGroups *group = [_currentUser.groupsList objectForKey:_groupID];
-    NSMutableArray *groupMembers = [NSMutableArray arrayWithArray: [[group.groupMembers allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
-    [cell.textLabel setText:[groupMembers objectAtIndex:indexPath.row]];
+    [cell.textLabel setText:[group.groupMembers objectAtIndex:indexPath.row]];
 
     return cell;
 }

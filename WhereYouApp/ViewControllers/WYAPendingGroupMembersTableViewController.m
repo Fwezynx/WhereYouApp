@@ -68,7 +68,7 @@
     static NSString *CellIdentifier = @"ListPrototypeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     WYAGroups *group = [_currentUser.groupRequestList objectForKey:_groupID];
-    [cell.textLabel setText:[group.invitedMembers objectAtIndex:indexPath.row]];
+    [cell.textLabel setText:[group.groupMembers objectAtIndex:indexPath.row]];
     
     return cell;
 }

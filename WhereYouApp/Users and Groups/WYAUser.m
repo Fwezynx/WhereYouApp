@@ -34,6 +34,7 @@
     _friendRequestList = [[NSMutableArray alloc] init];
     _invitedFriendsList = [[NSMutableArray alloc] init];
     _blockedByUsersList = [[NSMutableArray alloc] init];
+    _userAnnotations = [[NSMutableDictionary alloc] init];
     AmazonCredentials *credentials = [[AmazonCredentials alloc] initWithAccessKey:ACCESS_KEY_ID withSecretKey:SECRET_ACCESS_KEY];
     _dynamoDBClient = [[AmazonDynamoDBClient alloc] initWithCredentials:credentials];
     return self;
@@ -184,32 +185,35 @@
             value = [getResponse.item objectForKey:@"members"];
             // Get member info
             for (NSString *groupMember in value.sS) {
-                NSMutableDictionary *useritem = [[NSMutableDictionary alloc] init];
-                DynamoDBAttributeValue *uservalue = [[DynamoDBAttributeValue alloc] initWithS:groupMember];
-                NSString *userkey = @"username";
-                [useritem setValue:uservalue forKey:userkey];
-                
-                DynamoDBGetItemRequest *getUserRequest = [[DynamoDBGetItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:useritem];
-                [getUserRequest setAttributesToGet: [[NSMutableArray alloc] initWithObjects:@"latitude", @"longitude", @"altitudeuser", @"lastUpdated", nil]];
-                DynamoDBGetItemResponse *getUserResponse = [_dynamoDBClient getItem:getUserRequest];
-                value = [getUserResponse.item objectForKey:@"latitude"];
-                double latitude = [value.n doubleValue];
-                value = [getUserResponse.item objectForKey:@"longitude"];
-                double longitude = [value.n doubleValue];
-                value = [getUserResponse.item objectForKey:@"altitude"];
-                double altitude = [value.n doubleValue];
-                WYAUserAnnotation *user = [[WYAUserAnnotation alloc] initWithUserName:groupMember andCoordinate:CLLocationCoordinate2DMake(latitude, longitude) andAltitude:altitude];
-                value = [getUserResponse.item objectForKey:@"lastUpdated"];
-                NSDateFormatter *dateformat = [[NSDateFormatter alloc] init];
-                NSDate *updateTime = [dateformat dateFromString:value.s];
-                [user setUpdateTime:updateTime];
-                [group.groupMembers setObject:user forKey:groupMember];
+                if (![[_userAnnotations allKeys] containsObject:groupMember]) {
+                    NSMutableDictionary *useritem = [[NSMutableDictionary alloc] init];
+                    DynamoDBAttributeValue *uservalue = [[DynamoDBAttributeValue alloc] initWithS:groupMember];
+                    NSString *userkey = @"username";
+                    [useritem setValue:uservalue forKey:userkey];
+                    
+                    DynamoDBGetItemRequest *getUserRequest = [[DynamoDBGetItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:useritem];
+                    [getUserRequest setAttributesToGet: [[NSMutableArray alloc] initWithObjects:@"latitude", @"longitude", @"altitudeuser", @"lastUpdated", nil]];
+                    DynamoDBGetItemResponse *getUserResponse = [_dynamoDBClient getItem:getUserRequest];
+                    value = [getUserResponse.item objectForKey:@"latitude"];
+                    double latitude = [value.n doubleValue];
+                    value = [getUserResponse.item objectForKey:@"longitude"];
+                    double longitude = [value.n doubleValue];
+                    value = [getUserResponse.item objectForKey:@"altitude"];
+                    double altitude = [value.n doubleValue];
+                    WYAUserAnnotation *user = [[WYAUserAnnotation alloc] initWithUserName:groupMember andCoordinate:CLLocationCoordinate2DMake(latitude, longitude) andAltitude:altitude];
+                    value = [getUserResponse.item objectForKey:@"lastUpdated"];
+                    NSDateFormatter *dateformat = [[NSDateFormatter alloc] init];
+                    NSDate *updateTime = [dateformat dateFromString:value.s];
+                    [user setUpdateTime:updateTime];
+                    [_userAnnotations setObject:user forKey:groupMember];
+                    [group.groupMembers addObject:groupMember];
+                }
             }
-            [group.groupMembers removeObjectForKey:[_username lowercaseString]];
             value = [getResponse.item objectForKey:@"invites"];
             [group setInvitedMembers:value.sS];
             [_groupsList setObject:group forKey:group.groupID];
         }
+        [_userAnnotations removeObjectForKey:[_username lowercaseString]];
         for (NSString *groupID in groupRequests) {
             [item removeAllObjects];
             value = [[DynamoDBAttributeValue alloc] initWithN:groupID];
@@ -222,6 +226,8 @@
             [group setGroupID:groupID];
             [group setGroupName:value.s];
             value = [getResponse.item objectForKey:@"members"];
+            [group setGroupMembers:value.sS];
+            value = [getResponse.item objectForKey:@"invites"];
             [group setInvitedMembers:value.sS];
             [_groupRequestList setObject:group forKey:group.groupID];
         }

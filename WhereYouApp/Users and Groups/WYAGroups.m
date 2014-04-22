@@ -12,7 +12,7 @@
 
 - (id) init {
     self = [super init];
-    _groupMembers = [[NSMutableDictionary alloc] init];
+    _groupMembers = [[NSMutableArray alloc] init];
     _invitedMembers = [[NSMutableArray alloc] init];
     return self;
 }
