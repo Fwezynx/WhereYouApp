@@ -11,4 +11,6 @@
 
 @interface WYAInviteUserTableViewController : UITableViewController
 
+@property NSString *groupID;
+
 @end

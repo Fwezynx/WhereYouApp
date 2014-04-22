@@ -31,7 +31,9 @@
     [super viewDidLoad];
     _currentUser = [WYAUser sharedInstance];
     [self.navigationItem setTitle:@"Invite Friends"];
-#warning SQL query for friends not already in group.
+    WYAGroups *group = [_currentUser.groupsList objectForKey:_groupID];
+    _users = [[NSMutableArray alloc] initWithArray:_currentUser.friendList];
+    [_users removeObjectsInArray:group.groupMembers];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,14 +59,16 @@
     static NSString *CellIdentifier = @"ListPrototypeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = [_users objectAtIndex:indexPath.row];
+    [cell.textLabel setText:[_users objectAtIndex:indexPath.row]];
     
     return cell;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-#warning invite user implementation
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [_currentUser inviteUser:cell.textLabel.text toGroup:_groupID];
+    [_users removeObject:cell.textLabel.text];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     [tableView reloadData];
 }

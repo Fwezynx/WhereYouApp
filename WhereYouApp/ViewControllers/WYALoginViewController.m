@@ -63,7 +63,21 @@
     }
 }
 
-#warning Incomplete Implementation
+- (void)viewDidAppear:(BOOL)animated {
+    [_user setUsername:[[NSString alloc] init]];
+    [_user setFriendList:[[NSMutableArray alloc] init]];
+    [_user setGroupsList:[[NSMutableDictionary alloc] init]];
+    [_user setBlockedByUsersList:[[NSMutableArray alloc] init]];
+    [_user setBlockedFriendsList:[[NSMutableArray alloc] init]];
+    [_user setFriendRequestList:[[NSMutableArray alloc] init]];
+    [_user setGroupRequestList:[[NSMutableDictionary alloc] init]];
+    [_user setInvitedFriendsList:[[NSMutableArray alloc] init]];
+    [_user setUserAnnotations:[[NSMutableDictionary alloc] init]];
+    [_user.locationManager stopMonitoringSignificantLocationChanges];
+    [_user.locationManager stopUpdatingHeading];
+    [_user.locationManager stopUpdatingLocation];
+}
+
 - (IBAction)unwindToLogin:(UIStoryboardSegue *)segue
 {
 }

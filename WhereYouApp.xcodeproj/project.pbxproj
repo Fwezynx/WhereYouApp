@@ -18,9 +18,7 @@
 		6336ECCC18CFDC68009344CA /* WYAAddGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECCB18CFDC68009344CA /* WYAAddGroupsViewController.m */; };
 		6336ECCF18CFDC8F009344CA /* WYAHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECCE18CFDC8F009344CA /* WYAHash.m */; };
 		6336ECE118CFEB0B009344CA /* WYAFriendListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECD718CFEB0B009344CA /* WYAFriendListViewController.m */; };
-		6336ECE318CFEB0B009344CA /* WYAFriendRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECDB18CFEB0B009344CA /* WYAFriendRequestViewController.m */; };
 		6336ECE418CFEB0B009344CA /* WYANotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECDD18CFEB0B009344CA /* WYANotificationsViewController.m */; };
-		6336ECE718CFED1C009344CA /* WYAGroupRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECE618CFED1C009344CA /* WYAGroupRequestViewController.m */; };
 		6336ECEC18D11E6E009344CA /* street_view-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 6336ECEB18D11E6E009344CA /* street_view-26.png */; };
 		6336ECF518D123DF009344CA /* password2-64.png in Resources */ = {isa = PBXBuildFile; fileRef = 6336ECF318D123DF009344CA /* password2-64.png */; };
 		6336ECF618D123DF009344CA /* remove_user-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 6336ECF418D123DF009344CA /* remove_user-128.png */; };
@@ -53,6 +51,9 @@
 		63F68B3E18CCE11900D3A7D8 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63F68B3D18CCE11900D3A7D8 /* Login.storyboard */; };
 		63F68B4118CD4B0200D3A7D8 /* WYALoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F68B4018CD4B0200D3A7D8 /* WYALoginViewController.m */; };
 		63F68B4418CD5B0A00D3A7D8 /* WYARegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F68B4318CD5B0A00D3A7D8 /* WYARegistrationViewController.m */; };
+		A53166FC18FF356A00509948 /* WYAFriendNotificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A53166FB18FF356A00509948 /* WYAFriendNotificationTableViewController.m */; };
+		A53166FF18FF357A00509948 /* WYAGroupNotificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A53166FE18FF357A00509948 /* WYAGroupNotificationTableViewController.m */; };
+		A531670218FF424700509948 /* WYAPendingGroupMembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A531670118FF424700509948 /* WYAPendingGroupMembersTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,12 +85,8 @@
 		6336ECCD18CFDC8F009344CA /* WYAHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAHash.h; sourceTree = "<group>"; };
 		6336ECCE18CFDC8F009344CA /* WYAHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAHash.m; sourceTree = "<group>"; };
 		6336ECD718CFEB0B009344CA /* WYAFriendListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAFriendListViewController.m; sourceTree = "<group>"; };
-		6336ECDA18CFEB0B009344CA /* WYAFriendRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAFriendRequestViewController.h; sourceTree = "<group>"; };
-		6336ECDB18CFEB0B009344CA /* WYAFriendRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAFriendRequestViewController.m; sourceTree = "<group>"; };
 		6336ECDC18CFEB0B009344CA /* WYANotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYANotificationsViewController.h; sourceTree = "<group>"; };
 		6336ECDD18CFEB0B009344CA /* WYANotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYANotificationsViewController.m; sourceTree = "<group>"; };
-		6336ECE518CFED1C009344CA /* WYAGroupRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAGroupRequestViewController.h; sourceTree = "<group>"; };
-		6336ECE618CFED1C009344CA /* WYAGroupRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAGroupRequestViewController.m; sourceTree = "<group>"; };
 		6336ECEB18D11E6E009344CA /* street_view-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "street_view-26.png"; sourceTree = "<group>"; };
 		6336ECF318D123DF009344CA /* password2-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password2-64.png"; sourceTree = "<group>"; };
 		6336ECF418D123DF009344CA /* remove_user-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remove_user-128.png"; sourceTree = "<group>"; };
@@ -135,6 +132,12 @@
 		63F68B4018CD4B0200D3A7D8 /* WYALoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYALoginViewController.m; sourceTree = "<group>"; };
 		63F68B4218CD5B0A00D3A7D8 /* WYARegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYARegistrationViewController.h; sourceTree = "<group>"; };
 		63F68B4318CD5B0A00D3A7D8 /* WYARegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYARegistrationViewController.m; sourceTree = "<group>"; };
+		A53166FA18FF356A00509948 /* WYAFriendNotificationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAFriendNotificationTableViewController.h; sourceTree = "<group>"; };
+		A53166FB18FF356A00509948 /* WYAFriendNotificationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAFriendNotificationTableViewController.m; sourceTree = "<group>"; };
+		A53166FD18FF357A00509948 /* WYAGroupNotificationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAGroupNotificationTableViewController.h; sourceTree = "<group>"; };
+		A53166FE18FF357A00509948 /* WYAGroupNotificationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAGroupNotificationTableViewController.m; sourceTree = "<group>"; };
+		A531670018FF424700509948 /* WYAPendingGroupMembersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAPendingGroupMembersTableViewController.h; sourceTree = "<group>"; };
+		A531670118FF424700509948 /* WYAPendingGroupMembersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAPendingGroupMembersTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,10 +210,12 @@
 				6336ECCB18CFDC68009344CA /* WYAAddGroupsViewController.m */,
 				6336ECDC18CFEB0B009344CA /* WYANotificationsViewController.h */,
 				6336ECDD18CFEB0B009344CA /* WYANotificationsViewController.m */,
-				6336ECDA18CFEB0B009344CA /* WYAFriendRequestViewController.h */,
-				6336ECDB18CFEB0B009344CA /* WYAFriendRequestViewController.m */,
-				6336ECE518CFED1C009344CA /* WYAGroupRequestViewController.h */,
-				6336ECE618CFED1C009344CA /* WYAGroupRequestViewController.m */,
+				A53166FA18FF356A00509948 /* WYAFriendNotificationTableViewController.h */,
+				A53166FB18FF356A00509948 /* WYAFriendNotificationTableViewController.m */,
+				A53166FD18FF357A00509948 /* WYAGroupNotificationTableViewController.h */,
+				A53166FE18FF357A00509948 /* WYAGroupNotificationTableViewController.m */,
+				A531670018FF424700509948 /* WYAPendingGroupMembersTableViewController.h */,
+				A531670118FF424700509948 /* WYAPendingGroupMembersTableViewController.m */,
 			);
 			name = "View Controllers";
 			path = ViewControllers;
@@ -447,18 +452,19 @@
 				6336ECE118CFEB0B009344CA /* WYAFriendListViewController.m in Sources */,
 				6336ECCC18CFDC68009344CA /* WYAAddGroupsViewController.m in Sources */,
 				63827DF618C2CC4F009F05BF /* WYAUserAnnotation.m in Sources */,
+				A531670218FF424700509948 /* WYAPendingGroupMembersTableViewController.m in Sources */,
 				6336ECCF18CFDC8F009344CA /* WYAHash.m in Sources */,
 				63E534E118BD5D7200F14680 /* WYAAppDelegate.m in Sources */,
 				6336ECE418CFEB0B009344CA /* WYANotificationsViewController.m in Sources */,
 				63827DF518C2CC4F009F05BF /* WYAMapViewController.m in Sources */,
-				6336ECE718CFED1C009344CA /* WYAGroupRequestViewController.m in Sources */,
+				A53166FF18FF357A00509948 /* WYAGroupNotificationTableViewController.m in Sources */,
 				63F68B4118CD4B0200D3A7D8 /* WYALoginViewController.m in Sources */,
 				63E534E418BD5D7200F14680 /* WhereYouApp.xcdatamodeld in Sources */,
 				63BC803E18E0C6F1000509C9 /* WYAGroupMembersViewController.m in Sources */,
 				63F68B4418CD5B0A00D3A7D8 /* WYARegistrationViewController.m in Sources */,
 				6336ECC318CFDBDE009344CA /* WYAPasswordViewController.m in Sources */,
 				6336ECC818CFDC4C009344CA /* WYAGroups.m in Sources */,
-				6336ECE318CFEB0B009344CA /* WYAFriendRequestViewController.m in Sources */,
+				A53166FC18FF356A00509948 /* WYAFriendNotificationTableViewController.m in Sources */,
 				63BC804118E39353000509C9 /* WYAInviteUserTableViewController.m in Sources */,
 				63E534DD18BD5D7200F14680 /* main.m in Sources */,
 				6371B4C518CD673D009CE5ED /* WYAUser.m in Sources */,

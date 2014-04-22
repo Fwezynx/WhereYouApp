@@ -13,7 +13,6 @@
 @property NSString *groupName;
 @property NSString *groupID;
 @property NSMutableArray *groupMembers;
-//@property BOOL completed;
-//@property (readonly) NSDate *creationDate;
+@property NSMutableArray *invitedMembers;
 
 @end

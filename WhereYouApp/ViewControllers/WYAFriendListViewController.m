@@ -18,14 +18,6 @@
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
-    WYAAddFriendNameViewController *source = [segue sourceViewController];
-#warning Implementation with database required.  User should be pending from here
-    if (source.friendName != nil) {
-        WYAUserAnnotation *friend = [[WYAUserAnnotation alloc] initWithUserName:source.friendName andCoordinate:_currentUser.locationManager.location.coordinate andAltitude:_currentUser.locationManager.location.altitude];
-        [_currentUser.friendList addObject:friend];
-        [_currentUser.friendRequestList addObject:friend];
-        [self.tableView reloadData];
-    }
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -40,6 +32,10 @@
     _currentUser = [WYAUser sharedInstance];
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -49,7 +45,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [_currentUser.friendList count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -63,18 +59,18 @@
     static NSString *CellIdentifier = @"ListPrototypeCell";
     UITableViewCell *cell = [tableView
                              dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    WYAUserAnnotation *friend = [_currentUser.friendList objectAtIndex:indexPath.row];
-    [cell.textLabel setText:friend.title];
+    [cell.textLabel setText:[_currentUser.friendList objectAtIndex:indexPath.row]];
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-#warning remove user from database required
     // Remove the row from data model
-    [_currentUser.friendList removeObjectAtIndex:indexPath.row];
-    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *username = cell.textLabel.text;
+    [_currentUser removeUser:username];
+    [_currentUser.friendList removeObject:username];
     // Request table view to reload
     [tableView reloadData];
 }
