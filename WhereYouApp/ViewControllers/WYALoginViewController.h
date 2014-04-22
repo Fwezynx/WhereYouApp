@@ -18,5 +18,6 @@
 - (IBAction)didPressLogin:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *userField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UIScrollView *scroll;
 
 @end

@@ -20,7 +20,7 @@
 
 @synthesize userField = _userField;
 @synthesize passwordField = _passwordField;
-
+@synthesize scroll;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -87,7 +87,11 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
+    
+    scroll.scrollEnabled = YES;
+    [scroll setContentSize:CGSizeMake(300, 800)];
     _user = [WYAUser sharedInstance];
     [_passwordField setSecureTextEntry:YES];
     [_userField setDelegate:self];
