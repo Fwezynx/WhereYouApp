@@ -24,6 +24,7 @@
 @synthesize confirmPasswordField = _confirmPasswordField;
 @synthesize questionField = _questionField;
 @synthesize answerField = _answerField;
+@synthesize scroll;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +38,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    scroll.scrollEnabled = YES;
+    [scroll setContentSize:CGSizeMake(300, 1000)];
     _currentUser = [WYAUser sharedInstance];
     [_passwordField setSecureTextEntry:YES];
     [_confirmPasswordField setSecureTextEntry:YES];
