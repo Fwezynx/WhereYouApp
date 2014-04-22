@@ -12,6 +12,7 @@
 #import "WYAGroups.h"
 #import "WYAUserAnnotation.h"
 
+// TVM
 #define TOKEN_VENDING_MACHINE_URL @"whereyouapptvmenv.elasticbeanstalk.com"
 #define USE_SSL NO
 
