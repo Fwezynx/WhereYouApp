@@ -11,5 +11,15 @@
 #import "WYAUser.h"
 
 @interface WYARegistrationViewController : UIViewController<UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *userField;
+
+
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UITextField *confirmPasswordField;
+@property (weak, nonatomic) IBOutlet UITextField *questionField;
+
+@property (weak, nonatomic) IBOutlet UITextField *answerField;
+
 
 @end

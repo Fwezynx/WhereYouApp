@@ -10,14 +10,17 @@
 
 @interface WYALoginViewController ()
 
-@property IBOutlet UITextField *userField;
-@property IBOutlet UITextField *passwordField;
 @property IBOutlet UIBarButtonItem *loginButton;
 @property WYAUser *user;
 
 @end
 
+
 @implementation WYALoginViewController
+
+@synthesize userField = _userField;
+@synthesize passwordField = _passwordField;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -113,5 +116,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+
+{
+    [_userField resignFirstResponder];
+    [_passwordField resignFirstResponder];
+}
+
+
 
 @end
