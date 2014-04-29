@@ -10,11 +10,13 @@
 #import <MapKit/MapKit.h>
 #import <AWSDynamoDB/AWSDynamoDB.h>
 #import <AWSSecurityTokenService/AWSSecurityTokenService.h>
+#import <AWSSNS/AWSSNS.h>
+#import <AWSSQS/AWSSQS.h>
 #import "WYAGroups.h"
 #import "WYAUserAnnotation.h"
 
-#define TOKEN_VENDING_MACHINE_URL @"whereyouapptvmenv.elasticbeanstalk.com"
-#define USE_SSL NO
+#define ACCESS_KEY_ID @"AKIAIYHX2EZA3TAI4CZA"
+#define SECRET_ACCESS_KEY @"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"
 
 @interface WYAUser : NSObject<CLLocationManagerDelegate>
 

@@ -13,10 +13,6 @@
 @property IBOutlet UIBarButtonItem *notifications;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property WYAUser *currentUser;
-@property IBOutlet UILabel *currentLatitude;
-@property IBOutlet UILabel *currentLongitude;
-@property IBOutlet UILabel *latitude;
-@property IBOutlet UILabel *longitude;
 @property IBOutlet UILabel *height;
 @property IBOutlet UILabel *updateTime;
 @property IBOutlet UIView *userInfoView;
@@ -43,19 +39,8 @@
     [_currentUser.locationManager.location addObserver:self forKeyPath:@"location" options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) context:nil];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    if ([keyPath isEqualToString:@"location"]) {
-        [_currentLatitude setText:[NSString stringWithFormat:@"Latitude:    %f",_currentUser.locationManager.location.coordinate.latitude]];
-        [_currentLongitude setText:[NSString stringWithFormat:@"Longitude: %f",_currentUser.locationManager.location.coordinate.longitude]];
-    }
-}
-
 - (void) viewDidAppear:(BOOL)animated
 {
-    // Set current user details.
-    [_currentLatitude setText:[NSString stringWithFormat:@"Latitude:    %f",_currentUser.locationManager.location.coordinate.latitude]];
-    [_currentLongitude setText:[NSString stringWithFormat:@"Longitude: %f",_currentUser.locationManager.location.coordinate.longitude]];
     // Add any new annotations.
     [_mapView addAnnotations:[_currentUser.userAnnotations allValues]];
     // Enable or disable notifications.
@@ -102,8 +87,6 @@
     [userAnnotation setSubtitle:[NSString stringWithFormat:@"%d feet",[self calculateDistance:location]]];
     // Display additional user information
     [_userInfoView setHidden:NO];
-    [_latitude setText:[NSString stringWithFormat:@"Latitude:    %f",userAnnotation.coordinate.latitude]];
-    [_longitude setText:[NSString stringWithFormat:@"Longitude: %f",userAnnotation.coordinate.longitude]];
     int heightDifference = userAnnotation.altitude - _currentUser.locationManager.location.altitude;
     NSString *heightPlacement = @"above";
     if (heightDifference < 0) {
@@ -111,7 +94,7 @@
         heightPlacement = @"below";
     }
     [_height setText:[NSString stringWithFormat:@"%d feet %@",heightDifference, heightPlacement]];
-    int timeDifference = (int)[userAnnotation.updateTime timeIntervalSinceNow];
+    NSInteger timeDifference = [userAnnotation.updateTime timeIntervalSinceNow];
     NSString *timeUnits = @"seconds";
     if (timeDifference >= 60) {
         timeDifference /= 60;
@@ -125,7 +108,7 @@
             }
         }
     }
-    [_updateTime setText:[NSString stringWithFormat:@"%d %@ ago",timeDifference, timeUnits]];
+    [_updateTime setText:[NSString stringWithFormat:@"%ld %@ ago",(long)timeDifference, timeUnits]];
 }
 
 -(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view

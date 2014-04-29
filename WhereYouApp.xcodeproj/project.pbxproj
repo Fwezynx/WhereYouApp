@@ -52,6 +52,7 @@
 		A53166FC18FF356A00509948 /* WYAFriendNotificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A53166FB18FF356A00509948 /* WYAFriendNotificationTableViewController.m */; };
 		A53166FF18FF357A00509948 /* WYAGroupNotificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A53166FE18FF357A00509948 /* WYAGroupNotificationTableViewController.m */; };
 		A531670218FF424700509948 /* WYAPendingGroupMembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A531670118FF424700509948 /* WYAPendingGroupMembersTableViewController.m */; };
+		A55DF26B1910506000A942CB /* AWSSQS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55DF26A1910506000A942CB /* AWSSQS.framework */; };
 		A574348A19071A22006779FC /* AWSSecurityTokenService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A574348919071A22006779FC /* AWSSecurityTokenService.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +136,7 @@
 		A53166FE18FF357A00509948 /* WYAGroupNotificationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAGroupNotificationTableViewController.m; sourceTree = "<group>"; };
 		A531670018FF424700509948 /* WYAPendingGroupMembersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYAPendingGroupMembersTableViewController.h; sourceTree = "<group>"; };
 		A531670118FF424700509948 /* WYAPendingGroupMembersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAPendingGroupMembersTableViewController.m; sourceTree = "<group>"; };
+		A55DF26A1910506000A942CB /* AWSSQS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSSQS.framework; path = "aws-ios-sdk-1.7.1/AWSSQS.framework"; sourceTree = "<group>"; };
 		A574348919071A22006779FC /* AWSSecurityTokenService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSSecurityTokenService.framework; path = "aws-ios-sdk-1.7.1/AWSSecurityTokenService.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A55DF26B1910506000A942CB /* AWSSQS.framework in Frameworks */,
 				A574348A19071A22006779FC /* AWSSecurityTokenService.framework in Frameworks */,
 				635BB80A18F373420009C42B /* AWSDynamoDB.framework in Frameworks */,
 				633E5F2718E4DB81001CD7A4 /* AWSRuntime.framework in Frameworks */,
@@ -283,6 +286,7 @@
 		63E534CD18BD5D7100F14680 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A55DF26A1910506000A942CB /* AWSSQS.framework */,
 				A574348919071A22006779FC /* AWSSecurityTokenService.framework */,
 				635BB80918F373420009C42B /* AWSDynamoDB.framework */,
 				633E5F2418E4DB81001CD7A4 /* AWSRuntime.framework */,

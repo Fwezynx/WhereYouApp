@@ -8,6 +8,13 @@
 
 #import "WYAUser.h"
 
+@interface WYAUser()
+
+@property AmazonSNSClient *snsClient;
+@property AmazonSQSClient *sqsClient;
+
+@end
+
 @implementation WYAUser
 
 // Return singleton.
@@ -35,11 +42,15 @@
     _invitedFriendsList = [[NSMutableArray alloc] init];
     _blockedByUsersList = [[NSMutableArray alloc] init];
     _userAnnotations = [[NSMutableDictionary alloc] init];
+    // AWS Credentials
     AmazonSecurityTokenServiceClient *stsClient = [[AmazonSecurityTokenServiceClient alloc] initWithAccessKey:ACCESS_KEY_ID withSecretKey:SECRET_ACCESS_KEY];
     SecurityTokenServiceGetSessionTokenRequest *request = [[SecurityTokenServiceGetSessionTokenRequest alloc] init];
     SecurityTokenServiceGetSessionTokenResponse *response = [stsClient getSessionToken:request];
     AmazonCredentials *credentials = [[AmazonCredentials alloc] initWithAccessKey:response.credentials.accessKeyId withSecretKey:response.credentials.secretAccessKey withSecurityToken:response.credentials.sessionToken];
     _dynamoDBClient = [[AmazonDynamoDBClient alloc] initWithCredentials:credentials];
+    _snsClient = [[AmazonSNSClient alloc] initWithCredentials:credentials];
+    _sqsClient = [[AmazonSQSClient alloc] initWithCredentials:credentials];
+    
     return self;
 }
 
@@ -138,6 +149,11 @@
     // Construct request
     DynamoDBPutItemRequest *putRequest = [[DynamoDBPutItemRequest alloc] initWithTableName:@"WhereYouApp" andItem:item];
     [_dynamoDBClient putItem:putRequest];
+    
+    // Create SNS user topic
+    SNSCreateTopicRequest *userTopic = [[SNSCreateTopicRequest alloc] initWithName:[_username lowercaseString]];
+    [_snsClient createTopic:userTopic];
+    
     return YES;
 }
 
@@ -151,7 +167,6 @@
     [item setValue:value forKey:key];
     
     DynamoDBGetItemRequest *getRequest = [[DynamoDBGetItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:item];
-    [getRequest setAttributesToGet: [[NSMutableArray alloc] initWithObjects:@"password", @"friends", @"friendRequests", @"invitedFriends", @"blockedUsers", @"blockedByUsers", @"groups", @"groupRequests", nil]];
     DynamoDBGetItemResponse *getResponse = [_dynamoDBClient getItem:getRequest];
     value = [getResponse.item objectForKey:@"password"];
     if ([password isEqualToString:value.s]) {
