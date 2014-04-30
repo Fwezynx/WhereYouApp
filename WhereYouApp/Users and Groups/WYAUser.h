@@ -15,9 +15,6 @@
 #import "WYAGroups.h"
 #import "WYAUserAnnotation.h"
 
-#define ACCESS_KEY_ID @"AKIAIYHX2EZA3TAI4CZA"
-#define SECRET_ACCESS_KEY @"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"
-
 @interface WYAUser : NSObject<CLLocationManagerDelegate>
 
 + (WYAUser *) sharedInstance;

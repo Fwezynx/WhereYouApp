@@ -221,6 +221,7 @@
                     WYAUserAnnotation *user = [[WYAUserAnnotation alloc] initWithUserName:groupMember andCoordinate:CLLocationCoordinate2DMake(latitude, longitude) andAltitude:altitude];
                     value = [getUserResponse.item objectForKey:@"lastUpdated"];
                     NSDateFormatter *dateformat = [[NSDateFormatter alloc] init];
+                    [dateformat setDateFormat:@"yyyy-MM-dd HH:mm:ss z"];
                     NSDate *updateTime = [dateformat dateFromString:value.s];
                     [user setUpdateTime:updateTime];
                     [_userAnnotations setObject:user forKey:groupMember];
