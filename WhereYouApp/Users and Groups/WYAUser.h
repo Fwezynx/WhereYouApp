@@ -10,10 +10,10 @@
 #import <MapKit/MapKit.h>
 #import <AWSDynamoDB/AWSDynamoDB.h>
 #import <AWSSecurityTokenService/AWSSecurityTokenService.h>
-#import <AWSSNS/AWSSNS.h>
-#import <AWSSQS/AWSSQS.h>
 #import "WYAGroups.h"
 #import "WYAUserAnnotation.h"
+
+
 
 @interface WYAUser : NSObject<CLLocationManagerDelegate>
 
@@ -47,20 +47,6 @@
 - (void) ignoreUser:(NSString *)username;
 - (void) blockUser:(NSString *)username;
 - (BOOL) changePassword:(NSString *)oldPassword toPassword:(NSString *)newPassword;
-
-/*
- user updated location
- user joined group
- user left group
- user made group request
- user left group
- user invited to group
- user made friend request
- user accepted friend request
- user blocked friend request
- user ignored friend request
- user removed friend
- user unblocked friend
-*/
+- (void) updateInformation;
 
 @end

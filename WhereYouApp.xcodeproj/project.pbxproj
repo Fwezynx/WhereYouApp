@@ -24,7 +24,6 @@
 		6336ECF618D123DF009344CA /* remove_user-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 6336ECF418D123DF009344CA /* remove_user-128.png */; };
 		6336ECF918D283DA009344CA /* WYAAddFriendNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6336ECF818D283DA009344CA /* WYAAddFriendNameViewController.m */; };
 		633E5F2718E4DB81001CD7A4 /* AWSRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633E5F2418E4DB81001CD7A4 /* AWSRuntime.framework */; };
-		633E5F2818E4DB81001CD7A4 /* AWSSNS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633E5F2518E4DB81001CD7A4 /* AWSSNS.framework */; };
 		633E5F2B18EB1110001CD7A4 /* WYAUserAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 633E5F2A18EB1110001CD7A4 /* WYAUserAnnotationView.m */; };
 		635BB80A18F373420009C42B /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635BB80918F373420009C42B /* AWSDynamoDB.framework */; };
 		6371B4C518CD673D009CE5ED /* WYAUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6371B4C418CD673D009CE5ED /* WYAUser.m */; };
@@ -52,8 +51,8 @@
 		A53166FC18FF356A00509948 /* WYAFriendNotificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A53166FB18FF356A00509948 /* WYAFriendNotificationTableViewController.m */; };
 		A53166FF18FF357A00509948 /* WYAGroupNotificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A53166FE18FF357A00509948 /* WYAGroupNotificationTableViewController.m */; };
 		A531670218FF424700509948 /* WYAPendingGroupMembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A531670118FF424700509948 /* WYAPendingGroupMembersTableViewController.m */; };
-		A55DF26B1910506000A942CB /* AWSSQS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55DF26A1910506000A942CB /* AWSSQS.framework */; };
 		A574348A19071A22006779FC /* AWSSecurityTokenService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A574348919071A22006779FC /* AWSSecurityTokenService.framework */; };
+		A5F6E13F191151EB00737FEA /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F6E13E191151EB00737FEA /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +137,7 @@
 		A531670118FF424700509948 /* WYAPendingGroupMembersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYAPendingGroupMembersTableViewController.m; sourceTree = "<group>"; };
 		A55DF26A1910506000A942CB /* AWSSQS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSSQS.framework; path = "aws-ios-sdk-1.7.1/AWSSQS.framework"; sourceTree = "<group>"; };
 		A574348919071A22006779FC /* AWSSecurityTokenService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSSecurityTokenService.framework; path = "aws-ios-sdk-1.7.1/AWSSecurityTokenService.framework"; sourceTree = "<group>"; };
+		A5F6E13E191151EB00737FEA /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,11 +145,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A55DF26B1910506000A942CB /* AWSSQS.framework in Frameworks */,
+				A5F6E13F191151EB00737FEA /* Parse.framework in Frameworks */,
 				A574348A19071A22006779FC /* AWSSecurityTokenService.framework in Frameworks */,
 				635BB80A18F373420009C42B /* AWSDynamoDB.framework in Frameworks */,
 				633E5F2718E4DB81001CD7A4 /* AWSRuntime.framework in Frameworks */,
-				633E5F2818E4DB81001CD7A4 /* AWSSNS.framework in Frameworks */,
 				639904B118BE64BA0074BB69 /* MapKit.framework in Frameworks */,
 				63E534D118BD5D7200F14680 /* CoreGraphics.framework in Frameworks */,
 				63E534D318BD5D7200F14680 /* UIKit.framework in Frameworks */,
@@ -286,6 +285,7 @@
 		63E534CD18BD5D7100F14680 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5F6E13E191151EB00737FEA /* Parse.framework */,
 				A55DF26A1910506000A942CB /* AWSSQS.framework */,
 				A574348919071A22006779FC /* AWSSecurityTokenService.framework */,
 				635BB80918F373420009C42B /* AWSDynamoDB.framework */,
@@ -595,6 +595,7 @@
 					/Users/JeanValjean24601/Dropbox/Poly/CS,
 					"9033/WhereYouApp/aws-ios-sdk-1.7.1",
 					"$(PROJECT_DIR)/aws-ios-sdk-1.7.1",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WhereYouApp/WhereYouApp-Prefix.pch";
@@ -614,6 +615,7 @@
 					/Users/JeanValjean24601/Dropbox/Poly/CS,
 					"9033/WhereYouApp/aws-ios-sdk-1.7.1",
 					"$(PROJECT_DIR)/aws-ios-sdk-1.7.1",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WhereYouApp/WhereYouApp-Prefix.pch";

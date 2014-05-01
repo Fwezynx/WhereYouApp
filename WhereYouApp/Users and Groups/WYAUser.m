@@ -10,9 +10,6 @@
 
 @interface WYAUser()
 
-@property AmazonSNSClient *snsClient;
-@property AmazonSQSClient *sqsClient;
-
 @end
 
 @implementation WYAUser
@@ -48,8 +45,6 @@
     SecurityTokenServiceGetSessionTokenResponse *response = [stsClient getSessionToken:request];
     AmazonCredentials *credentials = [[AmazonCredentials alloc] initWithAccessKey:response.credentials.accessKeyId withSecretKey:response.credentials.secretAccessKey withSecurityToken:response.credentials.sessionToken];
     _dynamoDBClient = [[AmazonDynamoDBClient alloc] initWithCredentials:credentials];
-    _snsClient = [[AmazonSNSClient alloc] initWithCredentials:credentials];
-    _sqsClient = [[AmazonSQSClient alloc] initWithCredentials:credentials];
     
     return self;
 }
@@ -149,10 +144,6 @@
     // Construct request
     DynamoDBPutItemRequest *putRequest = [[DynamoDBPutItemRequest alloc] initWithTableName:@"WhereYouApp" andItem:item];
     [_dynamoDBClient putItem:putRequest];
-    
-    // Create SNS user topic
-    SNSCreateTopicRequest *userTopic = [[SNSCreateTopicRequest alloc] initWithName:[_username lowercaseString]];
-    [_snsClient createTopic:userTopic];
     
     return YES;
 }
@@ -614,6 +605,97 @@
         return YES;
     }
     return NO;
+}
+
+- (void) updateInformation {
+    // Create attributes for request
+    NSMutableDictionary *item = [[NSMutableDictionary alloc] init];
+    
+    DynamoDBAttributeValue *value = [[DynamoDBAttributeValue alloc] initWithS:[_username lowercaseString]];
+    NSString *key = @"username";
+    [item setValue:value forKey:key];
+    
+    DynamoDBGetItemRequest *getRequest = [[DynamoDBGetItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:item];
+    DynamoDBGetItemResponse *getResponse = [_dynamoDBClient getItem:getRequest];
+    value = [getResponse.item objectForKey:@"friends"];
+    [_friendList addObjectsFromArray:value.sS];
+    value = [getResponse.item objectForKey:@"friendRequests"];
+    [_friendRequestList addObjectsFromArray:value.sS];
+    value = [getResponse.item objectForKey:@"invitedFriends"];
+    [_invitedFriendsList addObjectsFromArray:value.sS];
+    value = [getResponse.item objectForKey:@"blockedUsers"];
+    [_blockedFriendsList addObjectsFromArray:value.sS];
+    value = [getResponse.item objectForKey:@"blockedByUsers"];
+    [_blockedByUsersList addObjectsFromArray:value.sS];
+    // Get group names
+    NSMutableArray *groups = [[NSMutableArray alloc] init];
+    NSMutableArray *groupRequests = [[NSMutableArray alloc] init];
+    value = [getResponse.item objectForKey:@"groups"];
+    groups = value.nS;
+    value = [getResponse.item objectForKey:@"groupRequests"];
+    [groupRequests addObjectsFromArray:value.nS];
+#warning optimize with dynamodbcondition query search?
+    for (NSString *groupID in groups) {
+        [item removeAllObjects];
+        value = [[DynamoDBAttributeValue alloc] initWithN:groupID];
+        key = @"groupID";
+        [item setObject:value forKey:key];
+        getRequest = [[DynamoDBGetItemRequest alloc] initWithTableName:@"WhereYouAppGroups" andKey:item];
+        getResponse = [_dynamoDBClient getItem:getRequest];
+        value = [getResponse.item objectForKey:@"groupName"];
+        WYAGroups *group = [[WYAGroups alloc] init];
+        [group setGroupID:groupID];
+        [group setGroupName:value.s];
+        value = [getResponse.item objectForKey:@"members"];
+        // Get member info
+        for (NSString *groupMember in value.sS) {
+            if (![[_userAnnotations allKeys] containsObject:groupMember]) {
+                NSMutableDictionary *useritem = [[NSMutableDictionary alloc] init];
+                DynamoDBAttributeValue *uservalue = [[DynamoDBAttributeValue alloc] initWithS:groupMember];
+                NSString *userkey = @"username";
+                [useritem setValue:uservalue forKey:userkey];
+                
+                DynamoDBGetItemRequest *getUserRequest = [[DynamoDBGetItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:useritem];
+                    [getUserRequest setAttributesToGet: [[NSMutableArray alloc] initWithObjects:@"latitude", @"longitude", @"altitudeuser", @"lastUpdated", nil]];
+                DynamoDBGetItemResponse *getUserResponse = [_dynamoDBClient getItem:getUserRequest];
+                value = [getUserResponse.item objectForKey:@"latitude"];
+                double latitude = [value.n doubleValue];
+                value = [getUserResponse.item objectForKey:@"longitude"];
+                double longitude = [value.n doubleValue];
+                value = [getUserResponse.item objectForKey:@"altitude"];
+                double altitude = [value.n doubleValue];
+                WYAUserAnnotation *user = [[WYAUserAnnotation alloc] initWithUserName:groupMember andCoordinate:CLLocationCoordinate2DMake(latitude, longitude) andAltitude:altitude];
+                value = [getUserResponse.item objectForKey:@"lastUpdated"];
+                NSDateFormatter *dateformat = [[NSDateFormatter alloc] init];
+                [dateformat setDateFormat:@"yyyy-MM-dd HH:mm:ss z"];
+                NSDate *updateTime = [dateformat dateFromString:value.s];
+                [user setUpdateTime:updateTime];
+                [_userAnnotations setObject:user forKey:groupMember];
+                [group.groupMembers addObject:groupMember];
+            }
+        }
+        value = [getResponse.item objectForKey:@"invites"];
+        [group setInvitedMembers:value.sS];
+        [_groupsList setObject:group forKey:group.groupID];
+    }
+    [_userAnnotations removeObjectForKey:[_username lowercaseString]];
+    for (NSString *groupID in groupRequests) {
+        [item removeAllObjects];
+        value = [[DynamoDBAttributeValue alloc] initWithN:groupID];
+        key = @"groupID";
+        [item setObject:value forKey:key];
+        getRequest = [[DynamoDBGetItemRequest alloc] initWithTableName:@"WhereYouAppGroups" andKey:item];
+        getResponse = [_dynamoDBClient getItem:getRequest];
+        value = [getResponse.item objectForKey:@"groupName"];
+        WYAGroups *group = [[WYAGroups alloc] init];
+        [group setGroupID:groupID];
+        [group setGroupName:value.s];
+        value = [getResponse.item objectForKey:@"members"];
+        [group setGroupMembers:value.sS];
+        value = [getResponse.item objectForKey:@"invites"];
+        [group setInvitedMembers:value.sS];
+        [_groupRequestList setObject:group forKey:group.groupID];
+    }
 }
 
 @end

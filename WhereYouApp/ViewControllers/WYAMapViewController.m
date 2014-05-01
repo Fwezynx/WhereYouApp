@@ -41,6 +41,9 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
+#warning temporary hack
+    [_mapView removeAnnotations:_mapView.annotations];
+    [_currentUser updateInformation];
     // Add any new annotations.
     [_mapView addAnnotations:[_currentUser.userAnnotations allValues]];
     // Enable or disable notifications.
@@ -55,6 +58,8 @@
 // Center map around user and zoom.
 - (IBAction) returnToUser:(id)sender
 {
+#warning temporary hack
+    [self viewDidAppear:YES];
     double miles = 1;
     double scalingFactor = ABS((cos(2*M_PI*_currentUser.locationManager.location.coordinate.latitude/360)));
     MKCoordinateSpan span;
@@ -94,7 +99,7 @@
         heightPlacement = @"below";
     }
     [_height setText:[NSString stringWithFormat:@"%d feet %@",heightDifference, heightPlacement]];
-    NSInteger timeDifference = [userAnnotation.updateTime timeIntervalSinceNow];
+    NSInteger timeDifference = -1*[userAnnotation.updateTime timeIntervalSinceNow];
     NSString *timeUnits = @"seconds";
     if (timeDifference >= 60) {
         timeDifference /= 60;
