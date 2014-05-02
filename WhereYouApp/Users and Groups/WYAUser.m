@@ -609,12 +609,20 @@
 
 - (void) updateInformation {
     // Create attributes for request
+    [_friendList removeAllObjects];
+    [_invitedFriendsList removeAllObjects];
+    [_friendRequestList removeAllObjects];
+    [_blockedFriendsList removeAllObjects];
+    [_blockedByUsersList removeAllObjects];
+    [_groupRequestList removeAllObjects];
+    [_groupsList removeAllObjects];
+    [_userAnnotations removeAllObjects];
     NSMutableDictionary *item = [[NSMutableDictionary alloc] init];
     
     DynamoDBAttributeValue *value = [[DynamoDBAttributeValue alloc] initWithS:[_username lowercaseString]];
     NSString *key = @"username";
     [item setValue:value forKey:key];
-    
+
     DynamoDBGetItemRequest *getRequest = [[DynamoDBGetItemRequest alloc] initWithTableName:@"WhereYouApp" andKey:item];
     DynamoDBGetItemResponse *getResponse = [_dynamoDBClient getItem:getRequest];
     value = [getResponse.item objectForKey:@"friends"];
