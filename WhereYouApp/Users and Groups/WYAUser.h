@@ -14,6 +14,7 @@
 #import "WYAUserAnnotation.h"
 
 
+
 @interface WYAUser : NSObject<CLLocationManagerDelegate>
 
 + (WYAUser *) sharedInstance;
