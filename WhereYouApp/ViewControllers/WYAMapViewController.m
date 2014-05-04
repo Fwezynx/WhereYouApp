@@ -60,6 +60,7 @@
 {
 #warning temporary hack
     [self viewDidAppear:YES];
+    
     double miles = 1;
     double scalingFactor = ABS((cos(2*M_PI*_currentUser.locationManager.location.coordinate.latitude/360)));
     MKCoordinateSpan span;

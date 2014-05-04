@@ -38,6 +38,12 @@
     [_addButton setAction:NSSelectorFromString(@"selector:")];
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+#warning temporary hack
+    [_currentUser updateInformation];
+    [self.tableView reloadData];
+}
+
 - (IBAction) selector:(id)sender
 {
     if (sender == _addButton) {

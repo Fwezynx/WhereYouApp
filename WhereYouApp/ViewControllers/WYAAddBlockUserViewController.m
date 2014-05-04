@@ -32,6 +32,12 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+#warning temporary hack
+    [_currentUser updateInformation];
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

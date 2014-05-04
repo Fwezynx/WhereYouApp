@@ -32,6 +32,12 @@
     _currentUser = [WYAUser sharedInstance];
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+#warning temporary hack
+    [_currentUser updateInformation];
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

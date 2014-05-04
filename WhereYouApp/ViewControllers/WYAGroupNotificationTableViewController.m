@@ -77,4 +77,15 @@
     [self.navigationController pushViewController:newView animated:YES];
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Remove the row from data model
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *groupID = [NSString stringWithFormat:@"%ld",(long)cell.tag];
+    [_currentUser ignoreGroupInvite:groupID];
+    [_currentUser.groupRequestList removeObjectForKey:groupID];
+    // Request table view to reload
+    [tableView reloadData];
+}
+
 @end

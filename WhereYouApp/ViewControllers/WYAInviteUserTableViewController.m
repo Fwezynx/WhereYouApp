@@ -34,6 +34,13 @@
     WYAGroups *group = [_currentUser.groupsList objectForKey:_groupID];
     _users = [[NSMutableArray alloc] initWithArray:_currentUser.friendList];
     [_users removeObjectsInArray:group.groupMembers];
+    [_users removeObjectsInArray:group.invitedMembers];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+#warning temporary hack
+    [_currentUser updateInformation];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,6 +76,8 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [_currentUser inviteUser:cell.textLabel.text toGroup:_groupID];
     [_users removeObject:cell.textLabel.text];
+    WYAGroups *group = [_currentUser.groupsList objectForKey:_groupID];
+    [group.invitedMembers addObject:cell.textLabel.text];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     [tableView reloadData];
 }

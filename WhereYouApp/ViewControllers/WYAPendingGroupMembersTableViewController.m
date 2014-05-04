@@ -37,10 +37,6 @@
     [self.navigationItem setRightBarButtonItem:_addButton];
     [_addButton setTarget:self];
     [_addButton setAction:NSSelectorFromString(@"selector:")];
-    _removeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:nil action:nil];
-    [self.navigationItem setLeftBarButtonItem:_removeButton];
-    [_removeButton setTarget:self];
-    [_removeButton setAction:NSSelectorFromString(@"selector:")];
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,10 +73,6 @@
 {
     if (sender == _addButton) {
         [_currentUser acceptGroupInvite:_groupID];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    if (sender == _removeButton) {
-        [_currentUser ignoreGroupInvite:_groupID];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
