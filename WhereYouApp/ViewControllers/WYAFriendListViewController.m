@@ -33,9 +33,6 @@
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-#warning temporary hack
-    [_currentUser updateInformation];
-    
     [self.tableView reloadData];
 }
 
@@ -48,7 +45,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [_currentUser.friendList count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

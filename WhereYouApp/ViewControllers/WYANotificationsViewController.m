@@ -34,7 +34,6 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [_currentUser updateInformation];
     [_friendRequests setText:[NSString stringWithFormat:@"(%lu)",(unsigned long)[_currentUser.friendRequestList count]]];
     [_groupRequests setText:[NSString stringWithFormat:@"(%lu)",(unsigned long)[_currentUser.groupRequestList count]]];
 }

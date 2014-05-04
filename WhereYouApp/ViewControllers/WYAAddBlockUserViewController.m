@@ -33,8 +33,6 @@
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-#warning temporary hack
-    [_currentUser updateInformation];
     [self.tableView reloadData];
 }
 
